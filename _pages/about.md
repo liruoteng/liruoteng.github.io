@@ -5,7 +5,6 @@ excerpt: "About me"
 author_profile: true
 redirect_from: 
   - /about/
-  - /about.html
 ---
 
 I am a PhD student at Electrical & Computer Engineering department, National University of Singapore. My supervisor is [Prof. Cheong Loong Fah]() and [Prof. Robby T. Tan](). I have a very broad research interest in computer vision and machine learning. My current research involves optical flow estimation, bad weather, image restoration and Object Detection & Recognition. 
