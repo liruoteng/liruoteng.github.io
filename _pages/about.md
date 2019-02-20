@@ -29,7 +29,9 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
     color: #f09228;
     text-decoration:none !important;
     }
-
+    table,td,th,tr{
+    	border:none !important;
+    }
     body,td,th,tr,p,a {
     font-family: 'Lato', Verdana, Helvetica, sans-serif;
     font-size: 14px
