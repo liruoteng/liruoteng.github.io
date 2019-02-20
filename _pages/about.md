@@ -103,7 +103,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
         /
         <a href="">bibtex</a>
         <p></p>
-        <p> Abstract Here</p>
+        <p></p>
       </td>
     </tr>
 </tbody></table>
