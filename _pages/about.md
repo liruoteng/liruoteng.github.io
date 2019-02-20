@@ -18,12 +18,66 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
 # Research 
 
 ### Conference 
-
+ <style type="text/css">
+    /* Color scheme stolen from Sergey Karayev */
+    a {
+    color: #1772d0;
+    text-decoration:none;
+    }
+    a:focus, a:hover {
+    color: #f09228;
+    text-decoration:none;
+    }
+    body,td,th,tr,p,a {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 14px
+    }
+    strong {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 14px;
+    }
+    heading {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 22px;
+    }
+    papertitle {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 700
+    }
+    name {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 32px;
+    }
+    .one
+    {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    }
+    .two
+    {
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    transition: opacity .2s ease-in-out;
+    -moz-transition: opacity .2s ease-in-out;
+    -webkit-transition: opacity .2s ease-in-out;
+    }
+    .fade {
+     transition: opacity .2s ease-in-out;
+     -moz-transition: opacity .2s ease-in-out;
+     -webkit-transition: opacity .2s ease-in-out;
+    }
+    span.highlight {
+        background-color: #ffffd0;
+    }
+  </style>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
    <tbody>
     <tr>
       <td width="30%">
-        <img src="./images/ECCV18/thumbnail.jpg">
+         <div class="two" id="ECCV18" style="opacity: 0;"> <img src="./images/ECCV18/thumbnail.jpg"> </div>
       </td>
       <td valign="top" width="70%">
   	<!-- <papertitle>Optical Flow in Rainy Scenes</papertitle> -->
@@ -48,10 +102,10 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
     </tr>
     <!-- Paper II -->
     <tr>
-      <td width="25%">
-        <img src="./images/CVPR19/thumbnail.jpg">
+      <td width="30%">
+        <div class="two" id="CVPR19" style="opacity: 0;"> <img src="./images/CVPR19/thumbnail.jpg"> </div>
       </td>
-      <td valign="top" width="75%">
+      <td valign="top" width="70%">
   	    <!-- Heavy Rain Image Restoration: Integrating Physics Model and Conditional Adversarial Learning -->
         <a href="./files/0444.pdf"> 
       	  <papertitle>Heavy Rain Image Restoration: Integrating Physics Model and Conditional Adversarial Learning</papertitle> 
@@ -62,7 +116,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
         <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,        
     <br>
-    	<em> Coming Soon!</em><br>
+    	<em> In Submission</em><br>
         <!-- <em>CVPR</em>, 2019 <br> -->
         <a href="">paper</a>
         / 
@@ -83,7 +137,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
    <tbody>
     <tr>
       <td width="30%">
-        <img src="./images/CVPR19/thumbnail.jpg">
+        <img src="./images/Arxiv_cvpr18_derain/thumbnail.jpg">
       </td>
       <td valign="top" width="70%">
   	<!-- Single Image Deraining using Scale-Aware Multi-Stage Recurrent Network -->
