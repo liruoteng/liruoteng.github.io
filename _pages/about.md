@@ -152,7 +152,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,
         <a href="http://tanrobby.github.io/">Robby T. Tan</a>,         
     <br>
-        <em>ECCV</em>, 2018 <br>
+        <em>Arxiv Preprints</em>, 2018 <br>
         <a href="https://arxiv.org/abs/1712.06830">Arxiv</a>
         / 
         <a href="">codes</a>
