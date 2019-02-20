@@ -23,12 +23,13 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
     /* Color scheme stolen from Sergey Karayev */
     a {
     color: #1772d0;
-    text-decoration:none;
+    text-decoration:none !important;
     }
     a:focus, a:hover {
     color: #f09228;
-    text-decoration:none;
+    text-decoration:none !important;
     }
+
     body,td,th,tr,p,a {
     font-family: 'Lato', Verdana, Helvetica, sans-serif;
     font-size: 14px
@@ -78,7 +79,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
    <tbody>
     <tr>
       <td width="30%">
-         <div class="two" id="ECCV18" style="opacity: 1;"> <img src="./images/ECCV18/thumbnail.jpg"> </div>
+         <img src="./images/ECCV18/thumbnail.jpg">
       </td>
       <td valign="top" width="70%">
   	<!-- <papertitle>Optical Flow in Rainy Scenes</papertitle> -->
@@ -104,7 +105,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
     <!-- Paper II -->
     <tr>
       <td width="30%">
-        <div class="two" id="CVPR19" style="opacity: 1;"> <img src="./images/CVPR19/thumbnail.jpg"> </div>
+         <img src="./images/CVPR19/thumbnail.jpg">
       </td>
       <td valign="top" width="70%">
   	    <!-- Heavy Rain Image Restoration: Integrating Physics Model and Conditional Adversarial Learning -->
