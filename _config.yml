@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Ruoteng Li 李若腾"
   avatar           : "profile_photo.jpg"
-  bio              : "Love Life"
+  bio              : "Be the best you can be, love chouchou"
   location         : "Singapore"
   employer         :
   googlescholar    : #"http://yourfullgooglescholarurl.com"
@@ -92,7 +92,7 @@ author:
   bitbucket        :
   codepen          :
   dribbble         :
-  flickr           :
+  flickr           : "https://www.flickr.com/photos/123149382@N02/"
   facebook         :
   foursquare       :
   github           : "https://github.com/liruoteng"
@@ -100,8 +100,8 @@ author:
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         :
-  orcid            : #"http://orcid.org/yourorcidurl"
+  linkedin         : "https://www.linkedin.com/in/ruoteng-li-0357a62a/"
+  orcid            : "https://orcid.org/0000-0001-5962-9477"
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
