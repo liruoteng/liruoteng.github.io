@@ -12,7 +12,7 @@ I am a PhD student at Electrical & Computer Engineering department, National Uni
 
 I am currently a Research Engineer at Yale-NUS, Singapore. 
 
-I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-Bibiane Schönlieb](http://www.damtp.cam.ac.uk/user/cbs31/Home.html) at the Department Applied Mathematics and Theoretical Physics (DAMTP), Cambridge University. 
+I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Carola-Bibiane Schönlieb](http://www.damtp.cam.ac.uk/user/cbs31/Home.html) at the Department Applied Mathematics and Theoretical Physics (DAMTP), Cambridge University. 
 
 
 # Research 
@@ -120,8 +120,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
         <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,        
     <br>
-    	<em> In Submission</em><br>
-        <!-- <em>CVPR</em>, 2019 <br> -->
+        <em>CVPR</em>, 2019 <br>
         <a href="">paper</a>
         / 
         <a href="">codes</a>
@@ -152,7 +151,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Carola-
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,
         <a href="http://tanrobby.github.io/">Robby T. Tan</a>,         
     <br>
-        <em>Arxiv Preprints</em>, 2018 <br>
+        <em>Arxiv Preprints</em>, 2017 <br>
         <a href="https://arxiv.org/abs/1712.06830">Arxiv</a>
         / 
         <a href="">codes</a>
