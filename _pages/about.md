@@ -93,9 +93,9 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <strong>Ruoteng Li</strong>, 
         <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,
-        <a href='https://angelicaiaviles.wordpress.com'></a>,
-        <a href='https://github.com/fqnchina'></a>,
-        <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'></a>,
+        <a href='https://angelicaiaviles.wordpress.com'>Angelica I. Aviles-Rivero</a>,
+        <a href='https://github.com/fqnchina'>Qingnan Fan</a>,
+        <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'>Carola-bibiane Schönlieb</a>,
     <br>
         <em>In submission</em> <br>
         <a href="">paper</a>
