@@ -12,14 +12,14 @@ I am a PhD student at Electrical & Computer Engineering department, National Uni
 
 I am currently a Research Engineer at Yale-NUS, Singapore. 
 
-I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Carola-Bibiane Schönlieb](http://www.damtp.cam.ac.uk/user/cbs31/Home.html) at the Department Applied Mathematics and Theoretical Physics (DAMTP), Cambridge University. 
+I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Carola-Bibiane Schönlieb](http://www.damtp.cam.ac.uk/user/cbs31/Home.html) at the Department Applied Mathematics and Theoretical Physics (DAMTP), Cambridge University. I was collaborating with [Dr. Angelica I. Aviles-Rivero](https://angelicaiaviles.wordpress.com) and [Dr. Qingnan Fan](https://github.com/fqnchina) on Image Processing problems. 
 
 
 # Research 
 
 ## Conference 
 
- <style type="text/css">
+<style type="text/css">
     /* Color scheme stolen from Sergey Karayev */
     a {
     color: #1772d0;
@@ -76,9 +76,68 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
     span.highlight {
         background-color: #ffffd0;
     }
-  </style>
+</style>
+<!-- ################################  CONTENT START  #######################################-->
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
    <tbody>
+    <!-- ------------ Paper III ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/ICCV19/thumbnail.jpg">
+      </td>
+      <td valign="top" width="70%">
+        <a href=""> 
+          <papertitle>RainFlow: Optical Flow under Rain Streaks and Rain Veiling Effect</papertitle> 
+        </a>
+    <br>
+        <strong>Ruoteng Li</strong>, 
+        <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
+        <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,
+        <a href='https://angelicaiaviles.wordpress.com'></a>,
+        <a href='https://github.com/fqnchina'></a>,
+        <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'></a>,
+    <br>
+        <em>In submission</em> <br>
+        <a href="">paper</a>
+        / 
+        <a href="">codes</a>
+        / 
+        <a href="">supp file</a>
+        /
+        <a href="">bibtex</a>
+        <p></p>
+        <p></p>
+      </td>
+    </tr>
+    <!-- ------------ Paper II ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/CVPR19/thumbnail.jpg">
+      </td>
+      <td valign="top" width="70%">
+        <!-- Heavy Rain Image Restoration: Integrating Physics Model and Conditional Adversarial Learning -->
+        <a href="./files/0444.pdf"> 
+          <papertitle>Heavy Rain Image Restoration: Integrating Physics Model and Conditional Adversarial Learning</papertitle> 
+        </a>
+        <!-- Heavy Rain Image Restoration: Integrating Physics Model and Conditional Adversarial Learning -->
+    <br>
+        <strong>Ruoteng Li</strong>, 
+        <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
+        <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,        
+    <br>
+        <em>CVPR</em>, 2019 <br>
+        <a href="">paper</a>
+        / 
+        <a href="">codes</a>
+        / 
+        <a href="">supp file</a>
+        /
+        <a href="">bibtex</a>
+        <p></p>
+        <p></p>
+      </td>
+    </tr>
+    <!-- ------------ Paper I ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/ECCV18/thumbnail.jpg">
@@ -98,34 +157,6 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <a href="">codes</a>
         / 
         <a href="https://drive.google.com/open?id=1fMeflgiEri4f78TJy4qQITZhI6oEXRtZ">supp file</a>
-        /
-        <a href="">bibtex</a>
-        <p></p>
-        <p></p>
-      </td>
-    </tr>
-    <!-- Paper II -->
-    <tr>
-      <td width="30%">
-         <img src="./images/CVPR19/thumbnail.jpg">
-      </td>
-      <td valign="top" width="70%">
-  	    <!-- Heavy Rain Image Restoration: Integrating Physics Model and Conditional Adversarial Learning -->
-        <a href="./files/0444.pdf"> 
-      	  <papertitle>Heavy Rain Image Restoration: Integrating Physics Model and Conditional Adversarial Learning</papertitle> 
-        </a>
-        <!-- Heavy Rain Image Restoration: Integrating Physics Model and Conditional Adversarial Learning -->
-    <br>
-        <strong>Ruoteng Li</strong>, 
-        <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
-        <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,        
-    <br>
-        <em>CVPR</em>, 2019 <br>
-        <a href="">paper</a>
-        / 
-        <a href="">codes</a>
-        / 
-        <a href="">supp file</a>
         /
         <a href="">bibtex</a>
         <p></p>
