@@ -160,13 +160,13 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,        
     <br>
         <em>CVPR</em>, 2019 <br>
-        <a href="">paper</a>
+        <a href="">Arxiv</a>
         / 
-        <a href="">codes</a>
+        <a href="https://github.com/liruoteng/HeavyRainRemoval">Codes</a>
         / 
-        <a href="">supp file</a>
+        <a href="./files/0444-supp.pdf">Supplementary</a>
         /
-        <a href="">bibtex</a>
+        <a href="">Bibtex</a>
         <p></p>
         <p></p>
       </td>
