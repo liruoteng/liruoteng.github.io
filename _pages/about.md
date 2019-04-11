@@ -80,7 +80,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
 <!-- ################################  CONTENT START  #######################################-->
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
    <tbody>
-    <!-- ------------ Paper IV ----------------- -->
+    <!-- ------------ Paper V ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/comingsoon.jpg">
@@ -109,7 +109,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <p></p>
       </td>
     </tr>
-        <!-- ------------ Paper III ----------------- -->
+    <!-- ------------ Paper IV ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/comingsoon.jpg">
@@ -143,6 +143,36 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <p></p>
       </td>
     </tr>
+    <!-- ------------ Paper III ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/comingsoon.jpg">
+      </td>
+      <td valign="top" width="70%">
+        <a href=""> 
+          <papertitle>GraphX$^{NET}-$ Chest X-Ray Classification Under Extreme Minimal Supervision</papertitle> 
+        </a>
+      <br>
+        <a href='https://angelicaiaviles.wordpress.com'>Angelica I. Aviles-Rivero</a>,
+        Nicolas Papadakis,
+        <strong>Ruoteng Li</strong>,
+        Philip Sellars, 
+        <a href='https://github.com/fqnchina'>Qingnan Fan</a>,
+        <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
+        <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'>Carola-bibiane Schönlieb</a>.
+      <br>
+        <em>In submission</em> <br>
+        <a href="">paper</a>
+        / 
+        <a href="">codes</a>
+        / 
+        <a href="">supp file</a>
+        /
+        <a href="">bibtex</a>
+        <p></p>
+        <p></p>
+      </td>
+    </tr>
     <!-- ------------ Paper II ----------------- -->
     <tr>
       <td width="30%">
@@ -160,7 +190,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,        
     <br>
         <em>CVPR</em>, 2019 <br>
-        <a href="">Arxiv</a>
+        <a href="https://arxiv.org/abs/1904.05050">Arxiv</a>
         / 
         <a href="https://github.com/liruoteng/HeavyRainRemoval">Codes</a>
         / 
