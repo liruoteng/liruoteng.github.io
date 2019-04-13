@@ -83,7 +83,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
     <!-- ------------ Paper V ----------------- -->
     <tr>
       <td width="30%">
-         <img src="./images/comingsoon.jpg">
+         <img src="./images/comingsoon_small.jpg">
       </td>
       <td valign="top" width="70%">
         <a href=""> 
@@ -112,7 +112,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
     <!-- ------------ Paper IV ----------------- -->
     <tr>
       <td width="30%">
-         <img src="./images/comingsoon.jpg">
+         <img src="./images/comingsoon_small.jpg">
       </td>
       <td valign="top" width="70%">
         <a href=""> 
@@ -146,7 +146,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
     <!-- ------------ Paper III ----------------- -->
     <tr>
       <td width="30%">
-         <img src="./images/comingsoon.jpg">
+         <img src="./images/comingsoon_small.jpg">
       </td>
       <td valign="top" width="70%">
         <a href=""> 
