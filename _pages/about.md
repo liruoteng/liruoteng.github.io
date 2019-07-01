@@ -83,7 +83,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
     <!-- ------------ Paper V ----------------- -->
     <tr>
       <td width="30%">
-         <img src="./images/comingsoon_small.jpg">
+         <img src="./images/ICCV19/thumbnail.png">
       </td>
       <td valign="top" width="70%">
         <a href=""> 
@@ -134,8 +134,6 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <em>In submission</em> <br>
         <a href="">paper</a>
         / 
-        <a href="">codes</a>
-        / 
         <a href="">supp file</a>
         /
         <a href="">bibtex</a>
@@ -146,7 +144,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
     <!-- ------------ Paper III ----------------- -->
     <tr>
       <td width="30%">
-         <img src="./images/comingsoon_small.jpg">
+         <img src="./images/MICCAI19/miccai19.png">
       </td>
       <td valign="top" width="70%">
         <a href=""> 
@@ -218,7 +216,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <em>ECCV</em>, 2018 <br>
         <a href="https://arxiv.org/abs/1704.05239">Arxiv</a>
         / 
-        <a href="">codes</a>
+        <a href="https://github.com/liruoteng/dynamic-optical-flow">codes</a>
         / 
         <a href="https://drive.google.com/open?id=1fMeflgiEri4f78TJy4qQITZhI6oEXRtZ">supp file</a>
         /
@@ -248,14 +246,14 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
     <br>
         <em>Arxiv Preprints</em>, 2017 <br>
         <a href="https://arxiv.org/abs/1712.06830">Arxiv</a>
-        / 
+        <!-- / 
         <a href="">codes</a>
         / 
         <a href="https://drive.google.com/open?id=1ZaSzwMmdqiLs2hzd5qiqsnOJY1lyfzQy">supp file</a>
         /
         <a href="">bibtex</a>
         <p></p>
-        <p></p>
+        <p></p> -->
       </td>
     </tr>
 </tbody></table>
