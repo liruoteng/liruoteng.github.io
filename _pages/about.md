@@ -91,13 +91,13 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         </a>
     <br>
         <strong>Ruoteng Li</strong>, 
-        <!--<a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
+        <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,
         <a href='https://angelicaiaviles.wordpress.com'>Angelica I. Aviles-Rivero</a>,
         <a href='https://github.com/fqnchina'>Qingnan Fan</a>,
-        <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'>Carola-bibiane Schönlieb</a>,-->
+        <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'>Carola-bibiane Schönlieb</a>
     <br>
-        <em>In submission</em> <br>
+        <em>ICCV 2019</em> <br>
         <a href="">paper</a>
         / 
         <a href="">codes</a>
@@ -159,8 +159,8 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
         <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'>Carola-bibiane Schönlieb</a>.
       <br>
-        <em>In submission</em> <br>
-        <a href="">paper</a>
+        <em>MICCAI 2019</em> <br>
+        <a href="./files/MICCAI19.pdf">paper</a>
         / 
         <a href="">codes</a>
         / 
