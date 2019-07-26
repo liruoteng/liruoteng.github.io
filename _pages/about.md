@@ -80,7 +80,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
 <!-- ################################  CONTENT START  #######################################-->
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
    <tbody>
-    <!-- ------------ Paper V ----------------- -->
+    <!-- ------------ Paper V - ICCV - RainFlow  ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/ICCV19/thumbnail.png">
@@ -98,18 +98,18 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'>Carola-bibiane Schönlieb</a>
     <br>
         <em>ICCV 2019</em> <br>
-        <a href="">paper</a>
+        <a href="">arXiv</a>
         / 
         <a href="">codes</a>
         / 
-        <a href="">supp file</a>
+        <a href="">supplementary</a>
         /
-        <a href="">bibtex</a>
+        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
     </tr>
-    <!-- ------------ Paper IV ----------------- -->
+    <!-- ------------ Paper IV - ICCV - Reflection ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/comingsoon_small.jpg">
@@ -132,16 +132,16 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         Baoquan Chen.
       <br>
         <em>In submission</em> <br>
-        <a href="">paper</a>
+        <a href="">Paper</a>
         / 
-        <a href="">supp file</a>
+        <a href="">supplementary</a>
         /
-        <a href="">bibtex</a>
+        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
     </tr>
-    <!-- ------------ Paper III ----------------- -->
+    <!-- ------------ Paper III - MICCAI Chest X-Ray ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/MICCAI19/miccai19.png">
@@ -160,18 +160,16 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'>Carola-bibiane Schönlieb</a>.
       <br>
         <em>MICCAI 2019</em> <br>
-        <a href="./files/MICCAI19.pdf">paper</a>
+        <a href="./files/MICCAI19.pdf">Paper</a>
         / 
-        <a href="">codes</a>
-        / 
-        <a href="">supp file</a>
+        <a href="">arXiv</a>
         /
-        <a href="">bibtex</a>
+        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
     </tr>
-    <!-- ------------ Paper II ----------------- -->
+    <!-- ------------ Paper II- CVPR - Heavy Rain  ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/CVPR19/thumbnail.jpg">
@@ -184,22 +182,22 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <!-- Heavy Rain Image Restoration: Integrating Physics Model and Conditional Adversarial Learning -->
     <br>
         <strong>Ruoteng Li</strong>, 
-        <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
-        <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,        
+        <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>, 
+        <a href="http://tanrobby.github.io/">Robby T. Tan</a>
     <br>
         <em>CVPR</em>, 2019 <br>
-        <a href="https://arxiv.org/abs/1904.05050">Arxiv</a>
+        <a href="https://arxiv.org/abs/1904.05050">arXiv</a>
         / 
-        <a href="https://github.com/liruoteng/HeavyRainRemoval">Codes</a>
+        <a href="https://github.com/liruoteng/HeavyRainRemoval">codes</a>
         / 
-        <a href="./files/0444-supp.pdf">Supplementary</a>
+        <a href="./files/0444-supp.pdf">supplementary</a>
         /
-        <a href="">Bibtex</a>
+        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
     </tr>
-    <!-- ------------ Paper I ----------------- -->
+    <!-- ------------ Paper I - ROBUST OPTICAL FLOW ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/ECCV18/thumbnail.jpg">
@@ -214,13 +212,13 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,        
     <br>
         <em>ECCV</em>, 2018 <br>
-        <a href="https://arxiv.org/abs/1704.05239">Arxiv</a>
+        <a href="https://arxiv.org/abs/1704.05239">arXiv</a>
         / 
         <a href="https://github.com/liruoteng/dynamic-optical-flow">codes</a>
         / 
-        <a href="https://drive.google.com/open?id=1fMeflgiEri4f78TJy4qQITZhI6oEXRtZ">supp file</a>
+        <a href="https://drive.google.com/open?id=1fMeflgiEri4f78TJy4qQITZhI6oEXRtZ">supplementary</a>
         /
-        <a href="">bibtex</a>
+        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
@@ -244,8 +242,8 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,
         <a href="http://tanrobby.github.io/">Robby T. Tan</a>,         
     <br>
-        <em>Arxiv Preprints</em>, 2017 <br>
-        <a href="https://arxiv.org/abs/1712.06830">Arxiv</a>
+        <em>arXiv preprints</em>, 2017 <br>
+        <a href="https://arxiv.org/abs/1712.06830">arXiv</a>
         <!-- / 
         <a href="">codes</a>
         / 
