@@ -112,7 +112,7 @@ I am currently a Research Scientist in [ByteDance](https://www.bytedance.com/en/
     <!-- ------------ Paper XI - NIPS - Dataset  ----------------- -->
     <tr>
       <td width="30%">
-         <img src="./images/NIPS22/dataset.png">
+         <img src="./images/NIPS22/Dataset.png">
       </td>
       <td valign="top" width="70%">
         <a href=""> 
