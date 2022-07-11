@@ -10,9 +10,13 @@ redirect_from:
 
 I am a PhD student at Electrical & Computer Engineering department, National University of Singapore. My supervisor is [Prof. Cheong Loong Fah](https://www.ece.nus.edu.sg/stfpage/eleclf/) and [Prof. Robby T. Tan](http://tanrobby.github.io/). I have a very broad research interest in computer vision and machine learning. My current research involves optical flow estimation, bad weather, image restoration and object detection & recognition. 
 
-I am currently a Research Engineer at Yale-NUS, Singapore. 
+
 
 I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Carola-Bibiane Schönlieb](http://www.damtp.cam.ac.uk/user/cbs31/Home.html) at the Department Applied Mathematics and Theoretical Physics (DAMTP), Cambridge University. I was collaborating with [Dr. Angelica I. Aviles-Rivero](https://angelicaiaviles.wordpress.com) and [Dr. Qingnan Fan](https://github.com/fqnchina) on Image Processing problems. 
+
+
+
+I am currently a Research Scientist in [ByteDance](https://www.bytedance.com/en/)
 
 
 # Research 
@@ -78,9 +82,184 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
     }
 </style>
 <!-- ################################  CONTENT START  #######################################-->
+
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
    <tbody>
-    <!-- ------------ Paper V - ICCV - RainFlow  ----------------- -->
+    <!-- ------------ Paper XII - NIPS - RainFlow  ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/NIPS22/Fewshot.png">
+      </td>
+      <td valign="top" width="70%">
+        <a href=""> 
+          <papertitle>Few-shot Image Generation via Adaptation-aware Kernel Modulation</papertitle> 
+        </a>
+    <br>
+        <em>In Submission to NeurIPS 2022</em>
+    <br>
+        <em>NeurIPS 2022</em> <br>
+        <a href="">arXiv</a>
+        / 
+        <a href="">codes</a>
+        / 
+        <a href="">supplementary</a>
+        /
+        <a href="">BibTex</a>
+        <p></p>
+        <p></p>
+      </td>
+    </tr> 
+    <!-- ------------ Paper XI - NIPS - Dataset  ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/NIPS22/dataset.png">
+      </td>
+      <td valign="top" width="70%">
+        <a href=""> 
+          <papertitle>Realistic Large-Scale Fine-Depth Dehazing Dataset from 3D Videos </papertitle> 
+        </a>
+    <br>
+        <em>In Submission to NeurIPS 2022 Dataset Track</em>
+    <br>
+        <em>NeurIPS 2022</em> <br>
+        <a href="">arXiv</a>
+        / 
+        <a href="">codes</a>
+        / 
+        <a href="">supplementary</a>
+        /
+        <a href="">BibTex</a>
+        <p></p>
+        <p></p>
+      </td>
+    </tr> 
+    <!-- ------------ Paper X    - TIP22 - RainFlow  ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/TIP/intrinsic.png">
+      </td>
+      <td valign="top" width="70%">
+        <a href=""> 
+          <papertitle>From Model Guidance to Shadow and Specular Aware Network: Unsupervised Reflectance Recovery from a Single Image </papertitle> 
+        </a>
+    <br>
+        <em>In Submission to TIP 2022</em>
+    <br>
+        <em>TIP 2022</em> <br>
+        <a href="">arXiv</a>
+        / 
+        <a href="">codes</a>
+        / 
+        <a href="">supplementary</a>
+        /
+        <a href="">BibTex</a>
+        <p></p>
+        <p></p>
+      </td>
+    </tr>   
+    <!-- ------------ Paper IX - TIP21 - RainFlow  ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/TIP/reflection.png">
+      </td>
+      <td valign="top" width="70%">
+        <a href=""> 
+          <papertitle>Single Image Reflection removal via learning with multi-image constraints </papertitle> 
+        </a>
+    <br>
+        <em>In Submission to TIP 2021</em>
+    <br>
+        <em>TIP 2021</em> <br>
+        <a href="">arXiv</a>
+        / 
+        <a href="">codes</a>
+        / 
+        <a href="">supplementary</a>
+        /
+        <a href="">BibTex</a>
+        <p></p>
+        <p></p>
+      </td>
+    </tr>    
+    <!-- ------------ Paper VIII - TPAMI21 - RainFlow  ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/TPAMI21/Laplacian.png">
+      </td>
+      <td valign="top" width="70%">
+        <a href=""> 
+          <papertitle>Energy Models for Better Pseudo-Labels: Improving Semi-Supervised Classification with the 1-Laplacian Graph Energy</papertitle> 
+        </a>
+    <br>
+        <em>In Submission to TPAMI 2021</em>
+    <br>
+        <em>TPAMI 2021</em> <br>
+        <a href="">arXiv</a>
+        / 
+        <a href="">codes</a>
+        / 
+        <a href="">supplementary</a>
+        /
+        <a href="">BibTex</a>
+        <p></p>
+        <p></p>
+      </td>
+    </tr> 
+    <!-- ------------ Paper VII  - ECCV - Tracking  ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/ECCV20/tracking.png">
+      </td>
+      <td valign="top" width="70%">
+        <a href=""> 
+          <papertitle>Object Tracking using Spatio-Temporal Networks for Future Prediction Location</papertitle> 
+        </a>
+    <br>
+        <strong>Ruoteng Li*</strong>, 
+        Yuan Liu*,
+        Yu Cheng,
+        <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
+        Xiubao Sui
+    <br>
+        <em>ECCV 2020</em> <br>
+        <a href="">arXiv</a>
+        / 
+        <a href="">codes</a>
+        / 
+        <a href="">supplementary</a>
+        /
+        <a href="">BibTex</a>
+        <p></p>
+        <p></p>
+      </td>
+    </tr> 
+    <!-- ------------ Paper VI   - CVPR - ALLinOne  ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/CVPR20/allinone.png">
+      </td>
+      <td valign="top" width="70%">
+        <a href=""> 
+          <papertitle>All-in-One Bad Weather Removal using Fusion Search</papertitle> 
+        </a>
+    <br>
+        <strong>Ruoteng Li</strong>, 
+        <a href="http://tanrobby.github.io/">Robby T. Tan</a>, 
+        <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>
+    <br>
+        <em>CVPR 2020</em> <br>
+        <a href="">arXiv</a>
+        / 
+        <a href="">codes</a>
+        / 
+        <a href="">supplementary</a>
+        /
+        <a href="">BibTex</a>
+        <p></p>
+        <p></p>
+      </td>
+    </tr> 
+    <!-- ------------ Paper V    - ICCV - RainFlow  ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/ICCV19/thumbnail.png">
@@ -160,7 +339,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
         <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'>Carola-bibiane Schönlieb</a>.
       <br>
         <em>MICCAI 2019</em> <br>
-        <a href="./files/MICCAI19.pdf">Paper</a>
+        <a href="./files/MICCAI19.pdf">paper</a>
         / 
         <a href="">arXiv</a>
         /
