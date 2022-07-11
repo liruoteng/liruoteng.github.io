@@ -21,7 +21,7 @@ I am currently a Research Scientist in [ByteDance](https://www.bytedance.com/en/
 
 # Research 
 
-## Conference 
+## Conference & Journal
 
 <style type="text/css">
     /* Color scheme stolen from Sergey Karayev */
