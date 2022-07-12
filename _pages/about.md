@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a PhD student at Electrical & Computer Engineering department, National University of Singapore. My supervisor is [Prof. Cheong Loong Fah](https://www.ece.nus.edu.sg/stfpage/eleclf/) and [Prof. Robby T. Tan](http://tanrobby.github.io/). I have a very broad research interest in computer vision and machine learning. My current research involves optical flow estimation, bad weather, image restoration and object detection & recognition. 
+I'm Ruoteng LI, currently a Research Scientist at  [ByteDance](https://www.bytedance.com/en/) AI-Lab, working intenstively on video understanding and image processing.  I obtained my Ph.D degree from Electrical & Computer Engineering department, National University of Singapore (NUS) in 2020 (from 2016-2020). My supervisor was [Prof. Cheong Loong Fah](https://www.ece.nus.edu.sg/stfpage/eleclf/) and [Prof. Robby T. Tan](http://tanrobby.github.io/), who gave me untold valuable guidance and indispensable encouragements. Before that, I completed my bachelor degree from at NUS and my high school education at [Yao Hua Middle School](http://yaohua.tj.edu.cn/) in China. 
 
 
 
@@ -16,7 +16,9 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
 
 
 
-I am currently a Research Scientist in [ByteDance](https://www.bytedance.com/en/)
+I had my internship in Google,  with DayDream, [AR Core team](https://developers.google.com/ar) in 2020 Summer. My supervisor helped me [Josh Hernandez](https://www.linkedin.com/in/joshua-hernandez-44b68b32) tremendously on solving AR tracking problem using intrinsic image decomposition. ([slides](https://docs.google.com/presentation/d/1-unmUSPZe5ArgKVD6axTCLQnxlihUIh7DgXAe-gYZ3g/edit?usp=sharing))
+
+
 
 
 # Research 
