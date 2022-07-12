@@ -100,13 +100,6 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
         <em>In Submission to NeurIPS 2022</em>
     <br>
         <em>NeurIPS 2022</em> <br>
-        <a href="">arXiv</a>
-        / 
-        <a href="">codes</a>
-        / 
-        <a href="">supplementary</a>
-        /
-        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
@@ -124,13 +117,6 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
         <em>In Submission to NeurIPS 2022 Dataset Track</em>
     <br>
         <em>NeurIPS 2022</em> <br>
-        <a href="">arXiv</a>
-        / 
-        <a href="">codes</a>
-        / 
-        <a href="">supplementary</a>
-        /
-        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
@@ -148,18 +134,11 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
         <em>In Submission to TIP 2022</em>
     <br>
         <em>TIP 2022</em> <br>
-        <a href="">arXiv</a>
-        / 
-        <a href="">codes</a>
-        / 
-        <a href="">supplementary</a>
-        /
-        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
     </tr>   
-    <!-- ------------ Paper IX - TIP21 - RainFlow  ----------------- -->
+    <!-- ------------ Paper IX - TIP21 - Reflection  ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/TIP/reflection.png">
@@ -172,18 +151,11 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
         <em>In Submission to TIP 2021</em>
     <br>
         <em>TIP 2021</em> <br>
-        <a href="">arXiv</a>
-        / 
-        <a href="">codes</a>
-        / 
-        <a href="">supplementary</a>
-        /
-        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
     </tr>    
-    <!-- ------------ Paper VIII - TPAMI21 - RainFlow  ----------------- -->
+    <!-- ------------ Paper VIII - TPAMI21 - Laplacian  ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/TPAMI21/Laplacian.png">
@@ -213,7 +185,7 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
          <img src="./images/ECCV20/tracking.png">
       </td>
       <td valign="top" width="70%">
-        <a href=""> 
+        <a href="./files/20ECCV_Tracking.pdf"> 
           <papertitle>Object Tracking using Spatio-Temporal Networks for Future Prediction Location</papertitle> 
         </a>
     <br>
@@ -224,13 +196,9 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
         Xiubao Sui
     <br>
         <em>ECCV 2020</em> <br>
-        <a href="">arXiv</a>
-        / 
-        <a href="">codes</a>
-        / 
+        <a href="./files/20ECCV_Tracking.pdf">paper</a> /
+        <a href="">code</a> /
         <a href="">supplementary</a>
-        /
-        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
@@ -241,7 +209,7 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
          <img src="./images/CVPR20/allinone.png">
       </td>
       <td valign="top" width="70%">
-        <a href=""> 
+        <a href="./files/02002.pdf"> 
           <papertitle>All-in-One Bad Weather Removal using Fusion Search</papertitle> 
         </a>
     <br>
@@ -250,13 +218,8 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>
     <br>
         <em>CVPR 2020</em> <br>
-        <a href="">arXiv</a>
-        / 
-        <a href="">codes</a>
-        / 
-        <a href="">supplementary</a>
-        /
-        <a href="">BibTex</a>
+        <a href="./files/02002.pdf">paper</a> /
+        <a href="./files/2002-supp.pdf">supplementary</a>
         <p></p>
         <p></p>
       </td>
@@ -279,13 +242,11 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
         <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'>Carola-bibiane Schönlieb</a>
     <br>
         <em>ICCV 2019</em> <br>
-        <a href="./files/2908.pdf">arXiv</a>
+        <a href="./files/2908.pdf">paper</a>
         / 
-        <a href="">codes</a>
+        <a href="">code</a>
         / 
-        <a href="">supplementary</a>
-        /
-        <a href="">BibTex</a>
+        <a href="./files/2908-supp.pdf">supplementary</a>
         <p></p>
         <p></p>
       </td>
@@ -313,11 +274,6 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
         Baoquan Chen.
       <br>
         <em>In submission</em> <br>
-        <a href="">Paper</a>
-        / 
-        <a href="">supplementary</a>
-        /
-        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
@@ -328,7 +284,7 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
          <img src="./images/MICCAI19/miccai19.png">
       </td>
       <td valign="top" width="70%">
-        <a href=""> 
+        <a href="./files/MICCAI19.pdf"> 
           <papertitle>GraphX$^{NET}-$ Chest X-Ray Classification Under Extreme Minimal Supervision</papertitle> 
         </a>
       <br>
@@ -342,10 +298,6 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
       <br>
         <em>MICCAI 2019</em> <br>
         <a href="./files/MICCAI19.pdf">paper</a>
-        / 
-        <a href="">arXiv</a>
-        /
-        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
@@ -367,13 +319,10 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
         <a href="http://tanrobby.github.io/">Robby T. Tan</a>
     <br>
         <em>CVPR</em>, 2019 <br>
+        <a href="./files/0444.pdf">paper</a> / 
+        <a href="https://github.com/liruoteng/HeavyRainRemoval">code</a> / 
+        <a href="./files/0444-supp.pdf">supplementary</a> /
         <a href="https://arxiv.org/abs/1904.05050">arXiv</a>
-        / 
-        <a href="https://github.com/liruoteng/HeavyRainRemoval">codes</a>
-        / 
-        <a href="./files/0444-supp.pdf">supplementary</a>
-        /
-        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
@@ -393,13 +342,10 @@ I had my internship in Google,  with DayDream, [AR Core team](https://developers
         <a href="https://www.ece.nus.edu.sg/stfpage/eleclf/">Loong-Fah Cheong</a>,        
     <br>
         <em>ECCV</em>, 2018 <br>
+        <a href="./files/0494.pdf">paper</a> / 
+        <a href="https://github.com/liruoteng/dynamic-optical-flow">code</a> / 
+        <a href="./files/0494-supp.pdf">supplementary</a> /
         <a href="https://arxiv.org/abs/1704.05239">arXiv</a>
-        / 
-        <a href="https://github.com/liruoteng/dynamic-optical-flow">codes</a>
-        / 
-        <a href="https://drive.google.com/open?id=1fMeflgiEri4f78TJy4qQITZhI6oEXRtZ">supplementary</a>
-        /
-        <a href="">BibTex</a>
         <p></p>
         <p></p>
       </td>
