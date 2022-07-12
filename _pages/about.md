@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm Ruoteng LI, currently a Research Scientist at  [ByteDance](https://www.bytedance.com/en/) AI-Lab, working intenstively on video understanding and image processing.  I obtained my Ph.D degree from Electrical & Computer Engineering department, National University of Singapore (NUS) in 2020 (from 2016-2020). My supervisor was [Prof. Cheong Loong Fah](https://www.ece.nus.edu.sg/stfpage/eleclf/) and [Prof. Robby T. Tan](http://tanrobby.github.io/), who gave me untold valuable guidance and indispensable encouragements. Before that, I completed my bachelor degree from at NUS and my high school education at [Yao Hua Middle School](http://yaohua.tj.edu.cn/) in China. 
+I'm Ruoteng LI, currently a Research Scientist at  [ByteDance](https://www.bytedance.com/en/) AI-Lab, working intenstively on video understanding and image processing. I am also a Joint Lecturer in National University of Singapore (NUS).   I obtained my Ph.D degree from Electrical & Computer Engineering department, NUS in 2020 (from 2016-2020). My supervisor was [Prof. Cheong Loong Fah](https://www.ece.nus.edu.sg/stfpage/eleclf/) and [Prof. Robby T. Tan](http://tanrobby.github.io/), who gave me untold valuable guidance and indispensable encouragements. Before that, I completed my bachelor degree from at NUS and my high school education at [Yao Hua Middle School](http://yaohua.tj.edu.cn/) in China. 
 
 
 
