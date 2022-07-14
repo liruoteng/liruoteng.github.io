@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm Ruoteng LI, currently a Research Scientist at  [ByteDance](https://www.bytedance.com/en/) AI-Lab, working intenstively on video understanding and image processing. I am also a Joint Lecturer in National University of Singapore (NUS).   I obtained my Ph.D degree from Electrical & Computer Engineering department, NUS in 2020 (from 2016-2020). My supervisor was [Prof. Cheong Loong Fah](https://www.ece.nus.edu.sg/stfpage/eleclf/) and [Prof. Robby T. Tan](http://tanrobby.github.io/), who gave me untold valuable guidance and indispensable encouragements. Before that, I completed my bachelor degree from at NUS and my high school education at [Yao Hua Middle School](http://yaohua.tj.edu.cn/) in China. 
+I'm Ruoteng LI, currently a Research Scientist at  [ByteDance](https://www.bytedance.com/en/) AI-Lab, working intenstively on video understanding and image processing. I am also a Joint Lecturer in National University of Singapore (NUS).   I obtained my Ph.D degree from Electrical & Computer Engineering department, NUS in 2020 (from 2016-2020). My supervisor was [Prof. Cheong Loong Fah](https://www.ece.nus.edu.sg/stfpage/eleclf/) and [Prof. Robby T. Tan](http://tanrobby.github.io/), who gave me untold valuable guidance and indispensable encouragements. Before that, I completed my bachelor degree from NUS and my high school education at [Yao Hua High School](http://yaohua.tj.edu.cn/) in China. 
 
 
 
@@ -16,7 +16,7 @@ I was a visiting student in Cambridge Image Analysis (CIA) group led by [Dr. Car
 
 
 
-I had my internship in Google,  with DayDream, [AR Core team](https://developers.google.com/ar) in 2020 Summer. My supervisor helped me [Josh Hernandez](https://www.linkedin.com/in/joshua-hernandez-44b68b32) tremendously on solving AR tracking problem using intrinsic image decomposition. ([slides](https://docs.google.com/presentation/d/1-unmUSPZe5ArgKVD6axTCLQnxlihUIh7DgXAe-gYZ3g/edit?usp=sharing))
+I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR Core](https://developers.google.com/ar)  team in 2020 Summer. My supervisor  [Josh Hernandez](https://www.linkedin.com/in/joshua-hernandez-44b68b32) helped me tremendously on solving AR tracking problem using intrinsic image decomposition. ([slides](https://docs.google.com/presentation/d/1-unmUSPZe5ArgKVD6axTCLQnxlihUIh7DgXAe-gYZ3g/edit?usp=sharing))
 
 
 
