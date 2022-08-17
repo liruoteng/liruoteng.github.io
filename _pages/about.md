@@ -121,7 +121,7 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
         <p></p>
       </td>
     </tr> 
-    <!-- ------------ Paper X    - TIP22 - RainFlow  ----------------- -->
+    <!-- ------------ Paper X    - TIP22 - RainFlow  ----------------- 
     <tr>
       <td width="30%">
          <img src="./images/TIP/intrinsic.png">
@@ -137,7 +137,7 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
         <p></p>
         <p></p>
       </td>
-    </tr>   
+    </tr>  --> 
     <!-- ------------ Paper IX - TIP21 - Reflection  ----------------- -->
     <tr>
       <td width="30%">
