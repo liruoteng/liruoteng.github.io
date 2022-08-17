@@ -121,23 +121,6 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
         <p></p>
       </td>
     </tr> 
-    <!-- ------------ Paper X    - TIP22 - RainFlow  ----------------- 
-    <tr>
-      <td width="30%">
-         <img src="./images/TIP/intrinsic.png">
-      </td>
-      <td valign="top" width="70%">
-        <a href=""> 
-          <papertitle>From Model Guidance to Shadow and Specular Aware Network: Unsupervised Reflectance Recovery from a Single Image </papertitle> 
-        </a>
-    <br>
-        <em>In Submission to TIP 2022</em>
-    <br>
-        <em>TIP 2022</em> <br>
-        <p></p>
-        <p></p>
-      </td>
-    </tr>  --> 
     <!-- ------------ Paper IX - TIP21 - Reflection  ----------------- -->
     <tr>
       <td width="30%">
