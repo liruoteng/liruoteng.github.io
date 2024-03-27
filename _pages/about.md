@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm Ruoteng LI, currently a Research Scientist at  [ByteDance](https://www.bytedance.com/en/) AI-Lab, working intenstively on video understanding and image processing. I am also a Joint Lecturer in National University of Singapore (NUS).   I obtained my Ph.D degree from Electrical & Computer Engineering department, NUS in 2020 (from 2016-2020). My supervisor was [Prof. Cheong Loong Fah](https://www.ece.nus.edu.sg/stfpage/eleclf/) and [Prof. Robby T. Tan](http://tanrobby.github.io/), who gave me untold valuable guidance and indispensable encouragements. Before that, I completed my bachelor degree from NUS and my high school education at [Yao Hua High School](http://yaohua.tj.edu.cn/) in China. 
+I'm Ruoteng LI, currently a Research Scientist at  [ByteDance](https://www.bytedance.com/en/) AI-Lab, working intenstively on video understanding & recommendation, Multi-modality learning. I am also a Joint Lecturer in Electrical Engineering Faculty in National University of Singapore (NUS).   I obtained my Ph.D degree from Electrical & Computer Engineering department, NUS in 2020 (from 2016-2020). My supervisor was [Prof. Cheong Loong Fah](https://www.ece.nus.edu.sg/stfpage/eleclf/) and [Prof. Robby T. Tan](http://tanrobby.github.io/), who gave me untold valuable guidance and indispensable encouragements. Before that, I completed my bachelor degree from NUS and my high school education at [Yao Hua High School](http://yaohua.tj.edu.cn/) in China. [Full CV](https://www.dropbox.com/scl/fi/9c9m8djyaba29lucr0l1k/Ruoteng_Li_CV.pdf?rlkey=jvyrqcjaoi8pow57mq39jn4hj&dl=0)
 
 
 
@@ -279,33 +279,6 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
         <a href="">code</a>
         / 
         <a href="./files/2908-supp.pdf">supplementary</a>
-        <p></p>
-        <p></p>
-      </td>
-    </tr>
-    <!-- ------------ Paper IV - ICCV - Reflection ----------------- -->
-    <tr>
-      <td width="30%">
-         <img src="./images/comingsoon_small.jpg">
-      </td>
-      <td valign="top" width="70%">
-        <a href=""> 
-          <papertitle>Reflection Removal Via Unsupervised Learning</papertitle> 
-        </a>
-      <br>
-        <a href='https://github.com/fqnchina'>Qingnan Fan</a>,
-        Yingda Yin,
-        Dongdong Chen,
-        Yujie Wang,
-        Miao Yang, 
-        <strong>Ruoteng Li</strong>,
-        <a href='https://angelicaiaviles.wordpress.com'>Angelica I. Aviles-Rivero</a>,
-        <a href='http://www.damtp.cam.ac.uk/user/cbs31/Home.html'>Carola-bibiane Schönlieb</a>,
-        Dani Lischinski,
-        Danny Cohen-Or,
-        Baoquan Chen.
-      <br>
-        <em>In submission</em> <br>
         <p></p>
         <p></p>
       </td>
