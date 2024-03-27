@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "About"
+title: "About Me"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm Ruoteng LI, currently a Research Scientist at  [ByteDance](https://www.bytedance.com/en/) AI-Lab, working intenstively on video understanding & recommendation, Multi-modality learning. I am also a Joint Lecturer in Electrical Engineering Faculty in National University of Singapore (NUS).   I obtained my Ph.D degree from Electrical & Computer Engineering department, NUS in 2020 (from 2016-2020). My supervisor was [Prof. Cheong Loong Fah](https://www.ece.nus.edu.sg/stfpage/eleclf/) and [Prof. Robby T. Tan](http://tanrobby.github.io/), who gave me untold valuable guidance and indispensable encouragements. Before that, I completed my bachelor degree from NUS and my high school education at [Yao Hua High School](http://yaohua.tj.edu.cn/) in China. [Full CV]
+I'm Ruoteng LI, currently a Research Scientist at  [ByteDance](https://www.bytedance.com/en/) AI-Lab, working intenstively on video understanding & recommendation, multi-modality learning. I am also a joint Lecturer in Electrical Engineering Faculty in National University of Singapore (NUS) in 2022 - 2023.   I obtained my Ph.D degree from Electrical & Computer Engineering department, NUS in 2020 (from 2016-2020). My supervisor was [Prof. Cheong Loong Fah](https://www.ece.nus.edu.sg/stfpage/eleclf/) and [Prof. Robby T. Tan](http://tanrobby.github.io/), who gave me untold valuable guidance and indispensable encouragements. Before that, I completed my bachelor degree from NUS and my high school education at [Yao Hua High School](http://yaohua.tj.edu.cn/) in China. [Full CV]
 
 
 
@@ -20,6 +20,7 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
 
 
 **[Full CV / Resume](https://www.dropbox.com/scl/fi/9c9m8djyaba29lucr0l1k/Ruoteng_Li_CV.pdf?rlkey=jvyrqcjaoi8pow57mq39jn4hj&dl=0)** / **[Google Scholar](https://scholar.google.com/citations?user=B8RIL04AAAAJ&hl=en)**
+
 
 
 # Research 
