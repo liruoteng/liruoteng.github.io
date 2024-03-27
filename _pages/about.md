@@ -87,19 +87,61 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
 
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
    <tbody>
-    <!-- ------------ Paper XII - NIPS - RainFlow  ----------------- -->
+    <!-- ------------ Paper XV - AAAI - Shadow  ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/AAAI/index.png">
+      </td>
+      <td valign="top" width="70%">
+        <a href=""> 
+          <papertitle>Estimating reflectance layer from a single image: Integrating reflectance guidance and shadow/specular aware learning</papertitle> 
+        </a>
+    <br>
+	    Yeying Jin,
+        <strong>Ruoteng Li*</strong>, 
+        Wenhan Yang,
+        <a href="http://tanrobby.github.io/">Robby T. Tan</a>
+    <br>
+        <em>In Proceedings of the AAAI Conference on Artificial Intelligence 2023</em> <br>
+        <p></p>
+        <p></p>
+      </td>
+    </tr> 
+    <!-- ------------ Paper XIV - NIPS - RainFlow  ----------------- -->
     <tr>
       <td width="30%">
          <img src="./images/NIPS22/Fewshot.png">
       </td>
       <td valign="top" width="70%">
         <a href=""> 
-          <papertitle>Few-shot Image Generation via Adaptation-aware Kernel Modulation</papertitle> 
+          <papertitle>AdAM: Few-Shot Generation via Adaption-Aware Kernel Modulation</papertitle> 
         </a>
     <br>
-        <em>In Submission to NeurIPS 2022</em>
+        <em>In Submission to TPAMI</em>
     <br>
-        <em>NeurIPS 2022</em> <br>
+        <em>TPAMI</em> <br>
+        <p></p>
+        <p></p>
+      </td>
+    </tr> 
+	<!-- ------------ Paper XIII - NIPS - RainFlow  ----------------- -->
+    <tr>
+      <td width="30%">
+         <img src="./images/NIPS22/Fewshot.png">
+      </td>
+      <td valign="top" width="70%">
+        <a href=""> 
+          <papertitle>Hybrid Warping Fusion for Video Frame Interpolation</papertitle> 
+        </a>
+     <br>
+		Yu Li, 
+		Ye Zhu,
+        <strong>Ruoteng Li*</strong>, 
+        Xintao Wang, 
+        Yue Luo, 
+        Ying Shan 
+    <br>
+        <em>IJCV</em> <br>
         <p></p>
         <p></p>
       </td>
@@ -114,9 +156,9 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
           <papertitle>Realistic Large-Scale Fine-Depth Dehazing Dataset from 3D Videos </papertitle> 
         </a>
     <br>
-        <em>In Submission to NeurIPS 2022 Dataset Track</em>
+        <em>In Submission to NeurIPS  Dataset Track</em>
     <br>
-        <em>NeurIPS 2022</em> <br>
+        <em>NeurIPS</em> <br>
         <p></p>
         <p></p>
       </td>
