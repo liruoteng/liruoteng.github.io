@@ -93,7 +93,7 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
          <img src="./images/AAAI/index.png">
       </td>
       <td valign="top" width="70%">
-        <a href=""> 
+        <a href="https://ojs.aaai.org/index.php/AAAI/article/view/25188"> 
           <papertitle>Estimating reflectance layer from a single image: Integrating reflectance guidance and shadow/specular aware learning</papertitle> 
         </a>
     <br>
@@ -127,10 +127,10 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
 	<!-- ------------ Paper XIII - NIPS - RainFlow  ----------------- -->
     <tr>
       <td width="30%">
-         <img src="./images/NIPS22/Fewshot.png">
+         <img src="./images/IJCV2022/index.png">
       </td>
       <td valign="top" width="70%">
-        <a href=""> 
+        <a href="https://link.springer.com/article/10.1007/s11263-022-01683-9"> 
           <papertitle>Hybrid Warping Fusion for Video Frame Interpolation</papertitle> 
         </a>
      <br>
@@ -141,7 +141,7 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
         Yue Luo, 
         Ying Shan 
     <br>
-        <em>IJCV</em> <br>
+        <em>International Journal of Computer Vision (IJCV)</em> <br>
         <p></p>
         <p></p>
       </td>
@@ -152,7 +152,7 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
          <img src="./images/NIPS22/Dataset.png">
       </td>
       <td valign="top" width="70%">
-        <a href=""> 
+        <a href="https://arxiv.org/abs/2004.08554"> 
           <papertitle>Realistic Large-Scale Fine-Depth Dehazing Dataset from 3D Videos </papertitle> 
         </a>
     <br>
@@ -169,13 +169,20 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
          <img src="./images/TIP/reflection.png">
       </td>
       <td valign="top" width="70%">
-        <a href=""> 
+        <a href="https://arxiv.org/abs/1912.03623"> 
           <papertitle>Single Image Reflection removal via learning with multi-image constraints </papertitle> 
         </a>
     <br>
-        <em>In Submission to TIP 2021</em>
+        Yingda Yin, 
+        Qingnan Fan, 
+        Dongdong Chen, 
+        Yujie Wang, 
+        Angelica Aviles-Rivero, 
+        <strong>Ruoteng Li*</strong>,  
+        Carola-Bibiane Schnlieb, 
+        Baoquan Chen
     <br>
-        <em>TIP 2021</em> <br>
+        <em>Arxiv </em> <br>
         <p></p>
         <p></p>
       </td>
@@ -186,14 +193,14 @@ I had my internship in Google,  with [DayDream](https://arvr.google.com/), [AR C
          <img src="./images/TPAMI21/Laplacian.png">
       </td>
       <td valign="top" width="70%">
-        <a href=""> 
+        <a href="https://arxiv.org/abs/1906.08635"> 
           <papertitle>Energy Models for Better Pseudo-Labels: Improving Semi-Supervised Classification with the 1-Laplacian Graph Energy</papertitle> 
         </a>
     <br>
-        <em>In Submission to TPAMI 2021</em>
+        <em>In Submission to TPAMI</em>
     <br>
-        <em>TPAMI 2021</em> <br>
-        <a href="">arXiv</a>
+        <em>TPAMI</em> <br>
+        <a href="https://arxiv.org/abs/1906.08635">arXiv</a>
         / 
         <a href="">codes</a>
         / 
