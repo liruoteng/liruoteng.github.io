@@ -98,6 +98,15 @@ header h1 {
     margin-bottom: 5px;
 }
 
+.chinese-name {
+    font-family: var(--font-title);
+    font-size: 16px;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    margin-bottom: 10px;
+    margin-top: -5px;
+}
+
 nav {
     font-family: var(--font-title);
     font-size: 14px;
