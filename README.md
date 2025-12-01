@@ -1,31 +1,83 @@
-A Github Pages template for academic websites. This was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License. See LICENSE.md.
+# Ruoteng Li's Personal Portfolio
 
-I think I've got things running smoothly and fixed some major bugs, but feel free to file issues or make pull requests if you want to improve the generic template / theme.
+A modern, responsive personal portfolio website showcasing my research work in Computer Vision and Machine Learning.
 
-### Note: if you are using this repo and now get a notification about a security vulnerability, delete the Gemfile.lock file. 
+## Features
 
-# Instructions
+- **Modern Design**: Clean, professional layout with smooth animations
+- **Responsive**: Works perfectly on all devices (desktop, tablet, mobile)
+- **Dark Mode Support**: Automatically adapts to user's system preferences
+- **Interactive Elements**: 
+  - Smooth scrolling navigation
+  - Publication filtering by category
+  - Mobile-friendly hamburger menu
+  - Hover effects and animations
+- **Performance Optimized**: 
+  - Lazy loading for images
+  - Debounced scroll events
+  - Minimal dependencies
 
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this repository](https://github.com/academicpages/academicpages.github.io) by clicking the "fork" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](http://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
-1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
+## Technology Stack
 
-See more info at https://academicpages.github.io/
+- **HTML5**: Semantic markup for better SEO and accessibility
+- **CSS3**: Modern styling with CSS variables for easy customization
+- **Vanilla JavaScript**: No framework dependencies for optimal performance
+- **Font Awesome**: For professional icons
+- **Google Fonts**: Inter font for clean typography
 
-## To run locally (not on GitHub Pages, to serve on your own computer)
+## Structure
 
-1. Clone the repository and made updates as detailed above
-1. Make sure you have ruby-dev, bundler, and nodejs installed: `sudo apt install ruby-dev ruby-bundler nodejs`
-1. Run `bundle clean` to clean up the directory (no need to run `--force`)
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
-1. Run `bundle exec jekyll liveserve` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change.
+```
+personal-portfolio/
+├── index.html          # Main HTML file
+├── css/
+│   └── style.css      # All styles with CSS variables
+├── js/
+│   └── main.js        # Interactive functionality
+├── images/            # Profile photo and publication images
+├── files/             # PDF files for papers
+└── README.md          # This file
+```
 
-# Changelog -- bugfixes and enhancements
+## Customization
 
-There is one logistical issue with a ready-to-fork template theme like academic pages that makes it a little tricky to get bug fixes and updates to the core theme. If you fork this repository, customize it, then pull again, you'll probably get merge conflicts. If you want to save your various .yml configuration files and markdown files, you can delete the repository and fork it again. Or you can manually patch. 
+### Colors
+Edit the CSS variables in `css/style.css`:
+```css
+:root {
+    --primary-color: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary-color: #64748b;
+    /* ... more color variables */
+}
+```
 
-To support this, all changes to the underlying code appear as a closed issue with the tag 'code change' -- get the list [here](https://github.com/academicpages/academicpages.github.io/issues?q=is%3Aclosed%20is%3Aissue%20label%3A%22code%20change%22%20). Each issue thread includes a comment linking to the single commit or a diff across multiple commits, so those with forked repositories can easily identify what they need to patch.
+### Content
+- Update personal information in `index.html`
+- Add new publications in the publications section
+- Modify research interests as needed
+
+## Deployment
+
+This site is designed to work with GitHub Pages:
+
+1. Push to a GitHub repository
+2. Enable GitHub Pages in repository settings
+3. Select the main branch as the source
+4. Your site will be available at `https://[username].github.io/[repository-name]`
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers
+
+## License
+
+This portfolio template is available for personal use. Please customize it with your own content and styling.
+
+## Contact
+
+Ruoteng Li - liruoteng@gmail.com

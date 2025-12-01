@@ -1,0 +1,473 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #ffffff;
+    --bg-secondary: #f8fafc;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --link-color: #0066cc;
+    --link-hover: #004499;
+    --border-color: #e0e0e0;
+    --font-main: 'JetBrains Mono', monospace;
+    --font-title: 'Roboto', sans-serif;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a1a1a;
+        --bg-secondary: #2a2a2a;
+        --text-color: #e0e0e0;
+        --text-secondary: #a0a0a0;
+        --link-color: #4a9eff;
+        --link-hover: #7bb8ff;
+        --border-color: #333333;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Typography */
+h1 {
+    font-family: var(--font-title);
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+strong {
+    font-weight: 600;
+}
+
+em {
+    font-style: italic;
+}
+
+/* Header */
+header {
+    margin-bottom: 40px;
+}
+
+header h1 {
+    margin-bottom: 5px;
+}
+
+nav {
+    font-family: var(--font-title);
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+nav a {
+    margin: 0 2px;
+}
+
+/* Profile Section */
+.profile {
+    margin-bottom: 40px;
+}
+
+.profile-content {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 40px;
+    align-items: start;
+}
+
+.profile-text {
+    font-family: var(--font-title);
+}
+
+.profile-text p {
+    margin-bottom: 15px;
+}
+
+.profile-image {
+    text-align: center;
+}
+
+.profile-image img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Logos */
+.logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
+    align-items: center;
+}
+
+.logos img {
+    height: 40px;
+    width: auto;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.logos img:hover {
+    opacity: 1;
+}
+
+/* About Section */
+.about {
+    margin-bottom: 40px;
+}
+
+.intro {
+    font-family: var(--font-title);
+    font-size: 14px;
+    line-height: 1.8;
+    text-align: left;
+}
+
+/* Research Section */
+.research {
+    margin-bottom: 40px;
+}
+
+.research p {
+    font-family: var(--font-title);
+}
+
+/* Publications Section */
+.publications {
+    margin-bottom: 40px;
+}
+
+.publication {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.publication:last-child {
+    border-bottom: none;
+}
+
+.publication img {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    display: block;
+}
+
+.pub-content {
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.pub-content a {
+    font-weight: 500;
+}
+
+/* Publication Tags */
+.pub-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.pub-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--font-main);
+}
+
+.tag-cvpr {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.tag-iccv {
+    background-color: #f3e5f5;
+    color: #6a1b9a;
+}
+
+.tag-eccv {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+.tag-aaai {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.tag-neurips {
+    background-color: #fce4ec;
+    color: #c2185b;
+}
+
+.tag-ijcv {
+    background-color: #e0f2f1;
+    color: #00695c;
+}
+
+.tag-arxiv {
+    background-color: #f5f5f5;
+    color: #424242;
+}
+
+.tag-submission {
+    background-color: #fff9c4;
+    color: #f57f17;
+}
+
+@media (prefers-color-scheme: dark) {
+    .tag-cvpr {
+        background-color: #1565c0;
+        color: #e3f2fd;
+    }
+    
+    .tag-iccv {
+        background-color: #6a1b9a;
+        color: #f3e5f5;
+    }
+    
+    .tag-eccv {
+        background-color: #e65100;
+        color: #fff3e0;
+    }
+    
+    .tag-aaai {
+        background-color: #2e7d32;
+        color: #e8f5e9;
+    }
+    
+    .tag-neurips {
+        background-color: #c2185b;
+        color: #fce4ec;
+    }
+    
+    .tag-ijcv {
+        background-color: #00695c;
+        color: #e0f2f1;
+    }
+    
+    .tag-arxiv {
+        background-color: #424242;
+        color: #f5f5f5;
+    }
+    
+    .tag-submission {
+        background-color: #f57f17;
+        color: #fff9c4;
+    }
+}
+
+/* Teaching Section */
+.teaching {
+    margin-bottom: 40px;
+}
+
+.teaching-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 25px;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.teaching-item img {
+    width: 100%;
+    height: auto;
+    opacity: 0.8;
+}
+
+.teaching-content h3 {
+    font-family: var(--font-title);
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.teaching-content p {
+    font-family: var(--font-main);
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: var(--text-secondary);
+}
+
+.teaching-period {
+    font-size: 13px;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+/* Footer */
+footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 16px;
+        margin-top: 30px;
+    }
+
+    .profile-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .profile-image {
+        order: -1;
+    }
+
+    .profile-image img {
+        max-width: 150px;
+    }
+
+    .logos {
+        gap: 10px;
+    }
+
+    .logos img {
+        height: 30px;
+    }
+
+    .publication {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .publication img {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    .teaching-item {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .teaching-item img {
+        max-width: 120px;
+        margin: 0 auto;
+    }
+
+    nav {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 13px;
+    }
+
+    .container {
+        padding: 20px 12px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 15px;
+    }
+
+    .profile-image img {
+        max-width: 120px;
+    }
+
+    .logos img {
+        height: 25px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        font-size: 12px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    a {
+        color: var(--text-color);
+        text-decoration: underline;
+    }
+
+    .publication {
+        page-break-inside: avoid;
+    }
+}
