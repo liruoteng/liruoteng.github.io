@@ -5,243 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Type Studio is a modern desktop writing app for Typst and Markdown with live preview, AI assistance, references, templates, and PDF export."
+      content="Grapheme is a focused desktop writing studio for Typst and Markdown."
     />
-    <title>Type Studio - Typst and Markdown Writing Studio</title>
-    <link rel="icon" type="image/png" href="./assets/type-studio-icon.png" />
+    <title>Grapheme - Write with focus</title>
+    <link rel="icon" type="image/png" href="./assets/grapheme-icon.png" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="site-shell">
       <header class="topbar">
-        <a class="brand" href="#top" aria-label="Type Studio home">
-          <img src="./assets/type-studio-icon.png" alt="" />
-          <span>Type Studio</span>
+        <a class="brand" href="./" aria-label="Grapheme home">
+          <img src="./assets/grapheme-icon.png" alt="" />
+          <span>Grapheme</span>
         </a>
-        <nav class="nav-links" aria-label="Primary navigation">
-          <a href="#features">Features</a>
-          <a href="#workflow">Workflow</a>
-          <a href="#downloads">Downloads</a>
-          <a href="../index.html">Ruoteng Li</a>
+        <nav aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#download">Download</a>
         </nav>
-        <a class="topbar-download" href="#downloads">Download</a>
       </header>
 
-      <main id="top">
-        <section class="hero-section" aria-labelledby="hero-title">
-          <div class="hero-copy">
-            <p class="eyebrow">AI-powered desktop writing for Typst and Markdown</p>
-            <h1 id="hero-title">Type Studio</h1>
-            <p class="hero-lede">
-              A fast, focused authoring environment where source, rendered pages,
-              references, AI help, and export tools live in one calm workspace.
-            </p>
-            <div class="hero-actions" aria-label="Hero actions">
-              <a class="button button-primary" href="#downloads">
-                <span aria-hidden="true">↓</span>
-                Get the app
-              </a>
-              <a class="button button-secondary" href="#features">
-                <span aria-hidden="true">⌘</span>
-                See features
-              </a>
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <p class="eyebrow">Grapheme</p>
+          <h1 id="hero-title">Write papers.<br /><span>Keep your flow.</span></h1>
+          <p class="hero-copy">
+            Grapheme is a focused desktop writing environment for Typst and
+            Markdown with live preview, AI assistance, references, and PDF export.
+          </p>
+
+          <div class="install-card" id="download" aria-label="Download Grapheme">
+            <div class="install-tabs" role="tablist" aria-label="Operating system">
+              <button class="install-tab active" type="button" role="tab" aria-selected="true" data-platform="macos">
+                macOS
+              </button>
+              <button class="install-tab" type="button" role="tab" aria-selected="false" data-platform="windows">
+                Windows
+              </button>
+              <button class="install-tab" type="button" role="tab" aria-selected="false" data-platform="linux">
+                Linux
+              </button>
             </div>
-            <dl class="hero-stats" aria-label="Product highlights">
-              <div>
-                <dt>Live</dt>
-                <dd>Typst preview</dd>
-              </div>
-              <div>
-                <dt>AI</dt>
-                <dd>Draft and refine</dd>
-              </div>
-              <div>
-                <dt>PDF</dt>
-                <dd>Export ready</dd>
-              </div>
-            </dl>
-          </div>
-
-          <div class="hero-visual" aria-label="Type Studio interface preview">
-            <div class="app-window">
-              <div class="window-chrome">
-                <span></span>
-                <span></span>
-                <span></span>
-                <p>Type Studio</p>
-              </div>
-              <div class="app-grid">
-                <aside class="mock-sidebar" aria-hidden="true">
-                  <div class="sidebar-icon active"></div>
-                  <div class="sidebar-icon"></div>
-                  <div class="sidebar-icon"></div>
-                  <div class="sidebar-rule"></div>
-                  <div class="file-row active">main.typ</div>
-                  <div class="file-row">refs.bib</div>
-                  <div class="file-row">notes.md</div>
-                  <div class="file-row">figures</div>
-                </aside>
-                <section class="mock-editor" aria-hidden="true">
-                  <div class="panel-title">Editor</div>
-                  <pre><code>#show: ieee.with(
-  title: [A Better Way to Write],
-  authors: ([R. Lin], [Type Studio])
-)
-
-= Introduction
-Type Studio keeps your paper moving:
-- Typst and Markdown authoring
-- live preview while you write
-- references, history, and AI assistance
-
-#figure(
-  image("architecture.pdf"),
-  caption: [Compile pipeline]
-)</code></pre>
-                </section>
-                <section class="mock-preview" aria-hidden="true">
-                  <div class="panel-title">Preview · 3 pages</div>
-                  <div class="paper">
-                    <div class="paper-kicker"></div>
-                    <h2>A Better Way to Write</h2>
-                    <p class="paper-authors">R. Lin · Type Studio</p>
-                    <div class="paper-columns">
-                      <div>
-                        <span></span><span></span><span></span><span></span>
-                      </div>
-                      <div>
-                        <span></span><span></span><span></span><span></span>
-                      </div>
-                    </div>
-                    <div class="paper-chart">
-                      <i></i><i></i><i></i><i></i>
-                    </div>
-                  </div>
-                </section>
-                <section class="mock-ai" aria-hidden="true">
-                  <div class="panel-title">AI</div>
-                  <p>Make this introduction more concise and academic.</p>
-                  <div class="ai-response">Suggested rewrite ready to insert.</div>
-                </section>
-              </div>
+            <div class="command-row">
+              <code id="install-command">curl -L https://liruoteng.github.io/software/downloads/grapheme-macos.dmg -o Grapheme.dmg</code>
+              <button class="copy-button" type="button" data-copy-command aria-label="Copy install command">
+                Copy
+              </button>
             </div>
           </div>
-          <div class="next-section-ribbon" aria-hidden="true">
-            <span>Built for serious writing</span>
-            <strong>Live preview</strong>
-            <strong>Markdown</strong>
-            <strong>AI assist</strong>
-          </div>
+
+          <p class="download-note">
+            Run the command in your terminal, then open the downloaded installer.
+            <a id="direct-download" href="./downloads/grapheme-macos.dmg" download>Direct download</a>
+          </p>
         </section>
 
-        <section class="feature-band" id="features" aria-labelledby="features-title">
-          <div class="section-heading">
-            <p class="eyebrow">Built for serious writing</p>
-            <h2 id="features-title">Everything close to the manuscript.</h2>
-          </div>
-          <div class="feature-grid">
-            <article class="feature-card">
-              <span class="feature-icon">◨</span>
-              <h3>Live Typst preview</h3>
-              <p>Edit source on one side and watch rendered pages update on the other, including sidecar preview support through tinymist.</p>
-            </article>
-            <article class="feature-card">
-              <span class="feature-icon">⌁</span>
-              <h3>Markdown mode</h3>
-              <p>Open Markdown files and keep writing naturally while Type Studio converts them into Typst preview output behind the scenes.</p>
-            </article>
-            <article class="feature-card">
-              <span class="feature-icon">✦</span>
-              <h3>AI writing panel</h3>
-              <p>Work with selected text, citations, sessions, and model controls without leaving the editor surface.</p>
-            </article>
-            <article class="feature-card">
-              <span class="feature-icon">⌘</span>
-              <h3>LSP intelligence</h3>
-              <p>Typst diagnostics, hover, completion, and go-to features are powered by a bundled tinymist integration.</p>
-            </article>
-            <article class="feature-card">
-              <span class="feature-icon">▤</span>
-              <h3>Templates and LaTeX import</h3>
-              <p>Start from academic templates, including CVPR, IEEE, ACM, NeurIPS, and plain documents, plus a LaTeX bundle importer.</p>
-            </article>
-            <article class="feature-card">
-              <span class="feature-icon">↧</span>
-              <h3>PDF export and history</h3>
-              <p>Export the active document as a PDF and keep Cmd+S snapshots so earlier saves are easy to revisit.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="workflow-section" id="workflow" aria-labelledby="workflow-title">
-          <div class="workflow-copy">
-            <p class="eyebrow">One desktop loop</p>
-            <h2 id="workflow-title">Write, inspect, revise, ship.</h2>
-            <p>
-              Type Studio is organized around panels you can open, close, and reorder:
-              editor, preview, outline, AI, diff, and PDF viewer. It is meant for
-              repeated authoring work, not a maze of disconnected tools.
-            </p>
-          </div>
-          <div class="timeline" aria-label="Type Studio workflow">
-            <div class="timeline-item">
-              <span>01</span>
-              <h3>Open a workspace</h3>
-              <p>Use the file tree to manage Typst, Markdown, BibTeX, and paper assets.</p>
-            </div>
-            <div class="timeline-item">
-              <span>02</span>
-              <h3>Draft with feedback</h3>
-              <p>Write with Monaco, slash commands, language features, and live rendered output.</p>
-            </div>
-            <div class="timeline-item">
-              <span>03</span>
-              <h3>Bring in help</h3>
-              <p>Use AI sessions, references, and templates where they support the writing.</p>
-            </div>
-            <div class="timeline-item">
-              <span>04</span>
-              <h3>Export the result</h3>
-              <p>Compile through the app and save a polished PDF when the document is ready.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="download-section" id="downloads" aria-labelledby="downloads-title">
-          <div class="download-panel">
-            <div>
-              <p class="eyebrow">Installers</p>
-              <h2 id="downloads-title">Download Type Studio</h2>
-              <p>
-                Pick the installer for your platform. These links are ready for release
-                assets; replace the files in <code>downloads/</code> when you publish a build.
-              </p>
-            </div>
-            <div class="download-grid">
-              <a class="download-card" href="./downloads/type-studio-macos.dmg" download>
-                <span class="platform-icon">⌘</span>
-                <strong>macOS</strong>
-                <small>DMG installer</small>
-              </a>
-              <a class="download-card" href="./downloads/type-studio-windows.msi" download>
-                <span class="platform-icon">⊞</span>
-                <strong>Windows</strong>
-                <small>MSI installer</small>
-              </a>
-              <a class="download-card" href="./downloads/type-studio-linux.AppImage" download>
-                <span class="platform-icon">◆</span>
-                <strong>Linux</strong>
-                <small>AppImage build</small>
-              </a>
-            </div>
-          </div>
+        <section class="about" id="about" aria-labelledby="about-title">
+          <p class="section-label">What is Grapheme?</p>
+          <h2 id="about-title">A calm workspace for serious writing.</h2>
+          <p>
+            Draft in Typst or Markdown, inspect the rendered page as you type, bring
+            in AI help when it is useful, and export a polished PDF when the work is ready.
+          </p>
+          <ul class="feature-list">
+            <li><strong>Live preview</strong><span>See every edit rendered as you write.</span></li>
+            <li><strong>AI assistance</strong><span>Draft and refine without leaving the editor.</span></li>
+            <li><strong>Paper tools</strong><span>Use references, templates, history, and PDF export.</span></li>
+          </ul>
         </section>
       </main>
 
-      <footer class="footer">
-        <p>Type Studio</p>
-        <p>Desktop writing for Typst, Markdown, and paper-sized ambition.</p>
-        <p><a href="../index.html">Ruoteng Li</a></p>
+      <footer>
+        <span>Grapheme</span>
+        <span>Desktop writing for Typst and Markdown.</span>
       </footer>
     </div>
 
