@@ -240,6 +240,32 @@ body {
   padding: 2rem;
 }
 
+.languages-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0.6rem 2rem;
+  padding: 3rem;
+  mix-blend-mode: multiply;
+}
+
+.languages-bg span {
+  font-family: var(--font-script);
+  font-size: clamp(0.7rem, 1.5vw, 1.1rem);
+  white-space: nowrap;
+  opacity: 0.2;
+}
+
+.languages-bg span:nth-child(odd) { color: var(--gold); opacity: 0.2; }
+.languages-bg span:nth-child(even) { color: var(--rose); opacity: 0.18; }
+.languages-bg span:nth-child(3n) { color: var(--text-light); opacity: 0.18; }
+.languages-bg span:nth-child(5n) { font-size: clamp(0.85rem, 1.8vw, 1.3rem); }
+
 .birthday-title {
   font-family: var(--font-script);
   font-size: clamp(3rem, 10vw, 7rem);
