@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Special Message For You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+
+  <section id="intro" class="intro">
+    <div class="envelope-wrapper">
+      <div class="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <div class="envelope-letter">
+            <span>You have a special message</span>
+          </div>
+        </div>
+      </div>
+      <button id="open-btn" class="open-btn" aria-label="Open the message">Open</button>
+    </div>
+  </section>
+
+  <section id="birthday-hero" class="birthday-hero hidden">
+    <div class="hero-content">
+      <h1 class="birthday-title">Happy Birthday!</h1>
+      <p class="birthday-subtitle">Today is all about celebrating you</p>
+      <div class="scroll-hint">
+        <span>Scroll down to take a walk down memory lane</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="timeline" class="timeline-section">
+    <h2 class="section-title">Our Precious Memories</h2>
+    <div class="timeline">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item" data-index="0">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="card-image">
+            <img src="https://via.placeholder.com/800x600/f0e6dc/8b6f5e?text=Photo+1" alt="Memory 1" data-caption="The beginning of something beautiful">
+          </div>
+          <div class="card-content">
+            <span class="card-date">Memory 1</span>
+            <p class="card-text">The beginning of something beautiful. Every great story starts with a single moment.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-index="1">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="card-image">
+            <img src="https://via.placeholder.com/800x600/f0e6dc/8b6f5e?text=Photo+2" alt="Memory 2" data-caption="Laughter that echoed through the days">
+          </div>
+          <div class="card-content">
+            <span class="card-date">Memory 2</span>
+            <p class="card-text">Laughter that echoed through the days and made everything brighter.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-index="2">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="card-image">
+            <img src="https://via.placeholder.com/800x600/f0e6dc/8b6f5e?text=Photo+3" alt="Memory 3" data-caption="Adventures we shared together">
+          </div>
+          <div class="card-content">
+            <span class="card-date">Memory 3</span>
+            <p class="card-text">Adventures we shared and the roads we traveled together.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-index="3">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="card-image">
+            <img src="https://via.placeholder.com/800x600/f0e6dc/8b6f5e?text=Photo+4" alt="Memory 4" data-caption="The quiet moments that spoke volumes">
+          </div>
+          <div class="card-content">
+            <span class="card-date">Memory 4</span>
+            <p class="card-text">The quiet moments that spoke volumes about who we are.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-index="4">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="card-image">
+            <img src="https://via.placeholder.com/800x600/f0e6dc/8b6f5e?text=Photo+5" alt="Memory 5" data-caption="Milestones we celebrated together">
+          </div>
+          <div class="card-content">
+            <span class="card-date">Memory 5</span>
+            <p class="card-text">Milestones we celebrated and the growth we witnessed in each other.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-index="5">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="card-image">
+            <img src="https://via.placeholder.com/800x600/f0e6dc/8b6f5e?text=Photo+6" alt="Memory 6" data-caption="Every moment with you is a treasure">
+          </div>
+          <div class="card-content">
+            <span class="card-date">Memory 6</span>
+            <p class="card-text">Every moment with you is a treasure worth keeping forever.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="wishes" class="wishes-section">
+    <div class="wishes-content">
+      <h2 class="wishes-title">Here's to You</h2>
+      <p class="wishes-text">
+        May this new year of your life bring you endless joy, love, and all the wonderful things you deserve.
+        Thank you for being such an amazing person and for all the beautiful memories we've shared.
+      </p>
+      <p class="wishes-text">
+        Here's to many more adventures, laughter, and unforgettable moments together.
+      </p>
+      <div class="wishes-signature">
+        <span>With love and warmest wishes</span>
+      </div>
+      <button id="replay-btn" class="replay-btn" aria-label="Replay confetti">Celebrate Again</button>
+    </div>
+  </section>
+
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close image viewer">&times;</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#10094;</button>
+    <button class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img">
+      <p class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
