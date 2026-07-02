@@ -201,6 +201,7 @@
   let boss = null;
   let goldenKey = null;
   let bullets = [];
+  let bossBullets = [];
   let shootCooldown = 0;
 
   function initWorld() {
@@ -215,6 +216,7 @@
     boss = null;
     goldenKey = null;
     bullets = [];
+    bossBullets = [];
     shootCooldown = 0;
 
     for (let i = 0; i < TARGET_SCORE; i++) {
@@ -298,21 +300,8 @@
       });
     }
 
-    boss = {
-      x: WORLD_WIDTH - 600,
-      y: GROUND_Y - 96,
-      w: 80,
-      h: 96,
-      vx: 3,
-      health: 3,
-      maxHealth: 3,
-      patrolStart: WORLD_WIDTH - 800,
-      patrolEnd: WORLD_WIDTH - 300,
-      frame: 0,
-      hitTimer: 0,
-      attackTimer: 0,
-      defeated: false
-    };
+    boss = null;
+    goldenKey = null;
   }
 
   function drawPixelRect(x, y, w, h, color) {
@@ -325,54 +314,61 @@
     const py = Math.floor(player.y);
     const f = player.facing;
 
-    drawPixelRect(px + 8, py + 8, 16, 16, '#f4c2a1');
-    drawPixelRect(px + 10, py + 10, 12, 12, '#f8d4b8');
-    drawPixelRect(px + 6, py + 4, 20, 12, '#8b4513');
-    drawPixelRect(px + 8, py + 6, 16, 8, '#a0522d');
-    drawPixelRect(px + 10, py + 8, 12, 4, '#8b4513');
+    drawPixelRect(px + 6, py + 4, 20, 18, '#6b3a1f');
+    drawPixelRect(px + 6, py + 6, 20, 14, '#8b5e3c');
+    drawPixelRect(px + 10, py + 2, 12, 6, '#8b5e3c');
     if (f > 0) {
-      drawPixelRect(px + 20, py + 12, 8, 18, '#8b4513');
-      drawPixelRect(px + 22, py + 14, 4, 14, '#a0522d');
-      drawPixelRect(px + 24, py + 16, 2, 10, '#8b4513');
+      drawPixelRect(px + 24, py + 8, 6, 18, '#6b3a1f');
+      drawPixelRect(px + 24, py + 10, 4, 14, '#8b5e3c');
     } else {
-      drawPixelRect(px + 4, py + 12, 8, 18, '#8b4513');
-      drawPixelRect(px + 6, py + 14, 4, 14, '#a0522d');
-      drawPixelRect(px + 6, py + 16, 2, 10, '#8b4513');
-    }
-    drawPixelRect(px + 12, py + 6, 8, 4, '#ff69b4');
-    drawPixelRect(px + 14, py + 8, 4, 2, '#ff8fc4');
-    drawPixelRect(px + 15, py + 4, 2, 2, '#ff69b4');
-
-    if (f > 0) {
-      drawPixelRect(px + 16, py + 14, 2, 2, '#2c3e50');
-      drawPixelRect(px + 17, py + 15, 1, 1, '#fff');
-      drawPixelRect(px + 18, py + 20, 2, 1, '#e74c6f');
-    } else {
-      drawPixelRect(px + 14, py + 14, 2, 2, '#2c3e50');
-      drawPixelRect(px + 14, py + 15, 1, 1, '#fff');
-      drawPixelRect(px + 12, py + 20, 2, 1, '#e74c6f');
+      drawPixelRect(px + 2, py + 8, 6, 18, '#6b3a1f');
+      drawPixelRect(px + 4, py + 10, 4, 14, '#8b5e3c');
     }
 
-    drawPixelRect(px + 10, py + 26, 12, 22, '#da70d6');
-    drawPixelRect(px + 8, py + 30, 16, 14, '#da70d6');
-    drawPixelRect(px + 6, py + 44, 20, 4, '#da70d6');
-    drawPixelRect(px + 12, py + 28, 8, 2, '#c760c9');
-    drawPixelRect(px + 14, py + 32, 4, 2, '#fff');
+    drawPixelRect(px + 8, py + 8, 16, 16, '#fce4d6');
+    drawPixelRect(px + 10, py + 10, 12, 12, '#ffe8dc');
+
+    drawPixelRect(px + 8, py + 6, 16, 4, '#8b5e3c');
+    drawPixelRect(px + 10, py + 4, 12, 4, '#a0704e');
+    drawPixelRect(px + 12, py + 2, 8, 4, '#c9956b');
+    drawPixelRect(px + 10, py + 8, 2, 2, '#a0704e');
+    drawPixelRect(px + 20, py + 8, 2, 2, '#a0704e');
+
+    drawPixelRect(px + 12, py + 10, 2, 2, '#2c3e50');
+    drawPixelRect(px + 18, py + 10, 2, 2, '#2c3e50');
+    drawPixelRect(px + 13, py + 11, 1, 1, '#fff');
+    drawPixelRect(px + 19, py + 11, 1, 1, '#fff');
+    drawPixelRect(px + 14, py + 14, 4, 2, '#e88');
+    drawPixelRect(px + 15, py + 16, 2, 1, '#e74c6f');
+
+    drawPixelRect(px + 10, py + 24, 12, 20, '#5dade2');
+    drawPixelRect(px + 8, py + 28, 16, 12, '#5dade2');
+    drawPixelRect(px + 6, py + 40, 20, 4, '#5dade2');
+    drawPixelRect(px + 12, py + 22, 8, 4, '#2e86c1');
+    drawPixelRect(px + 14, py + 24, 4, 2, '#2e86c1');
+    drawPixelRect(px + 10, py + 30, 4, 4, '#2e86c1');
+    drawPixelRect(px + 18, py + 30, 4, 4, '#2e86c1');
+    drawPixelRect(px + 8, py + 36, 4, 6, '#2e86c1');
+    drawPixelRect(px + 20, py + 36, 4, 6, '#2e86c1');
 
     if (!player.grounded) {
-      drawPixelRect(px + 6, py + 32, 4, 2, '#f4c2a1');
-      drawPixelRect(px + 22, py + 32, 4, 2, '#f4c2a1');
+      drawPixelRect(px + 6, py + 26, 6, 10, '#fce4d6');
+      drawPixelRect(px + 20, py + 26, 6, 10, '#fce4d6');
+      drawPixelRect(px + 10, py + 44, 4, 10, '#fce4d6');
+      drawPixelRect(px + 18, py + 44, 4, 10, '#fce4d6');
+      drawPixelRect(px + 8, py + 52, 8, 4, '#e74c6f');
+      drawPixelRect(px + 16, py + 52, 8, 4, '#e74c6f');
     } else if (Math.abs(player.vx) > 0.5) {
       const legOffset = Math.sin(player.frame * 0.3) * 2;
-      drawPixelRect(px + 12, py + 48, 4, 10 + legOffset, '#f4c2a1');
-      drawPixelRect(px + 16, py + 48, 4, 10 - legOffset, '#f4c2a1');
-      drawPixelRect(px + 10, py + 56 + legOffset, 8, 2, '#ff1493');
-      drawPixelRect(px + 14, py + 56 - legOffset, 8, 2, '#ff1493');
+      drawPixelRect(px + 12, py + 44, 4, 10 + legOffset, '#fce4d6');
+      drawPixelRect(px + 16, py + 44, 4, 10 - legOffset, '#fce4d6');
+      drawPixelRect(px + 10, py + 52 + legOffset, 8, 4, '#e74c6f');
+      drawPixelRect(px + 14, py + 52 - legOffset, 8, 4, '#e74c6f');
     } else {
-      drawPixelRect(px + 12, py + 48, 4, 10, '#f4c2a1');
-      drawPixelRect(px + 16, py + 48, 4, 10, '#f4c2a1');
-      drawPixelRect(px + 10, py + 56, 8, 2, '#ff1493');
-      drawPixelRect(px + 14, py + 56, 8, 2, '#ff1493');
+      drawPixelRect(px + 12, py + 44, 4, 10, '#fce4d6');
+      drawPixelRect(px + 16, py + 44, 4, 10, '#fce4d6');
+      drawPixelRect(px + 10, py + 52, 8, 4, '#e74c6f');
+      drawPixelRect(px + 14, py + 52, 8, 4, '#e74c6f');
     }
   }
 
@@ -471,52 +467,69 @@
 
     const flashColor = boss.hitTimer > 0 ? '#fff' : null;
 
-    drawPixelRect(bx + 20, by + 2, 40, 36, flashColor || '#5b6abf');
-    drawPixelRect(bx + 16, by + 6, 48, 28, flashColor || '#5b6abf');
-    drawPixelRect(bx + 18, by + 8, 44, 24, flashColor || '#6b7acf');
-    drawPixelRect(bx + 22, by + 4, 36, 4, flashColor || '#4b5aaf');
+    drawPixelRect(bx + 18, by + 2, 44, 34, flashColor || '#5b6abf');
+    drawPixelRect(bx + 20, by + 4, 40, 30, flashColor || '#6b7acf');
+    drawPixelRect(bx + 24, by + 6, 32, 6, flashColor || '#4b5aaf');
+    drawPixelRect(bx + 22, by + 12, 36, 18, flashColor || '#1a1a2e');
+    drawPixelRect(bx + 26, by + 14, 28, 14, '#1e2a4a');
 
-    drawPixelRect(bx + 24, by + 14, 12, 12, '#fff');
-    drawPixelRect(bx + 44, by + 14, 12, 12, '#fff');
-    drawPixelRect(bx + 28, by + 18, 6, 6, '#2c3e50');
-    drawPixelRect(bx + 48, by + 18, 6, 6, '#2c3e50');
-    drawPixelRect(bx + 30, by + 20, 2, 2, '#fff');
-    drawPixelRect(bx + 50, by + 20, 2, 2, '#fff');
+    drawPixelRect(bx + 30, by + 8, 20, 8, '#f5d6b8');
+    drawPixelRect(bx + 32, by + 6, 16, 10, '#f5d6b8');
+    drawPixelRect(bx + 34, by + 4, 12, 12, '#4a3728');
+    drawPixelRect(bx + 36, by + 2, 8, 14, '#4a3728');
 
-    drawPixelRect(bx + 34, by + 28, 12, 3, '#e74c6f');
-    drawPixelRect(bx + 36, by + 27, 8, 2, '#ff8fa3');
-    drawPixelRect(bx + 38, by + 29, 4, 1, '#fff');
+    drawPixelRect(bx + 28, by + 16, 6, 4, '#2c3e50');
+    drawPixelRect(bx + 46, by + 16, 6, 4, '#2c3e50');
+    drawPixelRect(bx + 30, by + 17, 2, 2, '#fff');
+    drawPixelRect(bx + 48, by + 17, 2, 2, '#fff');
 
-    drawPixelRect(bx + 22, by + 24, 6, 4, '#ffb6c1');
-    drawPixelRect(bx + 52, by + 24, 6, 4, '#ffb6c1');
+    drawPixelRect(bx + 36, by + 22, 8, 3, '#e88');
+    drawPixelRect(bx + 38, by + 21, 4, 2, '#f99');
 
-    drawPixelRect(bx + 14, by + 38, 52, 44, flashColor || '#4a5a9f');
-    drawPixelRect(bx + 18, by + 42, 44, 36, flashColor || '#5b6abf');
-    drawPixelRect(bx + 24, by + 44, 32, 6, '#ffd700');
-    drawPixelRect(bx + 28, by + 46, 24, 2, '#ffed4e');
-    drawPixelRect(bx + 32, by + 52, 16, 20, '#7f8c8d');
-    drawPixelRect(bx + 34, by + 54, 12, 16, '#95a5a6');
-    drawPixelRect(bx + 36, by + 56, 8, 12, '#bdc3c7');
-    drawPixelRect(bx + 38, by + 58, 4, 8, '#ecf0f1');
+    drawPixelRect(bx + 22, by + 12, 4, 2, '#88ccff');
+    drawPixelRect(bx + 54, by + 12, 4, 2, '#88ccff');
+    drawPixelRect(bx + 20, by + 14, 4, 4, '#88ccff');
+    drawPixelRect(bx + 56, by + 14, 4, 4, '#88ccff');
 
-    drawPixelRect(bx + 4, by + 42, 14, 36, flashColor || '#5b6abf');
-    drawPixelRect(bx + 62, by + 42, 14, 36, flashColor || '#5b6abf');
-    drawPixelRect(bx + 6, by + 44, 10, 32, flashColor || '#6b7acf');
-    drawPixelRect(bx + 64, by + 44, 10, 32, flashColor || '#6b7acf');
-    drawPixelRect(bx + 2, by + 74, 18, 10, flashColor || '#4a5a9f');
-    drawPixelRect(bx + 60, by + 74, 18, 10, flashColor || '#4a5a9f');
-    drawPixelRect(bx + 4, by + 76, 14, 6, flashColor || '#5b6abf');
-    drawPixelRect(bx + 62, by + 76, 14, 6, flashColor || '#5b6abf');
+    drawPixelRect(bx + 14, by + 36, 52, 44, flashColor || '#4a5a9f');
+    drawPixelRect(bx + 18, by + 38, 44, 40, flashColor || '#5b6abf');
+    drawPixelRect(bx + 22, by + 40, 36, 36, flashColor || '#6b7acf');
+
+    drawPixelRect(bx + 20, by + 36, 8, 6, flashColor || '#3a4a8f');
+    drawPixelRect(bx + 52, by + 36, 8, 6, flashColor || '#3a4a8f');
+    drawPixelRect(bx + 18, by + 40, 6, 38, flashColor || '#3a4a8f');
+    drawPixelRect(bx + 56, by + 40, 6, 38, flashColor || '#3a4a8f');
+
+    drawPixelRect(bx + 30, by + 44, 20, 26, '#ffd700');
+    drawPixelRect(bx + 34, by + 46, 12, 22, '#ffed4e');
+    drawPixelRect(bx + 36, by + 48, 8, 18, '#fff');
+    drawPixelRect(bx + 38, by + 50, 4, 14, '#88ccff');
+
+    drawPixelRect(bx + 4, by + 42, 14, 36, flashColor || '#4a5a9f');
+    drawPixelRect(bx + 62, by + 42, 14, 36, flashColor || '#4a5a9f');
+    drawPixelRect(bx + 6, by + 44, 10, 32, flashColor || '#5b6abf');
+    drawPixelRect(bx + 64, by + 44, 10, 32, flashColor || '#5b6abf');
+
+    drawPixelRect(bx + 2, by + 46, 6, 4, '#8b9dc3');
+    drawPixelRect(bx + 72, by + 46, 6, 4, '#8b9dc3');
+    drawPixelRect(bx + 2, by + 64, 6, 4, '#8b9dc3');
+    drawPixelRect(bx + 72, by + 64, 6, 4, '#8b9dc3');
+
+    drawPixelRect(bx + 4, by + 74, 16, 8, flashColor || '#3a4a8f');
+    drawPixelRect(bx + 60, by + 74, 16, 8, flashColor || '#3a4a8f');
 
     const legOffset = Math.sin(boss.frame * 0.15) * 4;
-    drawPixelRect(bx + 22, by + 82, 14, 18 + legOffset, flashColor || '#4a5a9f');
-    drawPixelRect(bx + 44, by + 82, 14, 18 - legOffset, flashColor || '#4a5a9f');
-    drawPixelRect(bx + 24, by + 84, 10, 14 + legOffset, flashColor || '#5b6abf');
-    drawPixelRect(bx + 46, by + 84, 10, 14 - legOffset, flashColor || '#5b6abf');
-    drawPixelRect(bx + 18, by + 96 + legOffset, 22, 6, '#3a4a8f');
-    drawPixelRect(bx + 40, by + 96 - legOffset, 22, 6, '#3a4a8f');
-    drawPixelRect(bx + 20, by + 98 + legOffset, 18, 3, '#2a3a7f');
-    drawPixelRect(bx + 42, by + 98 - legOffset, 18, 3, '#2a3a7f');
+    drawPixelRect(bx + 22, by + 80, 14, 18 + legOffset, flashColor || '#4a5a9f');
+    drawPixelRect(bx + 44, by + 80, 14, 18 - legOffset, flashColor || '#4a5a9f');
+    drawPixelRect(bx + 24, by + 82, 10, 14 + legOffset, flashColor || '#5b6abf');
+    drawPixelRect(bx + 46, by + 82, 10, 14 - legOffset, flashColor || '#5b6abf');
+    drawPixelRect(bx + 20, by + 94 + legOffset, 18, 6, '#3a4a8f');
+    drawPixelRect(bx + 42, by + 94 - legOffset, 18, 6, '#3a4a8f');
+    drawPixelRect(bx + 22, by + 96 + legOffset, 14, 3, '#2a3a7f');
+    drawPixelRect(bx + 44, by + 96 - legOffset, 14, 3, '#2a3a7f');
+
+    drawPixelRect(bx + 22, by + 82 + legOffset, 4, 6, '#8b9dc3');
+    drawPixelRect(bx + 54, by + 82 - legOffset, 4, 6, '#8b9dc3');
 
     const healthBarWidth = 80;
     const healthPercent = boss.health / boss.maxHealth;
@@ -744,6 +757,24 @@
       e.frame++;
     });
 
+    if (!boss && score >= TARGET_SCORE) {
+      boss = {
+        x: WORLD_WIDTH - 600,
+        y: GROUND_Y - 96,
+        w: 80,
+        h: 96,
+        vx: 3,
+        health: 3,
+        maxHealth: 3,
+        patrolStart: WORLD_WIDTH - 800,
+        patrolEnd: WORLD_WIDTH - 300,
+        frame: 0,
+        hitTimer: 0,
+        attackTimer: 0,
+        defeated: false
+      };
+    }
+
     if (boss && !boss.defeated) {
       boss.x += boss.vx;
       if (boss.x <= boss.patrolStart || boss.x >= boss.patrolEnd) {
@@ -751,6 +782,34 @@
       }
       boss.frame++;
       if (boss.hitTimer > 0) boss.hitTimer--;
+
+      boss.attackTimer++;
+      if (boss.attackTimer >= 80) {
+        boss.attackTimer = 0;
+        const dx = player.x + player.w / 2 - (boss.x + boss.w / 2);
+        const dy = player.y + player.h / 2 - (boss.y + boss.h / 2);
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        bossBullets.push({
+          x: boss.x + (boss.vx > 0 ? boss.w : -16),
+          y: boss.y + boss.h / 2 - 8,
+          w: 16,
+          h: 16,
+          vx: (dx / dist) * 5,
+          vy: (dy / dist) * 5,
+          life: 120
+        });
+      }
+    }
+
+    for (let i = bossBullets.length - 1; i >= 0; i--) {
+      const bb = bossBullets[i];
+      bb.x += bb.vx;
+      bb.y += bb.vy;
+      bb.life--;
+      if (bb.life <= 0 || bb.x < cameraX - 50 || bb.x > cameraX + GAME_W + 50 ||
+          bb.y < -50 || bb.y > GROUND_Y + 50) {
+        bossBullets.splice(i, 1);
+      }
     }
   }
 
@@ -800,6 +859,17 @@
     });
   }
 
+  function drawBossBullets() {
+    bossBullets.forEach(function (bb) {
+      const bx = Math.floor(bb.x - cameraX);
+      const by = Math.floor(bb.y);
+      drawPixelRect(bx + 2, by + 2, 12, 12, '#ff4444');
+      drawPixelRect(bx + 4, by + 4, 8, 8, '#ff6666');
+      drawPixelRect(bx + 6, by + 6, 4, 4, '#ffaa00');
+      drawPixelRect(bx + 7, by + 7, 2, 2, '#ffdd44');
+    });
+  }
+
   function checkCollisions() {
     hearts.forEach(function (h) {
       if (h.collected) return;
@@ -826,6 +896,16 @@
         playerDeath();
       }
     });
+
+    for (let i = bossBullets.length - 1; i >= 0; i--) {
+      const bb = bossBullets[i];
+      if (player.x < bb.x + bb.w && player.x + player.w > bb.x &&
+          player.y < bb.y + bb.h && player.y + player.h > bb.y) {
+        bossBullets.splice(i, 1);
+        playerDeath();
+        break;
+      }
+    }
 
     if (boss && !boss.defeated) {
       if (player.x < boss.x + boss.w && player.x + player.w > boss.x &&
@@ -869,6 +949,18 @@
           enemies.splice(j, 1);
           bulletHit = true;
           break;
+        }
+      }
+
+      if (!bulletHit) {
+        for (let k = bossBullets.length - 1; k >= 0; k--) {
+          const bb = bossBullets[k];
+          if (b.x < bb.x + bb.w && b.x + b.w > bb.x &&
+              b.y < bb.y + bb.h && b.y + b.h > bb.y) {
+            bossBullets.splice(k, 1);
+            bulletHit = true;
+            break;
+          }
         }
       }
 
@@ -937,7 +1029,8 @@
     obstacles.forEach(drawObstacle);
     hearts.forEach(drawHeart);
     enemies.forEach(drawEnemy);
-    if (boss) drawBoss();
+    if (boss && !boss.defeated) drawBoss();
+    drawBossBullets();
     if (goldenKey) drawGoldenKey();
     drawBullets();
     drawPlayer();
