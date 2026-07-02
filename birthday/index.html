@@ -39,22 +39,23 @@
 
   <section id="game-section" class="game-section hidden">
     <div class="game-wrapper">
-      <h2 class="game-title">Catch the Hearts</h2>
-      <p class="game-instruction">Tap the falling hearts to unlock our memories!</p>
+      <h2 class="game-title">Memory Quest</h2>
+      <p class="game-instruction">Walk right, collect hearts, dodge obstacles to unlock memories!</p>
       <div class="game-hud">
         <div class="game-score">
           <span class="score-icon">&#10084;</span>
           <span id="score-value">0</span>
           <span class="score-divider">/</span>
-          <span id="score-target">15</span>
+          <span id="score-target">10</span>
         </div>
         <div class="game-progress">
           <div id="progress-bar" class="progress-bar"></div>
         </div>
       </div>
-      <div id="game-area" class="game-area">
+      <div id="game-container" class="game-container">
+        <canvas id="game-canvas"></canvas>
         <div id="game-start-overlay" class="game-start-overlay">
-          <button id="start-game-btn" class="start-game-btn">Start</button>
+          <button id="start-game-btn" class="start-game-btn">Start Adventure</button>
         </div>
         <div id="game-win-overlay" class="game-win-overlay hidden">
           <div class="win-content">
@@ -63,6 +64,12 @@
           </div>
         </div>
       </div>
+      <div class="touch-controls">
+        <button id="touch-left" class="touch-btn" aria-label="Move left">&#9664;</button>
+        <button id="touch-jump" class="touch-btn touch-jump" aria-label="Jump">&#9650;</button>
+        <button id="touch-right" class="touch-btn" aria-label="Move right">&#9654;</button>
+        <button id="touch-shoot" class="touch-btn touch-shoot" aria-label="Shoot">&#9733;</button>
+      </div>
     </div>
   </section>
 
@@ -70,7 +77,7 @@
     <div id="timeline-lock" class="timeline-lock">
       <div class="lock-content">
         <span class="lock-icon">&#128274;</span>
-        <span class="lock-text">Catch enough hearts to unlock our memories</span>
+        <span class="lock-text">Complete the adventure to unlock our memories</span>
       </div>
     </div>
     <h2 class="section-title">Our Precious Memories</h2>

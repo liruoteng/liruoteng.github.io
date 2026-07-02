@@ -315,7 +315,7 @@ body {
 }
 
 .game-wrapper {
-  max-width: 500px;
+  max-width: 600px;
   width: 100%;
   text-align: center;
 }
@@ -379,59 +379,26 @@ body {
   transition: width 0.3s ease;
 }
 
-.game-area {
+.game-container {
   width: 100%;
-  height: 350px;
-  background: linear-gradient(180deg, #fdf6f0 0%, #fef9f5 100%);
-  border: 2px solid rgba(212, 168, 83, 0.2);
-  border-radius: 16px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 4px solid #2d2d2d;
+  border-radius: 8px;
   position: relative;
   overflow: hidden;
-  cursor: crosshair;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
-.heart {
-  position: absolute;
-  font-size: 2rem;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  transition: transform 0.1s;
-  animation: heartPulse 0.6s ease-in-out infinite alternate;
-  z-index: 1;
-  line-height: 1;
-}
-
-.heart:active {
-  transform: scale(0.8);
-}
-
-@keyframes heartPulse {
-  from { transform: scale(1); }
-  to { transform: scale(1.15); }
-}
-
-.heart-caught {
-  animation: heartCaught 0.4s ease forwards !important;
-  pointer-events: none;
-}
-
-@keyframes heartCaught {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.8); opacity: 0.6; }
-  100% { transform: scale(0); opacity: 0; }
-}
-
-.heart-miss {
-  animation: heartMiss 0.3s ease forwards !important;
-  pointer-events: none;
-}
-
-@keyframes heartMiss {
-  to { opacity: 0; transform: translateY(20px) scale(0.5); }
+#game-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 .game-start-overlay,
@@ -441,30 +408,28 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(253, 246, 240, 0.9);
+  background: rgba(0, 0, 0, 0.85);
   z-index: 5;
-  border-radius: 14px;
 }
 
 .start-game-btn {
-  font-family: var(--font-body);
+  font-family: 'Courier New', monospace;
   font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: white;
-  background: linear-gradient(135deg, var(--rose) 0%, #d4728a 100%);
-  border: none;
-  padding: 0.9rem 2.5rem;
-  border-radius: 2rem;
+  color: #fff;
+  background: #e74c6f;
+  border: 3px solid #fff;
+  padding: 0.8rem 2rem;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 15px rgba(232, 160, 180, 0.4);
+  transition: all 0.2s;
+  image-rendering: pixelated;
 }
 
 .start-game-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(232, 160, 180, 0.5);
+  background: #ff6b8f;
+  transform: scale(1.05);
 }
 
 .win-content {
@@ -484,7 +449,56 @@ body {
 .win-text {
   font-family: var(--font-script);
   font-size: 1.8rem;
+  color: #fff;
+}
+
+@keyframes heartPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.15); }
+}
+
+.touch-controls {
+  display: none;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.touch-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+  background: rgba(232, 160, 180, 0.2);
+  border: 2px solid var(--rose);
+  border-radius: 12px;
   color: var(--text-dark);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: all 0.1s;
+}
+
+.touch-btn:active {
+  background: var(--rose);
+  color: white;
+  transform: scale(0.95);
+}
+
+.touch-jump {
+  width: 80px;
+}
+
+.touch-shoot {
+  background: rgba(231, 76, 111, 0.3);
+  border-color: #e74c6f;
+  color: #e74c6f;
+}
+
+@media (max-width: 768px) {
+  .touch-controls {
+    display: flex;
+  }
 }
 
 /* ==================== TIMELINE LOCK ==================== */
