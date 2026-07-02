@@ -120,6 +120,7 @@
 
   const intro = document.getElementById('intro');
   const hero = document.getElementById('birthday-hero');
+  const gameSection = document.getElementById('game-section');
   const timeline = document.getElementById('timeline');
   const wishes = document.getElementById('wishes');
   const openBtn = document.getElementById('open-btn');
@@ -139,6 +140,7 @@
       setTimeout(function () {
         intro.classList.add('hidden');
         hero.classList.remove('hidden');
+        gameSection.classList.remove('hidden');
 
         setTimeout(function () {
           launchFullConfetti();
@@ -149,6 +151,118 @@
 
   openBtn.addEventListener('click', openEnvelope);
   envelope.addEventListener('click', openEnvelope);
+
+  const gameArea = document.getElementById('game-area');
+  const startBtn = document.getElementById('start-game-btn');
+  const startOverlay = document.getElementById('game-start-overlay');
+  const winOverlay = document.getElementById('game-win-overlay');
+  const scoreValue = document.getElementById('score-value');
+  const progressBar = document.getElementById('progress-bar');
+  const timelineLock = document.getElementById('timeline-lock');
+  const TARGET_SCORE = 15;
+  let score = 0;
+  let gameActive = false;
+  let spawnInterval = null;
+  let gameLoop = null;
+  let hearts = [];
+
+  function startGame() {
+    startOverlay.classList.add('hidden');
+    gameActive = true;
+    score = 0;
+    scoreValue.textContent = '0';
+    progressBar.style.width = '0%';
+    spawnInterval = setInterval(spawnHeart, 800);
+    gameLoop = requestAnimationFrame(updateHearts);
+  }
+
+  function spawnHeart() {
+    if (!gameActive) return;
+    var heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.textContent = '\u2764';
+    heart.style.left = Math.random() * 85 + '%';
+    heart.style.top = '-40px';
+    heart.dataset.speed = (Math.random() * 1.5 + 1).toFixed(2);
+    gameArea.appendChild(heart);
+    hearts.push(heart);
+
+    heart.addEventListener('click', function (e) {
+      e.stopPropagation();
+      catchHeart(heart);
+    });
+    heart.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      catchHeart(heart);
+    }, { passive: false });
+  }
+
+  function catchHeart(heart) {
+    if (!gameActive || heart.classList.contains('heart-caught')) return;
+    heart.classList.add('heart-caught');
+    score++;
+    scoreValue.textContent = score;
+    progressBar.style.width = Math.min(100, (score / TARGET_SCORE) * 100) + '%';
+
+    setTimeout(function () {
+      removeHeart(heart);
+    }, 400);
+
+    if (score >= TARGET_SCORE) {
+      winGame();
+    }
+  }
+
+  function removeHeart(heart) {
+    var idx = hearts.indexOf(heart);
+    if (idx > -1) hearts.splice(idx, 1);
+    if (heart.parentNode) heart.parentNode.removeChild(heart);
+  }
+
+  function updateHearts() {
+    if (!gameActive) return;
+    var areaHeight = gameArea.offsetHeight;
+
+    for (var i = hearts.length - 1; i >= 0; i--) {
+      var h = hearts[i];
+      if (h.classList.contains('heart-caught') || h.classList.contains('heart-miss')) continue;
+      var top = parseFloat(h.style.top) || 0;
+      var speed = parseFloat(h.dataset.speed) || 1.5;
+      top += speed;
+      h.style.top = top + 'px';
+
+      if (top > areaHeight) {
+        h.classList.add('heart-miss');
+        setTimeout(function (el) {
+          removeHeart(el);
+        }.bind(null, h), 300);
+      }
+    }
+
+    gameLoop = requestAnimationFrame(updateHearts);
+  }
+
+  function winGame() {
+    gameActive = false;
+    clearInterval(spawnInterval);
+    cancelAnimationFrame(gameLoop);
+
+    hearts.forEach(function (h) {
+      if (h.parentNode) h.parentNode.removeChild(h);
+    });
+    hearts = [];
+
+    winOverlay.classList.remove('hidden');
+    launchConfetti(canvas.width / 2, canvas.height * 0.5, 250);
+
+    setTimeout(function () {
+      timelineLock.classList.add('unlocked');
+      checkTimeline();
+    }, 1200);
+  }
+
+  startBtn.addEventListener('click', startGame);
 
   const timelineItems = document.querySelectorAll('.timeline-item');
 

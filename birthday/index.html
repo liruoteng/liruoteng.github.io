@@ -37,7 +37,42 @@
     </div>
   </section>
 
+  <section id="game-section" class="game-section hidden">
+    <div class="game-wrapper">
+      <h2 class="game-title">Catch the Hearts</h2>
+      <p class="game-instruction">Tap the falling hearts to unlock our memories!</p>
+      <div class="game-hud">
+        <div class="game-score">
+          <span class="score-icon">&#10084;</span>
+          <span id="score-value">0</span>
+          <span class="score-divider">/</span>
+          <span id="score-target">15</span>
+        </div>
+        <div class="game-progress">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+      </div>
+      <div id="game-area" class="game-area">
+        <div id="game-start-overlay" class="game-start-overlay">
+          <button id="start-game-btn" class="start-game-btn">Start</button>
+        </div>
+        <div id="game-win-overlay" class="game-win-overlay hidden">
+          <div class="win-content">
+            <span class="win-icon">&#10084;</span>
+            <span class="win-text">Memories Unlocked!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="timeline" class="timeline-section">
+    <div id="timeline-lock" class="timeline-lock">
+      <div class="lock-content">
+        <span class="lock-icon">&#128274;</span>
+        <span class="lock-text">Catch enough hearts to unlock our memories</span>
+      </div>
+    </div>
     <h2 class="section-title">Our Precious Memories</h2>
     <div class="timeline">
       <div class="timeline-line"></div>

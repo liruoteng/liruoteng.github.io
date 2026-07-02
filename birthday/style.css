@@ -306,6 +306,225 @@ body {
   }
 }
 
+/* ==================== GAME SECTION ==================== */
+.game-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.game-wrapper {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.game-title {
+  font-family: var(--font-script);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.game-instruction {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+
+.game-hud {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.game-score {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+.score-icon {
+  color: #e74c6f;
+  font-size: 1.3rem;
+}
+
+.score-divider {
+  color: var(--text-light);
+  font-weight: 300;
+}
+
+.game-progress {
+  flex: 1;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.game-area {
+  width: 100%;
+  height: 350px;
+  background: linear-gradient(180deg, #fdf6f0 0%, #fef9f5 100%);
+  border: 2px solid rgba(212, 168, 83, 0.2);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  cursor: crosshair;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.heart {
+  position: absolute;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.1s;
+  animation: heartPulse 0.6s ease-in-out infinite alternate;
+  z-index: 1;
+  line-height: 1;
+}
+
+.heart:active {
+  transform: scale(0.8);
+}
+
+@keyframes heartPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.15); }
+}
+
+.heart-caught {
+  animation: heartCaught 0.4s ease forwards !important;
+  pointer-events: none;
+}
+
+@keyframes heartCaught {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.8); opacity: 0.6; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.heart-miss {
+  animation: heartMiss 0.3s ease forwards !important;
+  pointer-events: none;
+}
+
+@keyframes heartMiss {
+  to { opacity: 0; transform: translateY(20px) scale(0.5); }
+}
+
+.game-start-overlay,
+.game-win-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(253, 246, 240, 0.9);
+  z-index: 5;
+  border-radius: 14px;
+}
+
+.start-game-btn {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: white;
+  background: linear-gradient(135deg, var(--rose) 0%, #d4728a 100%);
+  border: none;
+  padding: 0.9rem 2.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(232, 160, 180, 0.4);
+}
+
+.start-game-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232, 160, 180, 0.5);
+}
+
+.win-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  animation: fadeInUp 0.6s ease;
+}
+
+.win-icon {
+  font-size: 3rem;
+  color: #e74c6f;
+  animation: heartPulse 0.6s ease-in-out infinite alternate;
+}
+
+.win-text {
+  font-family: var(--font-script);
+  font-size: 1.8rem;
+  color: var(--text-dark);
+}
+
+/* ==================== TIMELINE LOCK ==================== */
+.timeline-lock {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 253, 249, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: opacity 0.6s ease;
+}
+
+.timeline-lock.unlocked {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lock-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.lock-icon {
+  font-size: 2.5rem;
+  opacity: 0.5;
+}
+
+.lock-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
 /* ==================== TIMELINE SECTION ==================== */
 .timeline-section {
   padding: 6rem 2rem;
