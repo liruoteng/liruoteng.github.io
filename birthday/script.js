@@ -165,22 +165,22 @@
   let gameActive = false;
   let gameLoopId = null;
 
-  const GAME_W = 640;
-  const GAME_H = 360;
-  const GROUND_Y = 280;
-  const GRAVITY = 0.6;
-  const JUMP_FORCE = -12;
-  const MOVE_SPEED = 3;
-  const WORLD_WIDTH = 3200;
+  const GAME_W = 1280;
+  const GAME_H = 720;
+  const GROUND_Y = 560;
+  const GRAVITY = 0.8;
+  const JUMP_FORCE = -16;
+  const MOVE_SPEED = 5;
+  const WORLD_WIDTH = 6400;
 
   let cameraX = 0;
   let keys = {};
 
   const player = {
-    x: 50,
-    y: GROUND_Y - 32,
-    w: 16,
-    h: 32,
+    x: 100,
+    y: GROUND_Y - 64,
+    w: 32,
+    h: 64,
     vx: 0,
     vy: 0,
     grounded: true,
@@ -218,10 +218,10 @@
 
     for (let i = 0; i < TARGET_SCORE; i++) {
       hearts.push({
-        x: 200 + i * 280 + Math.random() * 100,
-        y: GROUND_Y - 60 - Math.random() * 80,
-        w: 16,
-        h: 16,
+        x: 400 + i * 560 + Math.random() * 200,
+        y: GROUND_Y - 80 - Math.random() * 100,
+        w: 32,
+        h: 32,
         collected: false,
         bobOffset: Math.random() * Math.PI * 2
       });
@@ -229,10 +229,10 @@
 
     for (let i = 0; i < 12; i++) {
       obstacles.push({
-        x: 300 + i * 250 + Math.random() * 100,
-        y: GROUND_Y - 16,
-        w: 24,
-        h: 16,
+        x: 600 + i * 500 + Math.random() * 200,
+        y: GROUND_Y - 32,
+        w: 48,
+        h: 32,
         type: Math.random() > 0.5 ? 'rock' : 'spike'
       });
     }
@@ -240,73 +240,73 @@
     for (let i = 0; i < 8; i++) {
       clouds.push({
         x: Math.random() * WORLD_WIDTH,
-        y: 30 + Math.random() * 60,
-        w: 40 + Math.random() * 40,
-        h: 20 + Math.random() * 10
+        y: 60 + Math.random() * 120,
+        w: 80 + Math.random() * 80,
+        h: 40 + Math.random() * 20
       });
     }
 
     for (let i = 0; i < 6; i++) {
       mountains.push({
-        x: i * 600 + Math.random() * 200,
-        y: GROUND_Y - 80 - Math.random() * 40,
-        w: 120 + Math.random() * 80,
-        h: 80 + Math.random() * 40
+        x: i * 1200 + Math.random() * 400,
+        y: GROUND_Y - 160 - Math.random() * 80,
+        w: 240 + Math.random() * 160,
+        h: 160 + Math.random() * 80
       });
     }
 
     for (let i = 0; i < 8; i++) {
       enemies.push({
-        x: 400 + i * 350 + Math.random() * 100,
-        y: GROUND_Y - 20,
-        w: 20,
-        h: 20,
-        vx: (Math.random() > 0.5 ? 1 : -1) * (1 + Math.random()),
-        patrolStart: 400 + i * 350 - 50,
-        patrolEnd: 400 + i * 350 + 150,
+        x: 800 + i * 700 + Math.random() * 200,
+        y: GROUND_Y - 40,
+        w: 40,
+        h: 40,
+        vx: (Math.random() > 0.5 ? 1 : -1) * (1.5 + Math.random()),
+        patrolStart: 800 + i * 700 - 100,
+        patrolEnd: 800 + i * 700 + 300,
         frame: 0
       });
     }
 
     for (let i = 0; i < 5; i++) {
       geysers.push({
-        x: 500 + i * 600 + Math.random() * 200,
+        x: 1000 + i * 1200 + Math.random() * 400,
         y: GROUND_Y,
-        w: 32,
-        h: 40,
+        w: 48,
+        h: 60,
         steamFrame: 0
       });
     }
 
     for (let i = 0; i < 15; i++) {
       trees.push({
-        x: 150 + i * 200 + Math.random() * 80,
-        y: GROUND_Y - 48 - Math.random() * 20,
-        w: 24,
-        h: 48 + Math.random() * 20
+        x: 300 + i * 400 + Math.random() * 160,
+        y: GROUND_Y - 72 - Math.random() * 30,
+        w: 36,
+        h: 72 + Math.random() * 30
       });
     }
 
     for (let i = 0; i < 12; i++) {
       seattleBuildings.push({
-        x: i * 80 + Math.random() * 40,
-        y: GROUND_Y - 60 - Math.random() * 80,
-        w: 40 + Math.random() * 30,
-        h: 60 + Math.random() * 80,
+        x: i * 160 + Math.random() * 80,
+        y: GROUND_Y - 120 - Math.random() * 160,
+        w: 80 + Math.random() * 60,
+        h: 120 + Math.random() * 160,
         type: i === 3 ? 'spaceNeedle' : 'building'
       });
     }
 
     boss = {
-      x: WORLD_WIDTH - 300,
-      y: GROUND_Y - 48,
-      w: 40,
-      h: 48,
-      vx: 2,
+      x: WORLD_WIDTH - 600,
+      y: GROUND_Y - 96,
+      w: 80,
+      h: 96,
+      vx: 3,
       health: 3,
       maxHealth: 3,
-      patrolStart: WORLD_WIDTH - 400,
-      patrolEnd: WORLD_WIDTH - 150,
+      patrolStart: WORLD_WIDTH - 800,
+      patrolEnd: WORLD_WIDTH - 300,
       frame: 0,
       hitTimer: 0,
       attackTimer: 0,
@@ -324,57 +324,71 @@
     const py = Math.floor(player.y);
     const f = player.facing;
 
-    drawPixelRect(px + 2, py + 2, 12, 10, '#f4c2a1');
-    drawPixelRect(px + 1, py, 14, 8, '#8b4513');
+    drawPixelRect(px + 8, py + 8, 16, 16, '#f4c2a1');
+    drawPixelRect(px + 10, py + 10, 12, 12, '#f8d4b8');
+    drawPixelRect(px + 6, py + 4, 20, 12, '#8b4513');
+    drawPixelRect(px + 8, py + 6, 16, 8, '#a0522d');
+    drawPixelRect(px + 10, py + 8, 12, 4, '#8b4513');
     if (f > 0) {
-      drawPixelRect(px + 12, py + 4, 6, 12, '#8b4513');
+      drawPixelRect(px + 20, py + 12, 8, 18, '#8b4513');
+      drawPixelRect(px + 22, py + 14, 4, 14, '#a0522d');
+      drawPixelRect(px + 24, py + 16, 2, 10, '#8b4513');
     } else {
-      drawPixelRect(px - 2, py + 4, 6, 12, '#8b4513');
+      drawPixelRect(px + 4, py + 12, 8, 18, '#8b4513');
+      drawPixelRect(px + 6, py + 14, 4, 14, '#a0522d');
+      drawPixelRect(px + 6, py + 16, 2, 10, '#8b4513');
     }
-    drawPixelRect(px + 4, py + 1, 8, 4, '#ff69b4');
+    drawPixelRect(px + 12, py + 6, 8, 4, '#ff69b4');
+    drawPixelRect(px + 14, py + 8, 4, 2, '#ff8fc4');
+    drawPixelRect(px + 15, py + 4, 2, 2, '#ff69b4');
 
     if (f > 0) {
-      drawPixelRect(px + 9, py + 5, 2, 2, '#000');
-      drawPixelRect(px + 10, py + 8, 3, 1, '#ff69b4');
+      drawPixelRect(px + 16, py + 14, 2, 2, '#2c3e50');
+      drawPixelRect(px + 17, py + 15, 1, 1, '#fff');
+      drawPixelRect(px + 18, py + 20, 2, 1, '#e74c6f');
     } else {
-      drawPixelRect(px + 5, py + 5, 2, 2, '#000');
-      drawPixelRect(px + 3, py + 8, 3, 1, '#ff69b4');
+      drawPixelRect(px + 14, py + 14, 2, 2, '#2c3e50');
+      drawPixelRect(px + 14, py + 15, 1, 1, '#fff');
+      drawPixelRect(px + 12, py + 20, 2, 1, '#e74c6f');
     }
 
-    drawPixelRect(px + 3, py + 12, 10, 14, '#da70d6');
-    drawPixelRect(px + 2, py + 14, 12, 10, '#da70d6');
-    drawPixelRect(px + 1, py + 22, 14, 4, '#da70d6');
+    drawPixelRect(px + 10, py + 26, 12, 22, '#da70d6');
+    drawPixelRect(px + 8, py + 30, 16, 14, '#da70d6');
+    drawPixelRect(px + 6, py + 44, 20, 4, '#da70d6');
+    drawPixelRect(px + 12, py + 28, 8, 2, '#c760c9');
+    drawPixelRect(px + 14, py + 32, 4, 2, '#fff');
 
     if (!player.grounded) {
-      drawPixelRect(px + 1, py + 14, 3, 2, '#f4c2a1');
-      drawPixelRect(px + 12, py + 14, 3, 2, '#f4c2a1');
+      drawPixelRect(px + 6, py + 32, 4, 2, '#f4c2a1');
+      drawPixelRect(px + 22, py + 32, 4, 2, '#f4c2a1');
     } else if (Math.abs(player.vx) > 0.5) {
       const legOffset = Math.sin(player.frame * 0.3) * 2;
-      drawPixelRect(px + 4, py + 26, 3, 6 + legOffset, '#f4c2a1');
-      drawPixelRect(px + 9, py + 26, 3, 6 - legOffset, '#f4c2a1');
-      drawPixelRect(px + 3, py + 30 + legOffset, 5, 2, '#ff1493');
-      drawPixelRect(px + 8, py + 30 - legOffset, 5, 2, '#ff1493');
+      drawPixelRect(px + 12, py + 48, 4, 10 + legOffset, '#f4c2a1');
+      drawPixelRect(px + 16, py + 48, 4, 10 - legOffset, '#f4c2a1');
+      drawPixelRect(px + 10, py + 56 + legOffset, 8, 2, '#ff1493');
+      drawPixelRect(px + 14, py + 56 - legOffset, 8, 2, '#ff1493');
     } else {
-      drawPixelRect(px + 4, py + 26, 3, 6, '#f4c2a1');
-      drawPixelRect(px + 9, py + 26, 3, 6, '#f4c2a1');
-      drawPixelRect(px + 3, py + 30, 5, 2, '#ff1493');
-      drawPixelRect(px + 8, py + 30, 5, 2, '#ff1493');
+      drawPixelRect(px + 12, py + 48, 4, 10, '#f4c2a1');
+      drawPixelRect(px + 16, py + 48, 4, 10, '#f4c2a1');
+      drawPixelRect(px + 10, py + 56, 8, 2, '#ff1493');
+      drawPixelRect(px + 14, py + 56, 8, 2, '#ff1493');
     }
   }
 
   function drawHeart(h) {
     if (h.collected) return;
     const hx = Math.floor(h.x - cameraX);
-    const hy = Math.floor(h.y + Math.sin(Date.now() * 0.003 + h.bobOffset) * 4);
+    const hy = Math.floor(h.y + Math.sin(Date.now() * 0.003 + h.bobOffset) * 6);
 
-    drawPixelRect(hx + 4, hy, 8, 4, '#e74c6f');
-    drawPixelRect(hx + 2, hy + 2, 12, 4, '#e74c6f');
-    drawPixelRect(hx, hy + 4, 16, 4, '#e74c6f');
-    drawPixelRect(hx + 2, hy + 8, 12, 4, '#e74c6f');
-    drawPixelRect(hx + 4, hy + 12, 8, 2, '#e74c6f');
-    drawPixelRect(hx + 6, hy + 14, 4, 2, '#e74c6f');
+    drawPixelRect(hx + 10, hy + 2, 12, 6, '#e74c6f');
+    drawPixelRect(hx + 6, hy + 6, 20, 6, '#e74c6f');
+    drawPixelRect(hx + 2, hy + 10, 28, 6, '#e74c6f');
+    drawPixelRect(hx + 6, hy + 16, 20, 6, '#e74c6f');
+    drawPixelRect(hx + 10, hy + 22, 12, 4, '#e74c6f');
+    drawPixelRect(hx + 14, hy + 26, 4, 2, '#e74c6f');
 
-    drawPixelRect(hx + 4, hy + 2, 3, 3, '#ff8fa3');
+    drawPixelRect(hx + 10, hy + 6, 4, 4, '#ff8fa3');
+    drawPixelRect(hx + 12, hy + 8, 2, 2, '#fff');
   }
 
   function drawObstacle(o) {
@@ -382,14 +396,17 @@
     const oy = Math.floor(o.y);
 
     if (o.type === 'rock') {
-      drawPixelRect(ox + 4, oy, 16, 16, '#6b6b6b');
-      drawPixelRect(ox + 2, oy + 4, 20, 12, '#6b6b6b');
-      drawPixelRect(ox + 6, oy + 2, 4, 4, '#8b8b8b');
+      drawPixelRect(ox + 10, oy + 2, 28, 28, '#6b6b6b');
+      drawPixelRect(ox + 6, oy + 10, 36, 20, '#6b6b6b');
+      drawPixelRect(ox + 14, oy + 6, 6, 6, '#8b8b8b');
+      drawPixelRect(ox + 22, oy + 14, 4, 4, '#7b7b7b');
+      drawPixelRect(ox + 12, oy + 8, 2, 2, '#9b9b9b');
     } else {
-      drawPixelRect(ox + 10, oy, 4, 16, '#8b8b8b');
-      drawPixelRect(ox + 8, oy + 2, 8, 4, '#a0a0a0');
-      drawPixelRect(ox + 6, oy + 6, 12, 4, '#8b8b8b');
-      drawPixelRect(ox + 4, oy + 10, 16, 6, '#6b6b6b');
+      drawPixelRect(ox + 22, oy + 2, 4, 28, '#8b8b8b');
+      drawPixelRect(ox + 18, oy + 6, 12, 6, '#a0a0a0');
+      drawPixelRect(ox + 14, oy + 14, 20, 6, '#8b8b8b');
+      drawPixelRect(ox + 10, oy + 22, 28, 8, '#6b6b6b');
+      drawPixelRect(ox + 24, oy + 4, 2, 2, '#c0c0c0');
     }
   }
 
@@ -398,77 +415,132 @@
     const ey = Math.floor(e.y);
     const f = e.vx > 0 ? 1 : -1;
 
-    drawPixelRect(ex + 4, ey, 12, 12, '#8b0000');
-    drawPixelRect(ex + 2, ey + 12, 16, 8, '#8b0000');
-    drawPixelRect(ex + 6, ey + 2, 3, 3, '#ffff00');
-    drawPixelRect(ex + 11, ey + 2, 3, 3, '#ffff00');
-    drawPixelRect(ex + 7, ey + 7, 6, 2, '#000');
+    drawPixelRect(ex + 10, ey + 14, 20, 22, '#ffffff');
+    drawPixelRect(ex + 12, ey + 12, 16, 26, '#ffffff');
+    drawPixelRect(ex + 14, ey + 10, 12, 30, '#ffffff');
+    drawPixelRect(ex + 12, ey + 16, 16, 18, '#f8f8f8');
 
     if (f > 0) {
-      drawPixelRect(ex + 14, ey + 4, 4, 2, '#8b0000');
+      drawPixelRect(ex + 26, ey + 8, 12, 12, '#ffffff');
+      drawPixelRect(ex + 28, ey + 10, 8, 8, '#ffffff');
+      drawPixelRect(ex + 36, ey + 12, 6, 4, '#ffa500');
+      drawPixelRect(ex + 38, ey + 14, 4, 2, '#ff8c00');
+      drawPixelRect(ex + 30, ey + 12, 2, 2, '#2c3e50');
+      drawPixelRect(ex + 31, ey + 13, 1, 1, '#fff');
     } else {
-      drawPixelRect(ex + 2, ey + 4, 4, 2, '#8b0000');
+      drawPixelRect(ex + 2, ey + 8, 12, 12, '#ffffff');
+      drawPixelRect(ex + 4, ey + 10, 8, 8, '#ffffff');
+      drawPixelRect(ex - 2, ey + 12, 6, 4, '#ffa500');
+      drawPixelRect(ex - 2, ey + 14, 4, 2, '#ff8c00');
+      drawPixelRect(ex + 8, ey + 12, 2, 2, '#2c3e50');
+      drawPixelRect(ex + 8, ey + 13, 1, 1, '#fff');
     }
 
-    const legOffset = Math.sin(e.frame * 0.2) * 2;
-    drawPixelRect(ex + 4, ey + 18, 4, 4 + legOffset, '#6b0000');
-    drawPixelRect(ex + 12, ey + 18, 4, 4 - legOffset, '#6b0000');
+    if (f > 0) {
+      drawPixelRect(ex + 8, ey + 18, 6, 12, '#e8e8e8');
+      drawPixelRect(ex + 10, ey + 20, 4, 8, '#f0f0f0');
+    } else {
+      drawPixelRect(ex + 26, ey + 18, 6, 12, '#e8e8e8');
+      drawPixelRect(ex + 26, ey + 20, 4, 8, '#f0f0f0');
+    }
+
+    if (f > 0) {
+      drawPixelRect(ex + 8, ey + 24, 4, 6, '#ffffff');
+      drawPixelRect(ex + 6, ey + 28, 6, 2, '#ffffff');
+    } else {
+      drawPixelRect(ex + 28, ey + 24, 4, 6, '#ffffff');
+      drawPixelRect(ex + 28, ey + 28, 6, 2, '#ffffff');
+    }
+
+    const legOffset = Math.sin(e.frame * 0.3) * 2;
+    drawPixelRect(ex + 14, ey + 36, 4, 6 + legOffset, '#ffa500');
+    drawPixelRect(ex + 22, ey + 36, 4, 6 - legOffset, '#ffa500');
+    drawPixelRect(ex + 12, ey + 40 + legOffset, 8, 2, '#ff8c00');
+    drawPixelRect(ex + 20, ey + 40 - legOffset, 8, 2, '#ff8c00');
+    drawPixelRect(ex + 10, ey + 41 + legOffset, 4, 1, '#ff8c00');
+    drawPixelRect(ex + 16, ey + 41 + legOffset, 4, 1, '#ff8c00');
+    drawPixelRect(ex + 18, ey + 41 - legOffset, 4, 1, '#ff8c00');
+    drawPixelRect(ex + 24, ey + 41 - legOffset, 4, 1, '#ff8c00');
   }
 
   function drawBoss() {
     if (!boss || boss.defeated) return;
     const bx = Math.floor(boss.x - cameraX);
     const by = Math.floor(boss.y);
-    const f = boss.vx > 0 ? 1 : -1;
 
     const flashColor = boss.hitTimer > 0 ? '#fff' : null;
 
-    drawPixelRect(bx + 8, by, 24, 16, flashColor || '#2c3e50');
-    drawPixelRect(bx + 6, by + 2, 28, 12, flashColor || '#34495e');
-    drawPixelRect(bx + 10, by + 4, 6, 6, flashColor || '#e74c3c');
-    drawPixelRect(bx + 24, by + 4, 6, 6, flashColor || '#e74c3c');
-    drawPixelRect(bx + 12, by + 5, 2, 2, '#fff');
-    drawPixelRect(bx + 26, by + 5, 2, 2, '#fff');
-    drawPixelRect(bx + 14, by + 10, 12, 3, '#000');
-    drawPixelRect(bx + 16, by + 11, 2, 2, '#fff');
-    drawPixelRect(bx + 22, by + 11, 2, 2, '#fff');
+    drawPixelRect(bx + 20, by + 2, 40, 36, flashColor || '#5b6abf');
+    drawPixelRect(bx + 16, by + 6, 48, 28, flashColor || '#5b6abf');
+    drawPixelRect(bx + 18, by + 8, 44, 24, flashColor || '#6b7acf');
+    drawPixelRect(bx + 22, by + 4, 36, 4, flashColor || '#4b5aaf');
 
-    drawPixelRect(bx + 4, by + 16, 32, 20, flashColor || '#1a252f');
-    drawPixelRect(bx + 8, by + 18, 24, 16, flashColor || '#2c3e50');
-    drawPixelRect(bx + 12, by + 20, 16, 4, '#c0392b');
-    drawPixelRect(bx + 16, by + 24, 8, 8, '#7f8c8d');
+    drawPixelRect(bx + 24, by + 14, 12, 12, '#fff');
+    drawPixelRect(bx + 44, by + 14, 12, 12, '#fff');
+    drawPixelRect(bx + 28, by + 18, 6, 6, '#2c3e50');
+    drawPixelRect(bx + 48, by + 18, 6, 6, '#2c3e50');
+    drawPixelRect(bx + 30, by + 20, 2, 2, '#fff');
+    drawPixelRect(bx + 50, by + 20, 2, 2, '#fff');
 
-    drawPixelRect(bx, by + 18, 8, 16, flashColor || '#2c3e50');
-    drawPixelRect(bx + 32, by + 18, 8, 16, flashColor || '#2c3e50');
-    drawPixelRect(bx - 2, by + 32, 10, 6, flashColor || '#34495e');
-    drawPixelRect(bx + 32, by + 32, 10, 6, flashColor || '#34495e');
+    drawPixelRect(bx + 34, by + 28, 12, 3, '#e74c6f');
+    drawPixelRect(bx + 36, by + 27, 8, 2, '#ff8fa3');
+    drawPixelRect(bx + 38, by + 29, 4, 1, '#fff');
 
-    const legOffset = Math.sin(boss.frame * 0.15) * 3;
-    drawPixelRect(bx + 8, by + 36, 8, 12 + legOffset, flashColor || '#1a252f');
-    drawPixelRect(bx + 24, by + 36, 8, 12 - legOffset, flashColor || '#1a252f');
-    drawPixelRect(bx + 6, by + 46 + legOffset, 12, 4, '#000');
-    drawPixelRect(bx + 22, by + 46 - legOffset, 12, 4, '#000');
+    drawPixelRect(bx + 22, by + 24, 6, 4, '#ffb6c1');
+    drawPixelRect(bx + 52, by + 24, 6, 4, '#ffb6c1');
 
-    const healthBarWidth = 40;
+    drawPixelRect(bx + 14, by + 38, 52, 44, flashColor || '#4a5a9f');
+    drawPixelRect(bx + 18, by + 42, 44, 36, flashColor || '#5b6abf');
+    drawPixelRect(bx + 24, by + 44, 32, 6, '#ffd700');
+    drawPixelRect(bx + 28, by + 46, 24, 2, '#ffed4e');
+    drawPixelRect(bx + 32, by + 52, 16, 20, '#7f8c8d');
+    drawPixelRect(bx + 34, by + 54, 12, 16, '#95a5a6');
+    drawPixelRect(bx + 36, by + 56, 8, 12, '#bdc3c7');
+    drawPixelRect(bx + 38, by + 58, 4, 8, '#ecf0f1');
+
+    drawPixelRect(bx + 4, by + 42, 14, 36, flashColor || '#5b6abf');
+    drawPixelRect(bx + 62, by + 42, 14, 36, flashColor || '#5b6abf');
+    drawPixelRect(bx + 6, by + 44, 10, 32, flashColor || '#6b7acf');
+    drawPixelRect(bx + 64, by + 44, 10, 32, flashColor || '#6b7acf');
+    drawPixelRect(bx + 2, by + 74, 18, 10, flashColor || '#4a5a9f');
+    drawPixelRect(bx + 60, by + 74, 18, 10, flashColor || '#4a5a9f');
+    drawPixelRect(bx + 4, by + 76, 14, 6, flashColor || '#5b6abf');
+    drawPixelRect(bx + 62, by + 76, 14, 6, flashColor || '#5b6abf');
+
+    const legOffset = Math.sin(boss.frame * 0.15) * 4;
+    drawPixelRect(bx + 22, by + 82, 14, 18 + legOffset, flashColor || '#4a5a9f');
+    drawPixelRect(bx + 44, by + 82, 14, 18 - legOffset, flashColor || '#4a5a9f');
+    drawPixelRect(bx + 24, by + 84, 10, 14 + legOffset, flashColor || '#5b6abf');
+    drawPixelRect(bx + 46, by + 84, 10, 14 - legOffset, flashColor || '#5b6abf');
+    drawPixelRect(bx + 18, by + 96 + legOffset, 22, 6, '#3a4a8f');
+    drawPixelRect(bx + 40, by + 96 - legOffset, 22, 6, '#3a4a8f');
+    drawPixelRect(bx + 20, by + 98 + legOffset, 18, 3, '#2a3a7f');
+    drawPixelRect(bx + 42, by + 98 - legOffset, 18, 3, '#2a3a7f');
+
+    const healthBarWidth = 80;
     const healthPercent = boss.health / boss.maxHealth;
-    drawPixelRect(bx, by - 12, healthBarWidth, 6, '#000');
-    drawPixelRect(bx + 1, by - 11, healthBarWidth - 2, 4, '#333');
-    drawPixelRect(bx + 1, by - 11, (healthBarWidth - 2) * healthPercent, 4, '#e74c3c');
+    drawPixelRect(bx, by - 24, healthBarWidth, 12, '#000');
+    drawPixelRect(bx + 2, by - 22, healthBarWidth - 4, 8, '#333');
+    drawPixelRect(bx + 2, by - 22, (healthBarWidth - 4) * healthPercent, 8, '#e74c3c');
+    if (healthPercent > 0.5) {
+      drawPixelRect(bx + 2, by - 22, (healthBarWidth - 4) * healthPercent, 3, '#ff6b6b');
+    }
   }
 
   function drawGoldenKey() {
     if (!goldenKey) return;
     const kx = Math.floor(goldenKey.x - cameraX);
-    const ky = Math.floor(goldenKey.y + Math.sin(Date.now() * 0.004) * 3);
+    const ky = Math.floor(goldenKey.y + Math.sin(Date.now() * 0.004) * 5);
 
-    drawPixelRect(kx + 4, ky, 8, 12, '#ffd700');
-    drawPixelRect(kx + 2, ky + 2, 12, 8, '#ffd700');
-    drawPixelRect(kx + 4, ky + 4, 8, 4, '#ffed4e');
-    drawPixelRect(kx + 6, ky + 12, 4, 10, '#ffd700');
-    drawPixelRect(kx + 4, ky + 18, 8, 2, '#ffd700');
-    drawPixelRect(kx + 4, ky + 14, 2, 2, '#ffd700');
+    drawPixelRect(kx + 10, ky + 2, 12, 18, '#ffd700');
+    drawPixelRect(kx + 6, ky + 6, 20, 10, '#ffd700');
+    drawPixelRect(kx + 10, ky + 10, 12, 4, '#ffed4e');
+    drawPixelRect(kx + 14, ky + 20, 4, 16, '#ffd700');
+    drawPixelRect(kx + 10, ky + 32, 12, 3, '#ffd700');
+    drawPixelRect(kx + 10, ky + 24, 3, 3, '#ffd700');
 
-    drawPixelRect(kx + 5, ky + 3, 2, 2, '#fff');
+    drawPixelRect(kx + 12, ky + 8, 3, 3, '#fff');
+    drawPixelRect(kx + 15, ky + 22, 2, 10, '#ffed4e');
   }
 
   function drawBackground() {
@@ -493,16 +565,16 @@
 
     if (progress < 0.7) {
       const sunOpacity = 1 - (progress / 0.7);
-      drawPixelRect(GAME_W - 80, 40, 40, 40, `rgba(255, 244, 192, ${sunOpacity})`);
-      drawPixelRect(GAME_W - 84, 44, 48, 32, `rgba(255, 232, 160, ${sunOpacity * 0.8})`);
+      drawPixelRect(GAME_W - 120, 60, 60, 60, `rgba(255, 244, 192, ${sunOpacity})`);
+      drawPixelRect(GAME_W - 126, 66, 72, 48, `rgba(255, 232, 160, ${sunOpacity * 0.8})`);
     }
 
     clouds.forEach(function (c) {
       const cx = (c.x - cameraX * 0.2) % (WORLD_WIDTH + 200);
-      const drawX = cx < -100 ? cx + WORLD_WIDTH + 200 : cx;
+      const drawX = cx < -150 ? cx + WORLD_WIDTH + 200 : cx;
       const cloudOpacity = progress < 0.6 ? 0.6 : 0.4;
       drawPixelRect(drawX, c.y, c.w, c.h, `rgba(255,255,255,${cloudOpacity})`);
-      drawPixelRect(drawX + 10, c.y - 5, c.w - 20, c.h + 10, `rgba(255,255,255,${cloudOpacity * 0.8})`);
+      drawPixelRect(drawX + 15, c.y - 8, c.w - 30, c.h + 16, `rgba(255,255,255,${cloudOpacity * 0.8})`);
     });
 
     if (progress > 0.3) {
@@ -511,17 +583,17 @@
         const bx = Math.floor(b.x - cameraX * 0.15);
         if (bx > -b.w && bx < GAME_W + b.w) {
           if (b.type === 'spaceNeedle') {
-            drawPixelRect(bx + 18, b.y, 4, b.h, `rgba(85,85,85,${buildingOpacity})`);
-            drawPixelRect(bx + 8, b.y + 10, 24, 8, `rgba(102,102,102,${buildingOpacity})`);
-            drawPixelRect(bx + 12, b.y + 6, 16, 6, `rgba(119,119,119,${buildingOpacity})`);
-            drawPixelRect(bx + 16, b.y, 8, 12, `rgba(136,136,136,${buildingOpacity})`);
-            drawPixelRect(bx + 19, b.y - 8, 2, 8, `rgba(85,85,85,${buildingOpacity})`);
+            drawPixelRect(bx + 27, b.y, 6, b.h, `rgba(85,85,85,${buildingOpacity})`);
+            drawPixelRect(bx + 12, b.y + 15, 36, 12, `rgba(102,102,102,${buildingOpacity})`);
+            drawPixelRect(bx + 18, b.y + 9, 24, 9, `rgba(119,119,119,${buildingOpacity})`);
+            drawPixelRect(bx + 24, b.y, 12, 18, `rgba(136,136,136,${buildingOpacity})`);
+            drawPixelRect(bx + 28, b.y - 12, 3, 12, `rgba(85,85,85,${buildingOpacity})`);
           } else {
             drawPixelRect(bx, b.y, b.w, b.h, `rgba(74,85,104,${buildingOpacity})`);
             drawPixelRect(bx + 2, b.y + 2, b.w - 4, b.h - 4, `rgba(90,101,120,${buildingOpacity})`);
-            for (let wy = b.y + 8; wy < b.y + b.h - 8; wy += 12) {
-              for (let wx = bx + 6; wx < bx + b.w - 6; wx += 10) {
-                drawPixelRect(wx, wy, 4, 6, `rgba(255,215,0,${buildingOpacity * 0.8})`);
+            for (let wy = b.y + 12; wy < b.y + b.h - 12; wy += 18) {
+              for (let wx = bx + 9; wx < bx + b.w - 9; wx += 15) {
+                drawPixelRect(wx, wy, 6, 9, `rgba(255,215,0,${buildingOpacity * 0.8})`);
               }
             }
           }
@@ -548,9 +620,9 @@
           gameCtx.lineTo(mx + m.w * 0.65, GROUND_Y);
           gameCtx.fill();
 
-          if (m.h > 100) {
-            drawPixelRect(mx + m.w / 2 - 8, m.y + 5, 16, 12, `rgba(255,255,255,${mountainOpacity})`);
-            drawPixelRect(mx + m.w / 2 - 12, m.y + 10, 24, 8, `rgba(240,240,240,${mountainOpacity})`);
+          if (m.h > 150) {
+            drawPixelRect(mx + m.w / 2 - 12, m.y + 8, 24, 18, `rgba(255,255,255,${mountainOpacity})`);
+            drawPixelRect(mx + m.w / 2 - 18, m.y + 15, 36, 12, `rgba(240,240,240,${mountainOpacity})`);
           }
         }
       });
@@ -561,10 +633,10 @@
       trees.forEach(function (t) {
         const tx = Math.floor(t.x - cameraX * 0.7);
         if (tx > -t.w && tx < GAME_W + t.w) {
-          drawPixelRect(tx + 10, t.y + t.h - 16, 4, 16, `rgba(74,55,40,${treeOpacity})`);
-          drawPixelRect(tx + 4, t.y, 16, t.h - 12, `rgba(45,80,22,${treeOpacity})`);
-          drawPixelRect(tx + 6, t.y - 8, 12, 12, `rgba(58,107,31,${treeOpacity})`);
-          drawPixelRect(tx + 8, t.y - 14, 8, 8, `rgba(74,123,47,${treeOpacity})`);
+          drawPixelRect(tx + 15, t.y + t.h - 24, 6, 24, `rgba(74,55,40,${treeOpacity})`);
+          drawPixelRect(tx + 6, t.y, 24, t.h - 18, `rgba(45,80,22,${treeOpacity})`);
+          drawPixelRect(tx + 9, t.y - 12, 18, 18, `rgba(58,107,31,${treeOpacity})`);
+          drawPixelRect(tx + 12, t.y - 21, 12, 12, `rgba(74,123,47,${treeOpacity})`);
         }
       });
     }
@@ -574,16 +646,16 @@
       geysers.forEach(function (g) {
         const gx = Math.floor(g.x - cameraX);
         if (gx > -g.w && gx < GAME_W + g.w) {
-          drawPixelRect(gx, g.y - 8, g.w, 8, `rgba(212,197,160,${geyserOpacity})`);
-          drawPixelRect(gx + 4, g.y - 12, g.w - 8, 4, `rgba(196,181,144,${geyserOpacity})`);
-          drawPixelRect(gx + 8, g.y - 6, g.w - 16, 4, `rgba(79,195,247,${geyserOpacity})`);
-          drawPixelRect(gx + 10, g.y - 8, g.w - 20, 4, `rgba(129,212,250,${geyserOpacity})`);
+          drawPixelRect(gx, g.y - 12, g.w, 12, `rgba(212,197,160,${geyserOpacity})`);
+          drawPixelRect(gx + 6, g.y - 18, g.w - 12, 6, `rgba(196,181,144,${geyserOpacity})`);
+          drawPixelRect(gx + 12, g.y - 9, g.w - 24, 6, `rgba(79,195,247,${geyserOpacity})`);
+          drawPixelRect(gx + 15, g.y - 12, g.w - 30, 6, `rgba(129,212,250,${geyserOpacity})`);
 
           g.steamFrame++;
-          const steamOffset = Math.sin(g.steamFrame * 0.05) * 4;
-          drawPixelRect(gx + 12, g.y - 30 - steamOffset, 8, 12, `rgba(255,255,255,${0.7 * geyserOpacity})`);
-          drawPixelRect(gx + 10, g.y - 40 - steamOffset, 12, 8, `rgba(255,255,255,${0.5 * geyserOpacity})`);
-          drawPixelRect(gx + 8, g.y - 48 - steamOffset, 16, 6, `rgba(255,255,255,${0.3 * geyserOpacity})`);
+          const steamOffset = Math.sin(g.steamFrame * 0.05) * 6;
+          drawPixelRect(gx + 18, g.y - 45 - steamOffset, 12, 18, `rgba(255,255,255,${0.7 * geyserOpacity})`);
+          drawPixelRect(gx + 15, g.y - 60 - steamOffset, 18, 12, `rgba(255,255,255,${0.5 * geyserOpacity})`);
+          drawPixelRect(gx + 12, g.y - 72 - steamOffset, 24, 9, `rgba(255,255,255,${0.3 * geyserOpacity})`);
         }
       });
     }
@@ -592,14 +664,14 @@
     drawPixelRect(0, GROUND_Y, GAME_W, GAME_H - GROUND_Y, groundColor);
     
     const groundTopColor = lerpColor('#a0826d', '#6a7a8a', progress);
-    drawPixelRect(0, GROUND_Y, GAME_W, 6, groundTopColor);
+    drawPixelRect(0, GROUND_Y, GAME_W, 9, groundTopColor);
     
     const groundMidColor = lerpColor('#9b7255', '#5a6a7a', progress);
-    drawPixelRect(0, GROUND_Y + 6, GAME_W, 4, groundMidColor);
+    drawPixelRect(0, GROUND_Y + 9, GAME_W, 6, groundMidColor);
 
-    for (let i = 0; i < GAME_W; i += 40) {
+    for (let i = 0; i < GAME_W; i += 60) {
       const detailColor = lerpColor('#7a6245', '#4a5a6a', progress);
-      drawPixelRect(i + Math.random() * 20, GROUND_Y + 10, 8, 4, detailColor);
+      drawPixelRect(i + Math.random() * 30, GROUND_Y + 15, 12, 6, detailColor);
     }
   }
 
@@ -684,11 +756,11 @@
   function shoot() {
     if (shootCooldown > 0) return;
     bullets.push({
-      x: player.x + (player.facing > 0 ? player.w : -8),
-      y: player.y + player.h / 2 - 3,
-      w: 8,
-      h: 6,
-      vx: player.facing * 8,
+      x: player.x + (player.facing > 0 ? player.w : -16),
+      y: player.y + player.h / 2 - 6,
+      w: 16,
+      h: 12,
+      vx: player.facing * 10,
       life: 60
     });
     shootCooldown = 15;
@@ -715,12 +787,14 @@
     bullets.forEach(function (b) {
       const bx = Math.floor(b.x - cameraX);
       const by = Math.floor(b.y);
-      drawPixelRect(bx, by, b.w, b.h, '#ff69b4');
-      drawPixelRect(bx + 2, by + 2, b.w - 4, b.h - 4, '#ffb6c1');
+      drawPixelRect(bx + 2, by + 2, 12, 8, '#ff69b4');
+      drawPixelRect(bx + 4, by + 4, 8, 4, '#ffb6c1');
       if (b.vx > 0) {
-        drawPixelRect(bx + b.w - 2, by + 1, 3, 4, '#fff');
+        drawPixelRect(bx + 12, by + 3, 4, 6, '#fff');
+        drawPixelRect(bx + 14, by + 4, 2, 4, '#ffe0eb');
       } else {
-        drawPixelRect(bx - 1, by + 1, 3, 4, '#fff');
+        drawPixelRect(bx, by + 3, 4, 6, '#fff');
+        drawPixelRect(bx, by + 4, 2, 4, '#ffe0eb');
       }
     });
   }
@@ -756,7 +830,7 @@
       if (player.x < boss.x + boss.w && player.x + player.w > boss.x &&
           player.y < boss.y + boss.h && player.y + player.h > boss.y) {
         
-        if (player.vy > 0 && player.y + player.h < boss.y + 20) {
+        if (player.vy > 0 && player.y + player.h < boss.y + 40) {
           boss.health--;
           boss.hitTimer = 15;
           player.vy = JUMP_FORCE * 0.8;
@@ -764,10 +838,10 @@
           if (boss.health <= 0) {
             boss.defeated = true;
             goldenKey = {
-              x: boss.x + boss.w / 2 - 8,
+              x: boss.x + boss.w / 2 - 16,
               y: boss.y,
-              w: 16,
-              h: 22
+              w: 32,
+              h: 44
             };
           }
         } else if (boss.hitTimer === 0) {
@@ -807,10 +881,10 @@
           if (boss.health <= 0) {
             boss.defeated = true;
             goldenKey = {
-              x: boss.x + boss.w / 2 - 8,
+              x: boss.x + boss.w / 2 - 16,
               y: boss.y,
-              w: 16,
-              h: 22
+              w: 32,
+              h: 44
             };
           }
         }
@@ -838,7 +912,7 @@
     score = 0;
     scoreValue.textContent = '0';
     progressBar.style.width = '0%';
-    player.x = 50;
+    player.x = 100;
     player.y = GROUND_Y - player.h;
     player.vx = 0;
     player.vy = 0;
@@ -876,7 +950,7 @@
     score = 0;
     scoreValue.textContent = '0';
     progressBar.style.width = '0%';
-    player.x = 50;
+    player.x = 100;
     player.y = GROUND_Y - player.h;
     player.vx = 0;
     player.vy = 0;
