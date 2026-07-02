@@ -413,6 +413,59 @@ body {
   z-index: 5;
 }
 
+.game-start-overlay {
+  flex-direction: column;
+}
+
+.controls-hint {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.keys-group {
+  display: flex;
+  gap: 0.3rem;
+  min-width: 90px;
+  justify-content: center;
+}
+
+.key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 0.3rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  image-rendering: pixelated;
+}
+
+.hint-text {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+  margin-left: 0.3rem;
+}
+
 .start-game-btn {
   font-family: 'Courier New', monospace;
   font-size: 1rem;

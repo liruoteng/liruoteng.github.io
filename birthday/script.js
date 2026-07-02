@@ -139,6 +139,7 @@
 
       setTimeout(function () {
         intro.classList.add('hidden');
+        window.scrollTo(0, 0);
         hero.classList.remove('hidden');
         gameSection.classList.remove('hidden');
 
