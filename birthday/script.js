@@ -1,6 +1,19 @@
 (function () {
   'use strict';
 
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  function scrollToEnvelope() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }
+
+  scrollToEnvelope();
+  window.addEventListener('load', scrollToEnvelope);
+  window.addEventListener('pageshow', scrollToEnvelope);
+  window.addEventListener('beforeunload', scrollToEnvelope);
+
   const canvas = document.getElementById('confetti-canvas');
   const ctx = canvas.getContext('2d');
   let particles = [];
@@ -247,7 +260,8 @@
         x: Math.random() * WORLD_WIDTH,
         y: 60 + Math.random() * 120,
         w: 80 + Math.random() * 80,
-        h: 40 + Math.random() * 20
+        h: 40 + Math.random() * 20,
+        seed: i * 17 + Math.random() * 100
       });
     }
 
@@ -287,7 +301,8 @@
 
     for (let i = 0; i < 5; i++) {
       const baseX = 1100 + i * 950 + Math.random() * 180;
-      const baseY = GROUND_Y - 190 - Math.random() * 80;
+      const swoopingBird = i % 2 === 1;
+      const baseY = GROUND_Y - 190 - Math.random() * 80 + (swoopingBird ? 26 + Math.random() * 18 : 0);
       enemies.push({
         type: 'bird',
         x: baseX,
@@ -299,7 +314,9 @@
         patrolStart: baseX - 180,
         patrolEnd: baseX + 220,
         frame: 0,
-        bobOffset: Math.random() * Math.PI * 2
+        bobOffset: Math.random() * Math.PI * 2,
+        bobAmplitude: swoopingBird ? 30 + Math.random() * 12 : 14 + Math.random() * 8,
+        bobSpeed: swoopingBird ? 0.05 + Math.random() * 0.015 : 0.035 + Math.random() * 0.012
       });
     }
 
@@ -313,16 +330,34 @@
       });
     }
 
-    for (let i = 0; i < 12; i++) {
-      const buildingHeight = 180 + Math.random() * 210;
+    const skylineBaseY = GROUND_Y - 8;
+    [
+      { x: 210, w: 94, h: 220, type: 'stripedTower' },
+      { x: 318, w: 66, h: 112, type: 'lowGlass' },
+      { x: 394, w: 78, h: 136, type: 'goldBlock' },
+      { x: 492, w: 88, h: 166, type: 'crowned' },
+      { x: 606, w: 86, h: 196, type: 'glassTop' },
+      { x: 835, w: 112, h: 370, type: 'spaceNeedle' },
+      { x: 970, w: 82, h: 300, type: 'darkTower' },
+      { x: 1070, w: 86, h: 178, type: 'brickTower' },
+      { x: 1165, w: 94, h: 166, type: 'slantRoof' },
+      { x: 1268, w: 94, h: 228, type: 'crowned' },
+      { x: 1332, w: 78, h: 192, type: 'whiteTower' },
+      { x: 1425, w: 74, h: 156, type: 'goldBlock' },
+      { x: 1515, w: 78, h: 176, type: 'glassTop' },
+      { x: 1628, w: 96, h: 126, type: 'lowGlass' },
+      { x: 1762, w: 84, h: 142, type: 'steppedTower' },
+      { x: 1850, w: 94, h: 118, type: 'lowGlass' }
+    ].forEach(function (b) {
       seattleBuildings.push({
-        x: i * 160 + Math.random() * 80,
-        y: GROUND_Y - buildingHeight - 60,
-        w: 80 + Math.random() * 60,
-        h: buildingHeight,
-        type: i === 3 ? 'spaceNeedle' : 'building'
+        x: b.x,
+        y: skylineBaseY - b.h,
+        baseY: skylineBaseY,
+        w: b.w,
+        h: b.h,
+        type: b.type
       });
-    }
+    });
 
     boss = null;
     goldenKey = null;
@@ -333,9 +368,50 @@
     gameCtx.fillRect(Math.floor(x), Math.floor(y), w, h);
   }
 
+  function drawCloud(x, y, w, h, opacity, seed) {
+    const baseY = y + h * 0.52;
+    const lobes = [
+      { x: 0.02, y: 0.48, w: 0.28, h: 0.32 },
+      { x: 0.18, y: 0.26, w: 0.34, h: 0.42 },
+      { x: 0.42, y: 0.12, w: 0.32, h: 0.54 },
+      { x: 0.66, y: 0.32, w: 0.30, h: 0.36 }
+    ];
+
+    drawPixelRect(x + w * 0.08, baseY, w * 0.82, h * 0.24, `rgba(205,220,232,${opacity * 0.36})`);
+    drawPixelRect(x + w * 0.14, baseY + h * 0.16, w * 0.66, h * 0.12, `rgba(118,145,166,${opacity * 0.18})`);
+
+    lobes.forEach(function (l, i) {
+      const jitterX = (randAt(seed, i, 1) - 0.5) * w * 0.05;
+      const jitterY = (randAt(seed, i, 2) - 0.5) * h * 0.08;
+      const lx = x + w * l.x + jitterX;
+      const ly = y + h * l.y + jitterY;
+      const lw = w * l.w;
+      const lh = h * l.h;
+      drawPixelRect(lx + lw * 0.08, ly + lh * 0.24, lw * 0.84, lh * 0.64, `rgba(238,246,252,${opacity * 0.76})`);
+      drawPixelRect(lx + lw * 0.16, ly + lh * 0.12, lw * 0.68, lh * 0.34, `rgba(255,255,255,${opacity * 0.9})`);
+      drawPixelRect(lx + lw * 0.28, ly, lw * 0.44, lh * 0.22, `rgba(255,255,255,${opacity * 0.72})`);
+      drawPixelRect(lx + lw * 0.1, ly + lh * 0.72, lw * 0.78, lh * 0.16, `rgba(178,201,218,${opacity * 0.26})`);
+    });
+
+    drawPixelRect(x + w * 0.12, baseY + h * 0.04, w * 0.78, h * 0.16, `rgba(246,251,255,${opacity * 0.72})`);
+    drawPixelRect(x + w * 0.22, y + h * 0.25, w * 0.18, h * 0.08, `rgba(255,255,255,${opacity * 0.85})`);
+    drawPixelRect(x + w * 0.52, y + h * 0.18, w * 0.16, h * 0.08, `rgba(255,255,255,${opacity * 0.78})`);
+
+    for (let i = 0; i < 4; i++) {
+      const puffX = x + w * (0.06 + i * 0.24) + randAt(seed, i, 3) * w * 0.08;
+      const puffY = baseY + h * (0.12 + randAt(seed, i, 4) * 0.14);
+      drawPixelRect(puffX, puffY, w * (0.08 + randAt(seed, i, 5) * 0.08), h * 0.06, `rgba(214,229,239,${opacity * 0.34})`);
+    }
+  }
+
   function randAt(a, b, c) {
     const n = Math.sin(a * 127.1 + b * 311.7 + c * 74.7) * 43758.5453;
     return n - Math.floor(n);
+  }
+
+  function smoothstep(edge0, edge1, x) {
+    const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
+    return t * t * (3 - 2 * t);
   }
 
   function rectsOverlap(a, b) {
@@ -549,26 +625,56 @@
     const ex = Math.floor(e.x - cameraX);
     const ey = Math.floor(e.y);
     const f = e.vx > 0 ? 1 : -1;
-    const wing = Math.sin(e.frame * 0.22) * 5;
+    const wing = Math.round(Math.sin(e.frame * 0.24) * 3);
 
-    drawPixelRect(ex + 8, ey + 10, 20, 12, '#ffcad4');
-    drawPixelRect(ex + 12, ey + 7, 14, 16, '#ffd9e0');
-    drawPixelRect(ex + 15, ey + 10, 8, 8, '#fff4f6');
+    drawPixelRect(ex + 10, ey + 8, 18, 3, '#5fb9ef');
+    drawPixelRect(ex + 7, ey + 11, 25, 4, '#75c9f6');
+    drawPixelRect(ex + 6, ey + 15, 27, 6, '#83d3ff');
+    drawPixelRect(ex + 8, ey + 21, 23, 4, '#4ca9e4');
+    drawPixelRect(ex + 12, ey + 25, 15, 2, '#2f83c6');
+
+    drawPixelRect(ex + 12, ey + 12, 13, 10, '#c8efff');
+    drawPixelRect(ex + 15, ey + 14, 8, 7, '#eefbff');
+    drawPixelRect(ex + 9, ey + 18, 4, 3, '#ffd45d');
+    drawPixelRect(ex + 27, ey + 17, 4, 3, '#ffd45d');
+
+    drawPixelRect(ex + 14, ey + 5, 9, 5, '#75c9f6');
+    drawPixelRect(ex + 16, ey + 3, 5, 4, '#ffe27a');
+    drawPixelRect(ex + 18, ey + 1, 2, 3, '#ffc93d');
 
     if (f > 0) {
-      drawPixelRect(ex + 25, ey + 8, 9, 9, '#ffd9e0');
-      drawPixelRect(ex + 33, ey + 11, 5, 3, '#f5b342');
-      drawPixelRect(ex + 28, ey + 10, 2, 2, '#3f2418');
+      drawPixelRect(ex + 25, ey + 7, 8, 7, '#75c9f6');
+      drawPixelRect(ex + 28, ey + 5, 4, 3, '#c8efff');
+      drawPixelRect(ex + 32, ey + 10, 5, 3, '#f4b23c');
+      drawPixelRect(ex + 35, ey + 11, 3, 1, '#ffd36a');
+      drawPixelRect(ex + 29, ey + 9, 2, 2, '#2d2430');
+      drawPixelRect(ex + 30, ey + 9, 1, 1, '#ffffff');
+      drawPixelRect(ex + 27, ey + 13, 3, 2, '#ffd45d');
+      drawPixelRect(ex + 3, ey + 15, 7, 4, '#2f83c6');
+      drawPixelRect(ex + 1, ey + 17, 5, 3, '#236aa8');
     } else {
-      drawPixelRect(ex + 2, ey + 8, 9, 9, '#ffd9e0');
-      drawPixelRect(ex - 2, ey + 11, 5, 3, '#f5b342');
-      drawPixelRect(ex + 7, ey + 10, 2, 2, '#3f2418');
+      drawPixelRect(ex + 5, ey + 7, 8, 7, '#75c9f6');
+      drawPixelRect(ex + 6, ey + 5, 4, 3, '#c8efff');
+      drawPixelRect(ex + 1, ey + 10, 5, 3, '#f4b23c');
+      drawPixelRect(ex, ey + 11, 3, 1, '#ffd36a');
+      drawPixelRect(ex + 8, ey + 9, 2, 2, '#2d2430');
+      drawPixelRect(ex + 8, ey + 9, 1, 1, '#ffffff');
+      drawPixelRect(ex + 9, ey + 13, 3, 2, '#ffd45d');
+      drawPixelRect(ex + 30, ey + 15, 7, 4, '#2f83c6');
+      drawPixelRect(ex + 34, ey + 17, 5, 3, '#236aa8');
     }
 
-    drawPixelRect(ex + 10, ey + 15 + wing, 10, 5, '#f49cab');
-    drawPixelRect(ex + 18, ey + 15 - wing, 10, 5, '#f49cab');
-    drawPixelRect(ex + 14, ey + 22, 3, 4, '#d9874d');
-    drawPixelRect(ex + 22, ey + 22, 3, 4, '#d9874d');
+    drawPixelRect(ex + 8, ey + 14 + wing, 9, 4, '#3f9ed8');
+    drawPixelRect(ex + 7, ey + 18 + wing, 12, 4, '#2f83c6');
+    drawPixelRect(ex + 10, ey + 21 + wing, 8, 2, '#236aa8');
+    drawPixelRect(ex + 21, ey + 14 - wing, 9, 4, '#3f9ed8');
+    drawPixelRect(ex + 20, ey + 18 - wing, 12, 4, '#2f83c6');
+    drawPixelRect(ex + 21, ey + 21 - wing, 8, 2, '#236aa8');
+
+    drawPixelRect(ex + 15, ey + 27, 2, 3, '#ffc93d');
+    drawPixelRect(ex + 22, ey + 27, 2, 3, '#ffc93d');
+    drawPixelRect(ex + 13, ey + 30, 5, 1, '#e79a24');
+    drawPixelRect(ex + 21, ey + 30, 5, 1, '#e79a24');
   }
 
   function drawBoss() {
@@ -670,6 +776,8 @@
 
   function drawBackground() {
     const progress = Math.min(1, cameraX / (WORLD_WIDTH - GAME_W));
+    const natureStrength = 1 - smoothstep(0.48, 0.62, progress);
+    const cityStrength = smoothstep(0.58, 0.72, progress);
     
     const skyGrad = gameCtx.createLinearGradient(0, 0, 0, GROUND_Y);
     if (progress < 0.5) {
@@ -708,23 +816,12 @@
     clouds.forEach(function (c) {
       const cx = (c.x - cameraX * 0.2) % (WORLD_WIDTH + 200);
       const drawX = cx < -150 ? cx + WORLD_WIDTH + 200 : cx;
-      const cloudOpacity = progress < 0.6 ? 0.9 : 0.75;
-      
-      drawPixelRect(drawX + 20, c.y + 12, c.w - 40, c.h - 12, `rgba(255,255,255,${cloudOpacity * 0.85})`);
-      drawPixelRect(drawX + 15, c.y + 8, c.w - 30, c.h - 8, `rgba(255,255,255,${cloudOpacity * 0.9})`);
-      drawPixelRect(drawX, c.y, c.w, c.h, `rgba(255,255,255,${cloudOpacity})`);
-      drawPixelRect(drawX + 25, c.y - 12, c.w - 50, c.h + 24, `rgba(255,255,255,${cloudOpacity * 0.95})`);
-      drawPixelRect(drawX + 35, c.y - 20, c.w - 70, c.h + 36, `rgba(255,255,255,${cloudOpacity * 0.85})`);
-      drawPixelRect(drawX + 45, c.y - 24, c.w - 90, c.h + 44, `rgba(255,255,255,${cloudOpacity * 0.7})`);
-      
-      drawPixelRect(drawX + 8, c.y + 6, c.w - 16, c.h - 6, `rgba(248,248,255,${cloudOpacity * 0.75})`);
-      drawPixelRect(drawX + 18, c.y + 2, c.w - 36, c.h - 2, `rgba(252,252,255,${cloudOpacity * 0.8})`);
-      drawPixelRect(drawX + 30, c.y - 8, c.w - 60, c.h + 16, `rgba(250,250,255,${cloudOpacity * 0.85})`);
-      drawPixelRect(drawX + 40, c.y - 16, c.w - 80, c.h + 32, `rgba(245,245,255,${cloudOpacity * 0.7})`);
+      const cloudOpacity = 0.35 + natureStrength * 0.5 + cityStrength * 0.12;
+      drawCloud(drawX, c.y, c.w, c.h, cloudOpacity, c.seed);
     });
 
-    if (progress < 0.5) {
-      const birdOpacity = 0.26;
+    if (natureStrength > 0) {
+      const birdOpacity = 0.26 * natureStrength;
       for (let i = 0; i < 6; i++) {
         const birdX = (GAME_W * 0.2 + i * 90 + Math.sin(Date.now() * 0.001 + i * 1.5) * 25) % GAME_W;
         const birdY = 80 + i * 25 + Math.sin(Date.now() * 0.002 + i * 2) * 12;
@@ -737,64 +834,143 @@
       }
     }
 
-    mountains.forEach(function (m) {
-      const mx = Math.floor(m.x - cameraX * 0.35);
-      if (mx > -m.w && mx < GAME_W + m.w) {
-        gameCtx.fillStyle = '#6d78bc';
-        gameCtx.beginPath();
-        gameCtx.moveTo(mx, GROUND_Y);
-        gameCtx.lineTo(mx + m.w / 2, m.y);
-        gameCtx.lineTo(mx + m.w, GROUND_Y);
-        gameCtx.fill();
+    if (natureStrength > 0) {
+      gameCtx.save();
+      gameCtx.globalAlpha = natureStrength;
+      mountains.forEach(function (m) {
+        const mx = Math.floor(m.x - cameraX * 0.35);
+        if (mx > -m.w && mx < GAME_W + m.w) {
+          gameCtx.fillStyle = '#6d78bc';
+          gameCtx.beginPath();
+          gameCtx.moveTo(mx, GROUND_Y);
+          gameCtx.lineTo(mx + m.w / 2, m.y);
+          gameCtx.lineTo(mx + m.w, GROUND_Y);
+          gameCtx.fill();
 
-        gameCtx.fillStyle = '#8390d1';
-        gameCtx.beginPath();
-        gameCtx.moveTo(mx + m.w * 0.12, GROUND_Y);
-        gameCtx.lineTo(mx + m.w / 2, m.y + 18);
-        gameCtx.lineTo(mx + m.w * 0.88, GROUND_Y);
-        gameCtx.fill();
+          gameCtx.fillStyle = '#8390d1';
+          gameCtx.beginPath();
+          gameCtx.moveTo(mx + m.w * 0.12, GROUND_Y);
+          gameCtx.lineTo(mx + m.w / 2, m.y + 18);
+          gameCtx.lineTo(mx + m.w * 0.88, GROUND_Y);
+          gameCtx.fill();
 
-        gameCtx.fillStyle = '#9dabde';
-        gameCtx.beginPath();
-        gameCtx.moveTo(mx + m.w * 0.26, GROUND_Y);
-        gameCtx.lineTo(mx + m.w / 2, m.y + 38);
-        gameCtx.lineTo(mx + m.w * 0.74, GROUND_Y);
-        gameCtx.fill();
+          gameCtx.fillStyle = '#9dabde';
+          gameCtx.beginPath();
+          gameCtx.moveTo(mx + m.w * 0.26, GROUND_Y);
+          gameCtx.lineTo(mx + m.w / 2, m.y + 38);
+          gameCtx.lineTo(mx + m.w * 0.74, GROUND_Y);
+          gameCtx.fill();
 
-        drawPixelRect(mx + m.w / 2 - 28, m.y + 8, 56, 22, '#f3f5ff');
-        drawPixelRect(mx + m.w / 2 - 38, m.y + 22, 76, 16, '#dde8ff');
+          drawPixelRect(mx + m.w / 2 - 28, m.y + 8, 56, 22, '#f3f5ff');
+          drawPixelRect(mx + m.w / 2 - 38, m.y + 22, 76, 16, '#dde8ff');
+        }
+      });
+      gameCtx.restore();
+    }
+    drawFarmhouse(natureStrength);
+
+    if (cityStrength > 0) {
+      const skylineBaseY = GROUND_Y - 8;
+      drawMountRainier(cityStrength);
+      drawPixelRect(0, skylineBaseY - 32, GAME_W, 24, `rgba(85,96,108,${0.24 * cityStrength})`);
+      drawPixelRect(0, skylineBaseY - 18, GAME_W, 5, `rgba(128,145,143,${0.38 * cityStrength})`);
+      drawPixelRect(0, skylineBaseY, GAME_W, 8, `rgba(92,108,111,${cityStrength})`);
+      drawPixelRect(0, skylineBaseY - 3, GAME_W, 3, `rgba(124,139,135,${cityStrength})`);
+      for (let worldX = Math.floor((cameraX * 0.18) / 140) * 140; worldX < cameraX * 0.18 + GAME_W + 140; worldX += 140) {
+        const lampX = worldX - cameraX * 0.18 + 24;
+        drawPixelRect(lampX, skylineBaseY - 48, 4, 45, `rgba(54,64,76,${0.55 * cityStrength})`);
+        drawPixelRect(lampX - 5, skylineBaseY - 52, 14, 5, `rgba(255,213,106,${0.55 * cityStrength})`);
+        drawPixelRect(lampX - 3, skylineBaseY - 50, 10, 2, `rgba(255,238,156,${0.5 * cityStrength})`);
       }
-    });
+      seattleBuildings.forEach(function (b, index) {
+        const buildingStrength = smoothstep(0.58 + index * 0.012, 0.68 + index * 0.012, progress);
+        if (buildingStrength <= 0) return;
 
-    if (progress > 0.3) {
-      const buildingOpacity = 0.68;
-      seattleBuildings.forEach(function (b) {
         const bx = Math.floor(b.x - cameraX * 0.15);
         if (bx > -b.w && bx < GAME_W + b.w) {
+          const buildingOpacity = 0.68 * buildingStrength;
+
           if (b.type === 'spaceNeedle') {
-            drawPixelRect(bx + 26, b.y, 8, b.h, `rgba(160,160,180,${buildingOpacity})`);
-            drawPixelRect(bx + 27, b.y + 2, 6, b.h - 4, `rgba(180,180,200,${buildingOpacity})`);
-            drawPixelRect(bx + 10, b.y + 14, 40, 14, `rgba(140,140,160,${buildingOpacity})`);
-            drawPixelRect(bx + 12, b.y + 16, 36, 10, `rgba(160,160,180,${buildingOpacity})`);
-            drawPixelRect(bx + 16, b.y + 8, 28, 10, `rgba(130,130,150,${buildingOpacity})`);
-            drawPixelRect(bx + 18, b.y + 10, 24, 6, `rgba(150,150,170,${buildingOpacity})`);
-            drawPixelRect(bx + 22, b.y, 16, 16, `rgba(120,120,140,${buildingOpacity})`);
-            drawPixelRect(bx + 24, b.y + 2, 12, 12, `rgba(140,140,160,${buildingOpacity})`);
-            drawPixelRect(bx + 28, b.y - 16, 4, 16, `rgba(160,160,180,${buildingOpacity})`);
-            drawPixelRect(bx + 29, b.y - 14, 2, 12, `rgba(180,180,200,${buildingOpacity})`);
+            drawPixelRect(bx + 53, b.y + 52, 8, b.h - 52, `rgba(231,232,222,${buildingOpacity})`);
+            drawPixelRect(bx + 39, b.y + 96, 7, b.h - 96, `rgba(246,239,219,${buildingOpacity * 0.92})`);
+            drawPixelRect(bx + 67, b.y + 96, 7, b.h - 96, `rgba(246,239,219,${buildingOpacity * 0.92})`);
+            drawPixelRect(bx + 31, b.y + 92, 52, 7, `rgba(238,232,214,${buildingOpacity})`);
+            drawPixelRect(bx + 18, b.y + 54, 78, 10, `rgba(48,50,62,${buildingOpacity})`);
+            drawPixelRect(bx + 12, b.y + 46, 90, 9, `rgba(237,131,60,${buildingOpacity})`);
+            drawPixelRect(bx + 20, b.y + 39, 74, 8, `rgba(246,202,121,${buildingOpacity})`);
+            drawPixelRect(bx + 28, b.y + 32, 58, 8, `rgba(196,64,48,${buildingOpacity})`);
+            drawPixelRect(bx + 38, b.y + 25, 38, 7, `rgba(251,144,57,${buildingOpacity})`);
+            drawPixelRect(bx + 49, b.y + 12, 16, 14, `rgba(238,219,176,${buildingOpacity})`);
+            drawPixelRect(bx + 55, b.y - 18, 3, 30, `rgba(170,82,74,${buildingOpacity})`);
+            drawPixelRect(bx + 54, b.y - 24, 5, 6, `rgba(218,177,105,${buildingOpacity})`);
             
-            for (let wy = b.y + 18; wy < b.y + b.h - 8; wy += 10) {
-              drawPixelRect(bx + 28, wy, 4, 6, `rgba(255,220,150,${buildingOpacity * 0.8})`);
-              drawPixelRect(bx + 29, wy + 1, 2, 4, `rgba(255,240,180,${buildingOpacity * 0.6})`);
+            for (let wy = b.y + 108; wy < b.baseY - 14; wy += 18) {
+              const legInset = (wy - b.y) * 0.035;
+              drawPixelRect(bx + 40 - legInset, wy, 5, 12, `rgba(238,232,215,${buildingOpacity * 0.88})`);
+              drawPixelRect(bx + 69 + legInset, wy, 5, 12, `rgba(238,232,215,${buildingOpacity * 0.88})`);
+              drawPixelRect(bx + 55, wy, 3, 12, `rgba(203,208,205,${buildingOpacity * 0.55})`);
             }
             
-            drawPixelRect(bx + 24, b.y + 2, 12, 2, `rgba(200,200,220,${buildingOpacity * 0.7})`);
-            drawPixelRect(bx + 24, b.y + 20, 12, 2, `rgba(200,200,220,${buildingOpacity * 0.7})`);
+            drawPixelRect(bx + 32, b.baseY - 46, 50, 16, `rgba(230,224,208,${buildingOpacity})`);
+            drawPixelRect(bx + 22, b.baseY - 30, 70, 14, `rgba(207,215,213,${buildingOpacity})`);
+            drawPixelRect(bx + 10, b.baseY - 14, 94, 12, `rgba(72,80,96,${buildingOpacity})`);
           } else {
-            drawPixelRect(bx, b.y, b.w, b.h, `rgba(100,110,140,${buildingOpacity})`);
-            drawPixelRect(bx + 2, b.y + 2, b.w - 4, b.h - 4, `rgba(120,130,160,${buildingOpacity})`);
-            drawPixelRect(bx + 4, b.y + 4, b.w - 8, 4, `rgba(140,150,180,${buildingOpacity * 0.8})`);
-            drawPixelRect(bx + 4, b.y + b.h - 8, b.w - 8, 4, `rgba(140,150,180,${buildingOpacity * 0.8})`);
+            if (b.type === 'slantRoof') {
+              gameCtx.fillStyle = `rgba(38,38,48,${buildingOpacity})`;
+              gameCtx.beginPath();
+              gameCtx.moveTo(bx + 6, b.y + 8);
+              gameCtx.lineTo(bx + b.w - 4, b.y + 38);
+              gameCtx.lineTo(bx + b.w - 4, b.baseY);
+              gameCtx.lineTo(bx + 6, b.baseY);
+              gameCtx.fill();
+              drawPixelRect(bx + 12, b.y + 54, b.w - 24, b.h - 62, `rgba(75,66,74,${buildingOpacity})`);
+              for (let wy = b.y + 70; wy < b.baseY - 12; wy += 16) {
+                drawPixelRect(bx + 18, wy, b.w - 36, 5, `rgba(236,190,112,${buildingOpacity * 0.62})`);
+              }
+              drawPixelRect(bx - 3, b.baseY - 4, b.w + 6, 4, `rgba(72,80,96,${buildingOpacity})`);
+              return;
+            }
+
+            const bodyColor = b.type === 'goldBlock' ? '190,142,69' :
+              b.type === 'darkTower' ? '56,63,86' :
+              b.type === 'darkBlock' ? '68,58,70' :
+              b.type === 'brickTower' ? '128,78,67' :
+              b.type === 'stripedTower' ? '205,211,207' :
+              b.type === 'slantRoof' ? '58,55,66' :
+              b.type === 'steppedTower' ? '192,155,127' :
+              b.type === 'whiteTower' ? '198,206,202' :
+              '98,126,148';
+            const insetColor = b.type === 'goldBlock' ? '224,174,86' :
+              b.type === 'darkTower' ? '73,82,108' :
+              b.type === 'darkBlock' ? '86,72,82' :
+              b.type === 'brickTower' ? '158,95,74' :
+              b.type === 'stripedTower' ? '236,231,216' :
+              b.type === 'slantRoof' ? '75,66,74' :
+              b.type === 'steppedTower' ? '223,184,147' :
+              b.type === 'whiteTower' ? '226,224,211' :
+              '124,158,178';
+            drawPixelRect(bx, b.y, b.w, b.h, `rgba(${bodyColor},${buildingOpacity})`);
+            drawPixelRect(bx + 2, b.y + 2, b.w - 4, b.h - 4, `rgba(${insetColor},${buildingOpacity})`);
+            if (b.type === 'crowned') {
+              drawPixelRect(bx + 12, b.y - 12, b.w - 24, 14, `rgba(72,72,90,${buildingOpacity})`);
+              drawPixelRect(bx + 22, b.y - 24, b.w - 44, 12, `rgba(96,82,92,${buildingOpacity})`);
+            } else if (b.type === 'glassTop') {
+              drawPixelRect(bx + 8, b.y - 22, b.w - 16, 24, `rgba(55,105,128,${buildingOpacity})`);
+              drawPixelRect(bx + 14, b.y - 28, b.w - 28, 8, `rgba(110,180,196,${buildingOpacity * 0.7})`);
+            } else if (b.type === 'lowGlass') {
+              drawPixelRect(bx + 8, b.y + 10, b.w - 16, 18, `rgba(44,94,112,${buildingOpacity})`);
+            } else if (b.type === 'stripedTower') {
+              drawPixelRect(bx + 10, b.y - 16, b.w - 20, 18, `rgba(242,232,202,${buildingOpacity})`);
+              drawPixelRect(bx + b.w - 20, b.y - 34, 3, 18, `rgba(198,72,61,${buildingOpacity})`);
+              for (let sy = b.y + 18; sy < b.baseY - 18; sy += 14) {
+                drawPixelRect(bx + 6, sy, b.w - 12, 3, `rgba(89,104,124,${buildingOpacity * 0.72})`);
+              }
+            } else if (b.type === 'steppedTower') {
+              drawPixelRect(bx + 10, b.y - 18, b.w - 20, 18, `rgba(214,172,136,${buildingOpacity})`);
+              drawPixelRect(bx + 20, b.y - 30, b.w - 40, 12, `rgba(184,132,106,${buildingOpacity})`);
+            }
+            drawPixelRect(bx + 4, b.y + 4, b.w - 8, 4, `rgba(245,220,170,${buildingOpacity * 0.45})`);
+            drawPixelRect(bx + 4, b.y + b.h - 8, b.w - 8, 4, `rgba(80,90,110,${buildingOpacity * 0.5})`);
             
             for (let wy = b.y + 12; wy < b.y + b.h - 12; wy += 14) {
               for (let wx = bx + 8; wx < bx + b.w - 8; wx += 12) {
@@ -812,13 +988,15 @@
             
             drawPixelRect(bx + b.w / 2 - 1, b.y, 2, b.h, `rgba(80,90,120,${buildingOpacity * 0.3})`);
             drawPixelRect(bx, b.y + b.h / 2, b.w, 2, `rgba(80,90,120,${buildingOpacity * 0.2})`);
+            drawPixelRect(bx - 3, b.baseY - 4, b.w + 6, 4, `rgba(72,80,96,${buildingOpacity})`);
           }
         }
       });
+      drawSeattleArches(cityStrength);
     }
 
-    if (progress < 0.6) {
-      const geyserOpacity = 0.72;
+    if (natureStrength > 0) {
+      const geyserOpacity = 0.72 * natureStrength;
       geysers.forEach(function (g) {
         const gx = Math.floor(g.x - cameraX);
         if (gx > -g.w && gx < GAME_W + g.w) {
@@ -859,9 +1037,9 @@
     }
 
     drawPixelRect(0, GROUND_Y, GAME_W, GAME_H - GROUND_Y, '#d89b42');
-    drawPixelRect(0, GROUND_Y, GAME_W, 10, '#72c94c');
-    drawPixelRect(0, GROUND_Y + 10, GAME_W, 8, '#4f9d38');
-    drawPixelRect(0, GROUND_Y + 18, GAME_W, 6, '#786332');
+    drawPixelRect(0, GROUND_Y, GAME_W, 10, lerpColor('#72c94c', '#8b9a62', cityStrength));
+    drawPixelRect(0, GROUND_Y + 10, GAME_W, 8, lerpColor('#4f9d38', '#6f7449', cityStrength));
+    drawPixelRect(0, GROUND_Y + 18, GAME_W, 6, lerpColor('#786332', '#6e6546', cityStrength));
     drawPixelRect(0, GROUND_Y + 24, GAME_W, 34, '#e1ad4b');
     drawPixelRect(0, GROUND_Y + 58, GAME_W, 38, '#b87935');
     drawPixelRect(0, GROUND_Y + 96, GAME_W, GAME_H - GROUND_Y - 96, '#724527');
@@ -881,7 +1059,7 @@
     const grassStart = Math.floor(cameraX / 15) * 15;
     for (let worldX = grassStart; worldX < cameraX + GAME_W + 15; worldX += 15) {
       const i = worldX;
-      const grassColor = lerpColor('#6aaa5a', '#4a9a8a', progress);
+      const grassColor = lerpColor('#6aaa5a', '#7d8d68', cityStrength);
       const grassX = worldX - cameraX + randAt(i, 14, 1) * 10;
       const grassH = 4 + Math.floor(randAt(i, 15, 2) * 4);
       drawPixelRect(grassX, GROUND_Y - grassH, 2, grassH, grassColor);
@@ -896,14 +1074,13 @@
       const i = worldX;
       const cloverX = worldX - cameraX + randAt(i, 16, 1) * 25;
       const cloverY = GROUND_Y - 2;
-      const cloverColor = lerpColor('#5a9a4a', '#4a8a7a', progress);
+      const cloverColor = lerpColor('#5a9a4a', '#788763', cityStrength);
       drawPixelRect(cloverX, cloverY, 2, 3, cloverColor);
       drawPixelRect(cloverX - 2, cloverY - 1, 2, 2, cloverColor);
       drawPixelRect(cloverX + 2, cloverY - 1, 2, 2, cloverColor);
       drawPixelRect(cloverX, cloverY - 2, 2, 2, cloverColor);
     }
 
-    drawFarmhouse();
   }
 
   function drawFarmPath(progress) {
@@ -947,8 +1124,75 @@
     }
   }
 
-  function drawFarmhouse() {
-    const opacity = 0.78;
+  function drawMountRainier(stageStrength) {
+    const opacity = 0.62 * stageStrength;
+    if (opacity <= 0) return;
+    const rx = Math.floor(1540 - cameraX * 0.05);
+    const baseY = GROUND_Y - 46;
+    const peakY = GROUND_Y - 230;
+    if (rx < -420 || rx > GAME_W + 220) return;
+
+    gameCtx.save();
+    gameCtx.globalAlpha = opacity;
+    gameCtx.fillStyle = '#506f8d';
+    gameCtx.beginPath();
+    gameCtx.moveTo(rx - 230, baseY);
+    gameCtx.lineTo(rx - 145, baseY - 46);
+    gameCtx.lineTo(rx - 62, baseY - 64);
+    gameCtx.lineTo(rx, peakY);
+    gameCtx.lineTo(rx + 74, baseY - 88);
+    gameCtx.lineTo(rx + 160, baseY - 48);
+    gameCtx.lineTo(rx + 255, baseY);
+    gameCtx.fill();
+
+    gameCtx.fillStyle = '#6d89a3';
+    gameCtx.beginPath();
+    gameCtx.moveTo(rx - 122, baseY);
+    gameCtx.lineTo(rx - 34, baseY - 88);
+    gameCtx.lineTo(rx, peakY + 22);
+    gameCtx.lineTo(rx + 56, baseY - 78);
+    gameCtx.lineTo(rx + 144, baseY);
+    gameCtx.fill();
+
+    gameCtx.fillStyle = '#f5f2ec';
+    gameCtx.beginPath();
+    gameCtx.moveTo(rx - 44, peakY + 54);
+    gameCtx.lineTo(rx, peakY + 2);
+    gameCtx.lineTo(rx + 50, peakY + 62);
+    gameCtx.lineTo(rx + 30, peakY + 84);
+    gameCtx.lineTo(rx - 20, peakY + 76);
+    gameCtx.fill();
+
+    drawPixelRect(rx - 74, peakY + 96, 148, 12, '#e7e5e0');
+    drawPixelRect(rx - 106, peakY + 120, 212, 10, '#d8e1e4');
+    drawPixelRect(rx - 156, baseY - 36, 312, 12, '#3c6370');
+    drawPixelRect(rx - 206, baseY - 18, 410, 18, '#2f5360');
+    gameCtx.restore();
+  }
+
+  function drawSeattleArches(stageStrength) {
+    const opacity = 0.72 * stageStrength;
+    if (opacity <= 0) return;
+    const ax = Math.floor(980 - cameraX * 0.12);
+    const ay = GROUND_Y - 72;
+    if (ax < -220 || ax > GAME_W + 80) return;
+
+    drawPixelRect(ax - 18, ay + 40, 180, 20, `rgba(118,83,82,${opacity})`);
+    drawPixelRect(ax - 14, ay + 36, 172, 6, `rgba(205,157,132,${opacity})`);
+    for (let i = 0; i < 3; i++) {
+      const x = ax + i * 48;
+      drawPixelRect(x, ay + 20, 8, 42, `rgba(236,235,224,${opacity})`);
+      drawPixelRect(x + 28, ay + 20, 8, 42, `rgba(236,235,224,${opacity})`);
+      drawPixelRect(x + 4, ay + 12, 28, 8, `rgba(245,244,235,${opacity})`);
+      drawPixelRect(x + 8, ay + 6, 20, 8, `rgba(245,244,235,${opacity})`);
+      drawPixelRect(x + 12, ay + 2, 12, 5, `rgba(255,252,238,${opacity})`);
+      drawPixelRect(x + 10, ay + 24, 20, 4, `rgba(80,108,124,${opacity * 0.45})`);
+    }
+  }
+
+  function drawFarmhouse(stageStrength) {
+    const opacity = 0.78 * stageStrength;
+    if (opacity <= 0) return;
     const hx = Math.floor(880 - cameraX * 0.35);
     const hy = GROUND_Y - 190;
     if (hx < -180 || hx > GAME_W + 80) return;
@@ -1041,7 +1285,7 @@
         if (e.x <= e.patrolStart || e.x >= e.patrolEnd) {
           e.vx = -e.vx;
         }
-        e.y = e.baseY + Math.sin(e.frame * 0.06 + e.bobOffset) * 18;
+        e.y = e.baseY + Math.sin(e.frame * e.bobSpeed + e.bobOffset) * e.bobAmplitude;
         e.frame++;
         return;
       }

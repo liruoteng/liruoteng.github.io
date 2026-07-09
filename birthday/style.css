@@ -65,7 +65,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 2rem;
   background: radial-gradient(ellipse at center, var(--bg-dark-secondary) 0%, var(--bg-dark) 70%);
   overflow: hidden;
 }
