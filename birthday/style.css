@@ -19,6 +19,13 @@
   --text-light: #8b6f5e;
   --bg-dark: #1a0e1e;
   --bg-dark-secondary: #2d1b36;
+  --farm-sky: #32b7e8;
+  --farm-grass: #41a935;
+  --farm-grass-light: #84d646;
+  --farm-dirt: #e7ad45;
+  --farm-wood: #8f542c;
+  --farm-wood-dark: #5d321f;
+  --farm-panel: #f7d783;
   --font-script: 'Dancing Script', cursive;
   --font-display: 'Playfair Display', serif;
   --font-body: 'Lato', sans-serif;
@@ -335,20 +342,38 @@ body {
 /* ==================== GAME SECTION ==================== */
 .game-section {
   padding: 4rem 2rem;
-  background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+  background:
+    linear-gradient(180deg, rgba(54, 180, 227, 0.22) 0%, rgba(147, 218, 92, 0.2) 45%, rgba(231, 173, 69, 0.18) 100%),
+    var(--cream);
   display: flex;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-section::before {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 76px;
+  background:
+    repeating-linear-gradient(90deg, rgba(95, 63, 35, 0.28) 0 16px, transparent 16px 40px),
+    linear-gradient(180deg, transparent 0 30px, rgba(83, 151, 52, 0.3) 30px 42px, rgba(196, 132, 45, 0.18) 42px 100%);
+  pointer-events: none;
 }
 
 .game-wrapper {
   max-width: 960px;
   width: 100%;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 .game-title {
   font-family: var(--font-script);
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  color: var(--text-dark);
+  font-size: clamp(2.1rem, 5vw, 3.2rem);
+  color: #6d351c;
+  text-shadow: 0 3px 0 #f7d783, 0 6px 0 rgba(93, 50, 31, 0.18);
   margin-bottom: 0.5rem;
 }
 
@@ -356,7 +381,7 @@ body {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 0.95rem;
-  color: var(--text-light);
+  color: #6b5a2a;
   margin-bottom: 1.5rem;
 }
 
@@ -365,17 +390,28 @@ body {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #f5cf75;
+  border: 4px solid var(--farm-wood-dark);
+  box-shadow:
+    inset 0 0 0 3px #fff0ae,
+    0 8px 0 #4b291b,
+    0 14px 22px rgba(76, 45, 22, 0.22);
 }
 
 .game-score {
-  font-family: var(--font-body);
+  font-family: 'Courier New', monospace;
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: #4b291b;
   display: flex;
   align-items: center;
   gap: 0.3rem;
   white-space: nowrap;
+  background: #fff2b3;
+  border: 3px solid #9b5c2f;
+  padding: 0.35rem 0.65rem;
+  box-shadow: inset 0 -3px 0 rgba(141, 83, 39, 0.18);
 }
 
 .score-icon {
@@ -390,17 +426,19 @@ body {
 
 .game-progress {
   flex: 1;
-  height: 8px;
-  background: rgba(0, 0, 0, 0.06);
-  border-radius: 4px;
+  height: 16px;
+  background: #7e4b29;
+  border: 3px solid #4b291b;
   overflow: hidden;
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.22);
 }
 
 .progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--rose), var(--gold));
-  border-radius: 4px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.22) 0 8px, transparent 8px 16px),
+    linear-gradient(90deg, #ffcf33, #f05a4f);
   transition: width 0.3s ease;
 }
 
@@ -408,12 +446,16 @@ body {
   width: 100%;
   max-width: 960px;
   aspect-ratio: 16 / 9;
-  background: #000;
-  border: 4px solid #2d2d2d;
-  border-radius: 8px;
+  background: #2a6db3;
+  border: 8px solid var(--farm-wood-dark);
+  border-radius: 6px;
   position: relative;
   overflow: hidden;
   margin: 0 auto;
+  box-shadow:
+    inset 0 0 0 4px #b97135,
+    0 10px 0 #3f2418,
+    0 22px 36px rgba(66, 40, 22, 0.28);
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -435,7 +477,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.85);
+  background:
+    linear-gradient(rgba(28, 54, 44, 0.7), rgba(28, 54, 44, 0.7)),
+    repeating-linear-gradient(0deg, #9b5c2f 0 18px, #8a4f2a 18px 36px);
   z-index: 5;
 }
 
@@ -477,17 +521,17 @@ body {
   font-family: 'Courier New', monospace;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.12);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+  color: #4b291b;
+  background: #fff2b3;
+  border: 2px solid #5d321f;
+  border-radius: 2px;
   image-rendering: pixelated;
 }
 
 .hint-text {
   font-family: 'Courier New', monospace;
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 242, 179, 0.86);
   letter-spacing: 0.05em;
   margin-left: 0.3rem;
 }
@@ -498,18 +542,19 @@ body {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #fff;
-  background: #e74c6f;
-  border: 3px solid #fff;
+  color: #fff9c9;
+  background: #c5572a;
+  border: 4px solid #4b291b;
   padding: 0.8rem 2rem;
   cursor: pointer;
   transition: all 0.2s;
+  box-shadow: inset 0 4px 0 rgba(255, 242, 179, 0.28), 0 6px 0 #3f2418;
   image-rendering: pixelated;
 }
 
 .start-game-btn:hover {
-  background: #ff6b8f;
-  transform: scale(1.05);
+  background: #df6d2f;
+  transform: translateY(-2px);
 }
 
 .win-content {
@@ -548,10 +593,10 @@ body {
   width: 70px;
   height: 70px;
   font-size: 1.8rem;
-  background: rgba(232, 160, 180, 0.2);
-  border: 2px solid var(--rose);
-  border-radius: 12px;
-  color: var(--text-dark);
+  background: #f5cf75;
+  border: 4px solid var(--farm-wood-dark);
+  border-radius: 6px;
+  color: #5d321f;
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
@@ -560,8 +605,8 @@ body {
 }
 
 .touch-btn:active {
-  background: var(--rose);
-  color: white;
+  background: #e7ad45;
+  color: #3f2418;
   transform: scale(0.95);
 }
 
@@ -570,14 +615,45 @@ body {
 }
 
 .touch-shoot {
-  background: rgba(231, 76, 111, 0.3);
-  border-color: #e74c6f;
-  color: #e74c6f;
+  background: #f08a4b;
+  border-color: #5d321f;
+  color: #fff9c9;
 }
 
 @media (max-width: 768px) {
   .touch-controls {
     display: flex;
+  }
+
+  .game-start-overlay {
+    gap: 0.65rem;
+    padding: 0.75rem;
+  }
+
+  .controls-hint {
+    position: static;
+    transform: none;
+    gap: 0.25rem;
+  }
+
+  .controls-row {
+    gap: 0.25rem;
+  }
+
+  .key {
+    min-width: 24px;
+    height: 24px;
+    padding: 0 0.25rem;
+    font-size: 0.65rem;
+  }
+
+  .hint-text {
+    font-size: 0.62rem;
+  }
+
+  .start-game-btn {
+    font-size: 0.72rem;
+    padding: 0.55rem 1rem;
   }
 }
 
