@@ -197,7 +197,6 @@
   let mountains = [];
   let enemies = [];
   let geysers = [];
-  let trees = [];
   let seattleBuildings = [];
   let boss = null;
   let goldenKey = null;
@@ -212,7 +211,6 @@
     mountains = [];
     enemies = [];
     geysers = [];
-    trees = [];
     seattleBuildings = [];
     boss = null;
     goldenKey = null;
@@ -232,12 +230,15 @@
     }
 
     for (let i = 0; i < 12; i++) {
+      const typeRand = Math.random();
+      const obstacleType = typeRand > 0.66 ? 'barrel' : typeRand > 0.33 ? 'crate' : 'scarecrow';
+      const obstacleHeight = obstacleType === 'scarecrow' ? 56 : 42;
       obstacles.push({
         x: 600 + i * 500 + Math.random() * 200,
-        y: GROUND_Y - 32,
-        w: 48,
-        h: 32,
-        type: Math.random() > 0.5 ? 'rock' : 'spike'
+        y: GROUND_Y - obstacleHeight,
+        w: obstacleType === 'scarecrow' ? 42 : 48,
+        h: obstacleHeight,
+        type: obstacleType
       });
     }
 
@@ -253,22 +254,52 @@
     for (let i = 0; i < 6; i++) {
       mountains.push({
         x: i * 1200 + Math.random() * 400,
-        y: GROUND_Y - 160 - Math.random() * 80,
-        w: 240 + Math.random() * 160,
-        h: 160 + Math.random() * 80
+        y: GROUND_Y - 260 - Math.random() * 110,
+        w: 360 + Math.random() * 220,
+        h: 250 + Math.random() * 130
       });
     }
 
     for (let i = 0; i < 8; i++) {
+      let duckX = 800 + i * 700 + Math.random() * 200;
+      for (let attempt = 0; attempt < 5; attempt++) {
+        const duckRect = {
+          x: duckX + 4,
+          y: GROUND_Y - 32,
+          w: 32,
+          h: 32
+        };
+        if (!wouldHitObstacle(duckRect)) break;
+        duckX += 80;
+      }
       enemies.push({
-        x: 800 + i * 700 + Math.random() * 200,
+        type: 'duck',
+        x: duckX,
         y: GROUND_Y - 40,
         w: 40,
         h: 40,
-        vx: (Math.random() > 0.5 ? 1 : -1) * (1.5 + Math.random()),
+        vx: (Math.random() > 0.5 ? 1 : -1) * (0.85 + Math.random() * 0.35),
         patrolStart: 800 + i * 700 - 100,
         patrolEnd: 800 + i * 700 + 300,
         frame: 0
+      });
+    }
+
+    for (let i = 0; i < 5; i++) {
+      const baseX = 1100 + i * 950 + Math.random() * 180;
+      const baseY = GROUND_Y - 190 - Math.random() * 80;
+      enemies.push({
+        type: 'bird',
+        x: baseX,
+        y: baseY,
+        baseY,
+        w: 36,
+        h: 28,
+        vx: (Math.random() > 0.5 ? 1 : -1) * (1.05 + Math.random() * 0.35),
+        patrolStart: baseX - 180,
+        patrolEnd: baseX + 220,
+        frame: 0,
+        bobOffset: Math.random() * Math.PI * 2
       });
     }
 
@@ -282,21 +313,13 @@
       });
     }
 
-    for (let i = 0; i < 15; i++) {
-      trees.push({
-        x: 300 + i * 400 + Math.random() * 160,
-        y: GROUND_Y - 72 - Math.random() * 30,
-        w: 36,
-        h: 72 + Math.random() * 30
-      });
-    }
-
     for (let i = 0; i < 12; i++) {
+      const buildingHeight = 180 + Math.random() * 210;
       seattleBuildings.push({
         x: i * 160 + Math.random() * 80,
-        y: GROUND_Y - 120 - Math.random() * 160,
+        y: GROUND_Y - buildingHeight - 60,
         w: 80 + Math.random() * 60,
-        h: 120 + Math.random() * 160,
+        h: buildingHeight,
         type: i === 3 ? 'spaceNeedle' : 'building'
       });
     }
@@ -313,6 +336,17 @@
   function randAt(a, b, c) {
     const n = Math.sin(a * 127.1 + b * 311.7 + c * 74.7) * 43758.5453;
     return n - Math.floor(n);
+  }
+
+  function rectsOverlap(a, b) {
+    return a.x < b.x + b.w && a.x + a.w > b.x &&
+      a.y < b.y + b.h && a.y + a.h > b.y;
+  }
+
+  function wouldHitObstacle(rect) {
+    return obstacles.some(function (o) {
+      return rectsOverlap(rect, o);
+    });
   }
 
   function drawPlayer() {
@@ -419,22 +453,46 @@
     const ox = Math.floor(o.x - cameraX);
     const oy = Math.floor(o.y);
 
-    if (o.type === 'rock') {
-      drawPixelRect(ox + 10, oy + 2, 28, 28, '#6b6b6b');
-      drawPixelRect(ox + 6, oy + 10, 36, 20, '#6b6b6b');
-      drawPixelRect(ox + 14, oy + 6, 6, 6, '#8b8b8b');
-      drawPixelRect(ox + 22, oy + 14, 4, 4, '#7b7b7b');
-      drawPixelRect(ox + 12, oy + 8, 2, 2, '#9b9b9b');
+    drawPixelRect(ox - 3, oy + o.h - 6, o.w + 6, 8, 'rgba(54,35,21,0.28)');
+
+    if (o.type === 'crate') {
+      drawPixelRect(ox + 1, oy + 1, o.w - 2, o.h - 1, '#4f2b1c');
+      drawPixelRect(ox + 5, oy + 5, o.w - 10, o.h - 9, '#c4752d');
+      drawPixelRect(ox + 8, oy + 8, o.w - 16, o.h - 15, '#e09a43');
+      drawPixelRect(ox + 5, oy + 18, o.w - 10, 6, '#8b4b27');
+      drawPixelRect(ox + 18, oy + 5, 6, o.h - 9, '#8b4b27');
+      drawPixelRect(ox + 8, oy + 8, 8, 5, '#ffd37a');
+      drawPixelRect(ox + o.w - 14, oy + o.h - 12, 7, 4, '#7a3e22');
+    } else if (o.type === 'barrel') {
+      drawPixelRect(ox + 9, oy + 2, 30, 6, '#4f2b1c');
+      drawPixelRect(ox + 5, oy + 8, 38, 28, '#4f2b1c');
+      drawPixelRect(ox + 9, oy + 6, 30, 34, '#a65f2b');
+      drawPixelRect(ox + 13, oy + 8, 22, 30, '#d58a3b');
+      drawPixelRect(ox + 8, oy + 14, 32, 5, '#59311f');
+      drawPixelRect(ox + 8, oy + 27, 32, 5, '#59311f');
+      drawPixelRect(ox + 15, oy + 9, 5, 28, '#f1b45a');
+      drawPixelRect(ox + 28, oy + 10, 4, 26, '#8b4b27');
     } else {
-      drawPixelRect(ox + 22, oy + 2, 4, 28, '#8b8b8b');
-      drawPixelRect(ox + 18, oy + 6, 12, 6, '#a0a0a0');
-      drawPixelRect(ox + 14, oy + 14, 20, 6, '#8b8b8b');
-      drawPixelRect(ox + 10, oy + 22, 28, 8, '#6b6b6b');
-      drawPixelRect(ox + 24, oy + 4, 2, 2, '#c0c0c0');
+      drawPixelRect(ox + 18, oy + 6, 6, 48, '#6b3f24');
+      drawPixelRect(ox + 5, oy + 18, 32, 6, '#6b3f24');
+      drawPixelRect(ox + 9, oy + 4, 24, 16, '#f0c85b');
+      drawPixelRect(ox + 6, oy + 10, 30, 8, '#f6d86d');
+      drawPixelRect(ox + 13, oy + 20, 18, 22, '#3f8f47');
+      drawPixelRect(ox + 10, oy + 26, 24, 6, '#55ad5b');
+      drawPixelRect(ox + 14, oy + 10, 3, 3, '#3f2418');
+      drawPixelRect(ox + 25, oy + 10, 3, 3, '#3f2418');
+      drawPixelRect(ox + 17, oy + 15, 8, 2, '#8b4b27');
+      drawPixelRect(ox + 11, oy + 42, 8, 12, '#4f2b1c');
+      drawPixelRect(ox + 24, oy + 42, 8, 12, '#4f2b1c');
     }
   }
 
   function drawEnemy(e) {
+    if (e.type === 'bird') {
+      drawBird(e);
+      return;
+    }
+
     const ex = Math.floor(e.x - cameraX);
     const ey = Math.floor(e.y);
     const f = e.vx > 0 ? 1 : -1;
@@ -485,6 +543,32 @@
     drawPixelRect(ex + 16, ey + 41 + legOffset, 4, 1, '#ff8c00');
     drawPixelRect(ex + 18, ey + 41 - legOffset, 4, 1, '#ff8c00');
     drawPixelRect(ex + 24, ey + 41 - legOffset, 4, 1, '#ff8c00');
+  }
+
+  function drawBird(e) {
+    const ex = Math.floor(e.x - cameraX);
+    const ey = Math.floor(e.y);
+    const f = e.vx > 0 ? 1 : -1;
+    const wing = Math.sin(e.frame * 0.22) * 5;
+
+    drawPixelRect(ex + 8, ey + 10, 20, 12, '#ffcad4');
+    drawPixelRect(ex + 12, ey + 7, 14, 16, '#ffd9e0');
+    drawPixelRect(ex + 15, ey + 10, 8, 8, '#fff4f6');
+
+    if (f > 0) {
+      drawPixelRect(ex + 25, ey + 8, 9, 9, '#ffd9e0');
+      drawPixelRect(ex + 33, ey + 11, 5, 3, '#f5b342');
+      drawPixelRect(ex + 28, ey + 10, 2, 2, '#3f2418');
+    } else {
+      drawPixelRect(ex + 2, ey + 8, 9, 9, '#ffd9e0');
+      drawPixelRect(ex - 2, ey + 11, 5, 3, '#f5b342');
+      drawPixelRect(ex + 7, ey + 10, 2, 2, '#3f2418');
+    }
+
+    drawPixelRect(ex + 10, ey + 15 + wing, 10, 5, '#f49cab');
+    drawPixelRect(ex + 18, ey + 15 - wing, 10, 5, '#f49cab');
+    drawPixelRect(ex + 14, ey + 22, 3, 4, '#d9874d');
+    drawPixelRect(ex + 22, ey + 22, 3, 4, '#d9874d');
   }
 
   function drawBoss() {
@@ -621,23 +705,6 @@
       }
     }
 
-    if (progress < 0.7) {
-      const sunOpacity = 1 - (progress / 0.7);
-      for (let r = 60; r > 0; r -= 4) {
-        const alpha = sunOpacity * (r / 60) * 0.3;
-        drawPixelRect(GAME_W - 120 - (60-r)/2, 60 + (60-r)/2, r, r, `rgba(255, 240, 180, ${alpha})`);
-      }
-      drawPixelRect(GAME_W - 110, 70, 20, 20, `rgba(255, 250, 220, ${sunOpacity})`);
-      drawPixelRect(GAME_W - 108, 72, 16, 16, `rgba(255, 255, 240, ${sunOpacity})`);
-      for (let i = 0; i < 12; i++) {
-        const angle = (i / 12) * Math.PI * 2 + Date.now() * 0.0003;
-        const rayLen = 25 + Math.sin(Date.now() * 0.002 + i) * 5;
-        const rx = GAME_W - 100 + Math.cos(angle) * (35 + rayLen);
-        const ry = 80 + Math.sin(angle) * (35 + rayLen);
-        drawPixelRect(rx, ry, 2, 8, `rgba(255, 240, 180, ${sunOpacity * 0.4})`);
-      }
-    }
-
     clouds.forEach(function (c) {
       const cx = (c.x - cameraX * 0.2) % (WORLD_WIDTH + 200);
       const drawX = cx < -150 ? cx + WORLD_WIDTH + 200 : cx;
@@ -657,7 +724,7 @@
     });
 
     if (progress < 0.5) {
-      const birdOpacity = 0.7;
+      const birdOpacity = 0.26;
       for (let i = 0; i < 6; i++) {
         const birdX = (GAME_W * 0.2 + i * 90 + Math.sin(Date.now() * 0.001 + i * 1.5) * 25) % GAME_W;
         const birdY = 80 + i * 25 + Math.sin(Date.now() * 0.002 + i * 2) * 12;
@@ -670,80 +737,37 @@
       }
     }
 
-    if (progress < 0.8) {
-      const mountainOpacity = 1 - (progress / 0.8);
-      mountains.forEach(function (m) {
-        const mx = Math.floor(m.x - cameraX * 0.4);
-        if (mx > -m.w && mx < GAME_W + m.w) {
-          gameCtx.fillStyle = `rgba(100,80,180,${mountainOpacity * 0.5})`;
-          gameCtx.beginPath();
-          gameCtx.moveTo(mx, GROUND_Y);
-          gameCtx.lineTo(mx + m.w / 2, m.y);
-          gameCtx.lineTo(mx + m.w, GROUND_Y);
-          gameCtx.fill();
+    mountains.forEach(function (m) {
+      const mx = Math.floor(m.x - cameraX * 0.35);
+      if (mx > -m.w && mx < GAME_W + m.w) {
+        gameCtx.fillStyle = '#6d78bc';
+        gameCtx.beginPath();
+        gameCtx.moveTo(mx, GROUND_Y);
+        gameCtx.lineTo(mx + m.w / 2, m.y);
+        gameCtx.lineTo(mx + m.w, GROUND_Y);
+        gameCtx.fill();
 
-          gameCtx.fillStyle = `rgba(120,100,200,${mountainOpacity * 0.6})`;
-          gameCtx.beginPath();
-          gameCtx.moveTo(mx + m.w * 0.1, GROUND_Y);
-          gameCtx.lineTo(mx + m.w / 2, m.y + 12);
-          gameCtx.lineTo(mx + m.w * 0.9, GROUND_Y);
-          gameCtx.fill();
+        gameCtx.fillStyle = '#8390d1';
+        gameCtx.beginPath();
+        gameCtx.moveTo(mx + m.w * 0.12, GROUND_Y);
+        gameCtx.lineTo(mx + m.w / 2, m.y + 18);
+        gameCtx.lineTo(mx + m.w * 0.88, GROUND_Y);
+        gameCtx.fill();
 
-          gameCtx.fillStyle = `rgba(140,120,220,${mountainOpacity * 0.7})`;
-          gameCtx.beginPath();
-          gameCtx.moveTo(mx + m.w * 0.2, GROUND_Y);
-          gameCtx.lineTo(mx + m.w / 2, m.y + 20);
-          gameCtx.lineTo(mx + m.w * 0.8, GROUND_Y);
-          gameCtx.fill();
+        gameCtx.fillStyle = '#9dabde';
+        gameCtx.beginPath();
+        gameCtx.moveTo(mx + m.w * 0.26, GROUND_Y);
+        gameCtx.lineTo(mx + m.w / 2, m.y + 38);
+        gameCtx.lineTo(mx + m.w * 0.74, GROUND_Y);
+        gameCtx.fill();
 
-          gameCtx.fillStyle = `rgba(160,140,240,${mountainOpacity * 0.8})`;
-          gameCtx.beginPath();
-          gameCtx.moveTo(mx + m.w * 0.3, GROUND_Y);
-          gameCtx.lineTo(mx + m.w / 2, m.y + 28);
-          gameCtx.lineTo(mx + m.w * 0.7, GROUND_Y);
-          gameCtx.fill();
-
-          if (m.h > 150) {
-            drawPixelRect(mx + m.w / 2 - 20, m.y + 4, 40, 24, `rgba(255,255,255,${mountainOpacity})`);
-            drawPixelRect(mx + m.w / 2 - 26, m.y + 12, 52, 18, `rgba(250,250,255,${mountainOpacity * 0.95})`);
-            drawPixelRect(mx + m.w / 2 - 32, m.y + 20, 64, 14, `rgba(245,245,255,${mountainOpacity * 0.85})`);
-            drawPixelRect(mx + m.w / 2 - 38, m.y + 28, 76, 10, `rgba(240,240,250,${mountainOpacity * 0.7})`);
-            
-            drawPixelRect(mx + m.w / 2 - 12, m.y + 6, 24, 12, `rgba(255,255,255,${mountainOpacity})`);
-            drawPixelRect(mx + m.w / 2 - 8, m.y + 8, 16, 8, `rgba(255,255,255,${mountainOpacity})`);
-            drawPixelRect(mx + m.w / 2 - 4, m.y + 10, 8, 4, `rgba(255,255,255,${mountainOpacity})`);
-            
-            for (let s = 0; s < 3; s++) {
-              const snowX = mx + m.w / 2 - 15 + s * 10;
-              const snowY = m.y + 15 + s * 8;
-              drawPixelRect(snowX, snowY, 6, 2, `rgba(255,255,255,${mountainOpacity * 0.6})`);
-              drawPixelRect(snowX + 1, snowY + 2, 4, 1, `rgba(250,250,255,${mountainOpacity * 0.5})`);
-            }
-          }
-
-          for (let i = 0; i < 5; i++) {
-            const ridgeX = mx + m.w * (0.2 + i * 0.12);
-            const ridgeY = m.y + (GROUND_Y - m.y) * (0.3 + i * 0.1);
-            gameCtx.fillStyle = `rgba(80,65,160,${mountainOpacity * 0.3})`;
-            gameCtx.beginPath();
-            gameCtx.moveTo(ridgeX - 20, ridgeY + 28);
-            gameCtx.lineTo(ridgeX, ridgeY);
-            gameCtx.lineTo(ridgeX + 20, ridgeY + 28);
-            gameCtx.fill();
-          }
-
-          for (let i = 0; i < 8; i++) {
-            const detailX = mx + m.w * (0.15 + i * 0.08);
-            const detailY = m.y + (GROUND_Y - m.y) * (0.4 + i * 0.06);
-            drawPixelRect(detailX, detailY, 3, 2, `rgba(90,75,170,${mountainOpacity * 0.25})`);
-            drawPixelRect(detailX + 4, detailY + 3, 2, 2, `rgba(90,75,170,${mountainOpacity * 0.2})`);
-          }
-        }
-      });
-    }
+        drawPixelRect(mx + m.w / 2 - 28, m.y + 8, 56, 22, '#f3f5ff');
+        drawPixelRect(mx + m.w / 2 - 38, m.y + 22, 76, 16, '#dde8ff');
+      }
+    });
 
     if (progress > 0.3) {
-      const buildingOpacity = Math.min(1, (progress - 0.3) / 0.4);
+      const buildingOpacity = 0.68;
       seattleBuildings.forEach(function (b) {
         const bx = Math.floor(b.x - cameraX * 0.15);
         if (bx > -b.w && bx < GAME_W + b.w) {
@@ -793,61 +817,8 @@
       });
     }
 
-    if (progress < 0.7) {
-      const treeOpacity = 1 - (progress / 0.7);
-      drawFenceLine(treeOpacity);
-      trees.forEach(function (t) {
-        const tx = Math.floor(t.x - cameraX * 0.7);
-        if (tx > -t.w && tx < GAME_W + t.w) {
-          drawPixelRect(tx + 13, t.y + t.h - 20, 10, 20, `rgba(80,55,30,${treeOpacity})`);
-          drawPixelRect(tx + 14, t.y + t.h - 18, 8, 16, `rgba(100,75,50,${treeOpacity * 0.9})`);
-          drawPixelRect(tx + 15, t.y + t.h - 16, 6, 12, `rgba(120,90,60,${treeOpacity * 0.8})`);
-          
-          drawPixelRect(tx + 2, t.y + 6, 32, t.h - 14, `rgba(35,100,50,${treeOpacity})`);
-          drawPixelRect(tx + 4, t.y + 8, 28, t.h - 18, `rgba(45,120,60,${treeOpacity * 0.95})`);
-          drawPixelRect(tx + 6, t.y + 10, 24, t.h - 22, `rgba(55,140,70,${treeOpacity * 0.9})`);
-          
-          drawPixelRect(tx + 6, t.y - 6, 24, 14, `rgba(40,110,55,${treeOpacity})`);
-          drawPixelRect(tx + 8, t.y - 4, 20, 10, `rgba(50,130,65,${treeOpacity * 0.95})`);
-          drawPixelRect(tx + 10, t.y - 2, 16, 6, `rgba(60,150,75,${treeOpacity * 0.9})`);
-          
-          drawPixelRect(tx + 10, t.y - 16, 16, 12, `rgba(45,120,60,${treeOpacity})`);
-          drawPixelRect(tx + 12, t.y - 14, 12, 8, `rgba(55,140,70,${treeOpacity * 0.95})`);
-          drawPixelRect(tx + 14, t.y - 12, 8, 4, `rgba(65,160,80,${treeOpacity * 0.9})`);
-          
-          drawPixelRect(tx + 14, t.y - 22, 8, 8, `rgba(50,130,65,${treeOpacity})`);
-          drawPixelRect(tx + 15, t.y - 20, 6, 4, `rgba(60,150,75,${treeOpacity * 0.95})`);
-          drawPixelRect(tx + 16, t.y - 18, 4, 2, `rgba(70,170,85,${treeOpacity * 0.9})`);
-          
-          for (let i = 0; i < 10; i++) {
-            const leafX = tx + 4 + randAt(t.x, i, 1) * 28;
-            const leafY = t.y - 18 + randAt(t.x, i, 2) * (t.h - 10);
-            const leafSize = 2 + Math.floor(randAt(t.x, i, 3) * 3);
-            drawPixelRect(leafX, leafY, leafSize, leafSize, `rgba(70,160,80,${treeOpacity * 0.75})`);
-          }
-          
-          for (let i = 0; i < 6; i++) {
-            const leafX = tx + 6 + randAt(t.x, i, 4) * 24;
-            const leafY = t.y - 14 + randAt(t.x, i, 5) * (t.h - 16);
-            drawPixelRect(leafX, leafY, 3, 3, `rgba(80,180,90,${treeOpacity * 0.65})`);
-          }
-          
-          if (randAt(t.x, t.y, 6) > 0.5) {
-            drawPixelRect(tx + 6, t.y + 2, 3, 3, `rgba(255,140,180,${treeOpacity * 0.85})`);
-            drawPixelRect(tx + 7, t.y + 3, 1, 1, `rgba(255,160,200,${treeOpacity * 0.7})`);
-            drawPixelRect(tx + 22, t.y + 6, 3, 3, `rgba(255,140,180,${treeOpacity * 0.85})`);
-            drawPixelRect(tx + 23, t.y + 7, 1, 1, `rgba(255,160,200,${treeOpacity * 0.7})`);
-            drawPixelRect(tx + 14, t.y - 8, 3, 3, `rgba(255,140,180,${treeOpacity * 0.85})`);
-            drawPixelRect(tx + 15, t.y - 7, 1, 1, `rgba(255,160,200,${treeOpacity * 0.7})`);
-            drawPixelRect(tx + 10, t.y + 12, 3, 3, `rgba(255,140,180,${treeOpacity * 0.85})`);
-            drawPixelRect(tx + 18, t.y + 14, 3, 3, `rgba(255,140,180,${treeOpacity * 0.85})`);
-          }
-        }
-      });
-    }
-
     if (progress < 0.6) {
-      const geyserOpacity = 1 - (progress / 0.6);
+      const geyserOpacity = 0.72;
       geysers.forEach(function (g) {
         const gx = Math.floor(g.x - cameraX);
         if (gx > -g.w && gx < GAME_W + g.w) {
@@ -887,79 +858,31 @@
       });
     }
 
-    if (progress < 0.5) {
-      const flowerOpacity = 1 - (progress / 0.5);
-      for (let i = 0; i < 20; i++) {
-        const flowerX = (i * 70 + 15 + Math.sin(i * 2.5) * 20) % GAME_W;
-        const flowerY = GROUND_Y - 5 - randAt(i, 8, 1) * 8;
-        drawPixelRect(flowerX, flowerY, 2, 8, `rgba(70,120,50,${flowerOpacity})`);
-        drawPixelRect(flowerX + 1, flowerY + 1, 1, 6, `rgba(90,140,70,${flowerOpacity * 0.8})`);
-        
-        drawPixelRect(flowerX - 3, flowerY - 4, 8, 8, `rgba(255,130,180,${flowerOpacity})`);
-        drawPixelRect(flowerX - 2, flowerY - 3, 6, 6, `rgba(255,150,200,${flowerOpacity * 0.9})`);
-        drawPixelRect(flowerX - 1, flowerY - 2, 4, 4, `rgba(255,170,220,${flowerOpacity * 0.8})`);
-        drawPixelRect(flowerX, flowerY - 1, 2, 2, `rgba(255,200,240,${flowerOpacity * 0.7})`);
-        drawPixelRect(flowerX, flowerY, 2, 2, `rgba(255,220,100,${flowerOpacity})`);
-      }
-      
-      for (let i = 0; i < 12; i++) {
-        const flowerX = (i * 90 + 40 + Math.cos(i * 1.8) * 25) % GAME_W;
-        const flowerY = GROUND_Y - 4 - randAt(i, 9, 2) * 6;
-        drawPixelRect(flowerX, flowerY, 2, 6, `rgba(70,120,50,${flowerOpacity})`);
-        
-        drawPixelRect(flowerX - 2, flowerY - 3, 6, 6, `rgba(255,200,100,${flowerOpacity})`);
-        drawPixelRect(flowerX - 1, flowerY - 2, 4, 4, `rgba(255,220,120,${flowerOpacity * 0.9})`);
-        drawPixelRect(flowerX, flowerY - 1, 2, 2, `rgba(255,240,140,${flowerOpacity * 0.8})`);
-        drawPixelRect(flowerX, flowerY, 2, 2, `rgba(255,180,80,${flowerOpacity})`);
-      }
-      
-      for (let i = 0; i < 10; i++) {
-        const mushX = (i * 110 + 30 + Math.sin(i * 3.2) * 30) % GAME_W;
-        const mushY = GROUND_Y - 3;
-        drawPixelRect(mushX, mushY, 2, 6, `rgba(180,160,140,${flowerOpacity * 0.85})`);
-        drawPixelRect(mushX + 1, mushY + 1, 1, 4, `rgba(200,180,160,${flowerOpacity * 0.7})`);
-        
-        drawPixelRect(mushX - 4, mushY - 4, 10, 6, `rgba(255,80,80,${flowerOpacity})`);
-        drawPixelRect(mushX - 3, mushY - 3, 8, 4, `rgba(255,100,100,${flowerOpacity * 0.9})`);
-        drawPixelRect(mushX - 2, mushY - 2, 6, 2, `rgba(255,120,120,${flowerOpacity * 0.8})`);
-        
-        drawPixelRect(mushX - 3, mushY - 3, 2, 2, `rgba(255,255,255,${flowerOpacity * 0.7})`);
-        drawPixelRect(mushX + 2, mushY - 2, 2, 2, `rgba(255,255,255,${flowerOpacity * 0.7})`);
-        drawPixelRect(mushX - 1, mushY - 1, 2, 2, `rgba(255,255,255,${flowerOpacity * 0.6})`);
-      }
-      
-      for (let i = 0; i < 8; i++) {
-        const rockX = (i * 130 + 50 + Math.cos(i * 2.1) * 35) % GAME_W;
-        const rockY = GROUND_Y - 2 - randAt(i, 10, 3) * 4;
-        drawPixelRect(rockX, rockY, 10, 6, `rgba(120,120,130,${flowerOpacity * 0.7})`);
-        drawPixelRect(rockX + 1, rockY + 1, 8, 4, `rgba(140,140,150,${flowerOpacity * 0.6})`);
-        drawPixelRect(rockX + 2, rockY + 2, 6, 2, `rgba(160,160,170,${flowerOpacity * 0.5})`);
-        drawPixelRect(rockX + 1, rockY, 3, 1, `rgba(150,150,160,${flowerOpacity * 0.4})`);
-      }
+    drawPixelRect(0, GROUND_Y, GAME_W, GAME_H - GROUND_Y, '#d89b42');
+    drawPixelRect(0, GROUND_Y, GAME_W, 10, '#72c94c');
+    drawPixelRect(0, GROUND_Y + 10, GAME_W, 8, '#4f9d38');
+    drawPixelRect(0, GROUND_Y + 18, GAME_W, 6, '#786332');
+    drawPixelRect(0, GROUND_Y + 24, GAME_W, 34, '#e1ad4b');
+    drawPixelRect(0, GROUND_Y + 58, GAME_W, 38, '#b87935');
+    drawPixelRect(0, GROUND_Y + 96, GAME_W, GAME_H - GROUND_Y - 96, '#724527');
+    drawPixelRect(0, GROUND_Y + 24, GAME_W, 3, '#f2c85f');
+    drawPixelRect(0, GROUND_Y + 58, GAME_W, 3, '#cf8d3b');
+    drawPixelRect(0, GROUND_Y + 96, GAME_W, 3, '#8b5630');
+
+    const detailStart = Math.floor(cameraX / 30) * 30;
+    for (let worldX = detailStart; worldX < cameraX + GAME_W + 30; worldX += 30) {
+      const i = worldX;
+      const screenX = worldX - cameraX;
+      drawPixelRect(screenX + randAt(i, 11, 1) * 15, GROUND_Y + 34, 12, 5, '#c88939');
+      drawPixelRect(screenX + 18 + randAt(i, 12, 2) * 10, GROUND_Y + 70, 8, 4, '#97602f');
+      drawPixelRect(screenX + 5 + randAt(i, 13, 3) * 20, GROUND_Y + 112, 6, 3, '#5f3a24');
     }
 
-    const groundColor = lerpColor('#3fa632', '#3a9a59', progress);
-    drawPixelRect(0, GROUND_Y, GAME_W, GAME_H - GROUND_Y, groundColor);
-    
-    const groundTopColor = lerpColor('#70c846', '#54b874', progress);
-    drawPixelRect(0, GROUND_Y, GAME_W, 12, groundTopColor);
-    
-    const groundMidColor = lerpColor('#42a336', '#3a9a59', progress);
-    drawPixelRect(0, GROUND_Y + 12, GAME_W, 8, groundMidColor);
-    
-    const groundDarkColor = lerpColor('#2e7c24', '#2f7554', progress);
-    drawPixelRect(0, GROUND_Y + 20, GAME_W, 10, groundDarkColor);
-
-    for (let i = 0; i < GAME_W; i += 30) {
-      const detailColor = lerpColor('#3a7a2a', '#2a6a5a', progress);
-      drawPixelRect(i + randAt(i, 11, 1) * 15, GROUND_Y + 22, 12, 6, detailColor);
-      drawPixelRect(i + 18 + randAt(i, 12, 2) * 10, GROUND_Y + 30, 8, 4, detailColor);
-      drawPixelRect(i + 5 + randAt(i, 13, 3) * 20, GROUND_Y + 36, 6, 3, detailColor);
-    }
-
-    for (let i = 0; i < GAME_W; i += 15) {
+    const grassStart = Math.floor(cameraX / 15) * 15;
+    for (let worldX = grassStart; worldX < cameraX + GAME_W + 15; worldX += 15) {
+      const i = worldX;
       const grassColor = lerpColor('#6aaa5a', '#4a9a8a', progress);
-      const grassX = i + randAt(i, 14, 1) * 10;
+      const grassX = worldX - cameraX + randAt(i, 14, 1) * 10;
       const grassH = 4 + Math.floor(randAt(i, 15, 2) * 4);
       drawPixelRect(grassX, GROUND_Y - grassH, 2, grassH, grassColor);
       drawPixelRect(grassX + 3, GROUND_Y - grassH + 1, 2, grassH - 1, grassColor);
@@ -968,8 +891,10 @@
       drawPixelRect(grassX + 4, GROUND_Y - 1, 1, 2, grassColor);
     }
 
-    for (let i = 0; i < GAME_W; i += 40) {
-      const cloverX = i + randAt(i, 16, 1) * 25;
+    const cloverStart = Math.floor(cameraX / 80) * 80;
+    for (let worldX = cloverStart; worldX < cameraX + GAME_W + 80; worldX += 80) {
+      const i = worldX;
+      const cloverX = worldX - cameraX + randAt(i, 16, 1) * 25;
       const cloverY = GROUND_Y - 2;
       const cloverColor = lerpColor('#5a9a4a', '#4a8a7a', progress);
       drawPixelRect(cloverX, cloverY, 2, 3, cloverColor);
@@ -978,21 +903,7 @@
       drawPixelRect(cloverX, cloverY - 2, 2, 2, cloverColor);
     }
 
-    drawFarmPath(progress);
-    drawCropRows(progress);
-    drawFarmhouse(progress);
-  }
-
-  function drawFenceLine(opacity) {
-    const y = GROUND_Y - 78;
-    for (let x = -80 - (cameraX * 0.55 % 80); x < GAME_W + 80; x += 80) {
-      drawPixelRect(x, y + 18, 80, 8, `rgba(104,67,36,${opacity})`);
-      drawPixelRect(x, y + 42, 80, 8, `rgba(104,67,36,${opacity})`);
-      drawPixelRect(x + 6, y, 18, 72, `rgba(92,56,31,${opacity})`);
-      drawPixelRect(x + 9, y + 4, 12, 64, `rgba(139,88,45,${opacity})`);
-      drawPixelRect(x + 10, y - 8, 10, 12, `rgba(164,104,51,${opacity})`);
-      drawPixelRect(x + 12, y + 10, 4, 50, `rgba(199,132,66,${opacity * 0.6})`);
-    }
+    drawFarmhouse();
   }
 
   function drawFarmPath(progress) {
@@ -1036,9 +947,8 @@
     }
   }
 
-  function drawFarmhouse(progress) {
-    const opacity = 1 - Math.min(1, Math.abs(progress - 0.18) * 4);
-    if (opacity <= 0) return;
+  function drawFarmhouse() {
+    const opacity = 0.78;
     const hx = Math.floor(880 - cameraX * 0.35);
     const hy = GROUND_Y - 190;
     if (hx < -180 || hx > GAME_W + 80) return;
@@ -1126,9 +1036,27 @@
 
   function updateEnemies() {
     enemies.forEach(function (e) {
-      e.x += e.vx;
-      if (e.x <= e.patrolStart || e.x >= e.patrolEnd) {
+      if (e.type === 'bird') {
+        e.x += e.vx;
+        if (e.x <= e.patrolStart || e.x >= e.patrolEnd) {
+          e.vx = -e.vx;
+        }
+        e.y = e.baseY + Math.sin(e.frame * 0.06 + e.bobOffset) * 18;
+        e.frame++;
+        return;
+      }
+
+      const nextX = e.x + e.vx;
+      const nextRect = {
+        x: nextX + 4,
+        y: e.y + 8,
+        w: e.w - 8,
+        h: e.h - 8
+      };
+      if (nextX <= e.patrolStart || nextX >= e.patrolEnd || wouldHitObstacle(nextRect)) {
         e.vx = -e.vx;
+      } else {
+        e.x = nextX;
       }
       e.frame++;
     });
@@ -1259,16 +1187,34 @@
     });
 
     obstacles.forEach(function (o) {
-      if (player.x < o.x + o.w && player.x + player.w > o.x &&
-          player.y < o.y + o.h && player.y + player.h > o.y) {
-        player.x -= player.facing * 20;
-        player.vx = -player.facing * 5;
+      if (rectsOverlap(player, o)) {
+        const playerCenterX = player.x + player.w / 2;
+        const playerCenterY = player.y + player.h / 2;
+        const obstacleCenterX = o.x + o.w / 2;
+        const obstacleCenterY = o.y + o.h / 2;
+        const overlapX = player.w / 2 + o.w / 2 - Math.abs(playerCenterX - obstacleCenterX);
+        const overlapY = player.h / 2 + o.h / 2 - Math.abs(playerCenterY - obstacleCenterY);
+
+        if (overlapX < overlapY) {
+          if (playerCenterX < obstacleCenterX) {
+            player.x = o.x - player.w;
+          } else {
+            player.x = o.x + o.w;
+          }
+          player.vx = 0;
+        } else if (playerCenterY < obstacleCenterY) {
+          player.y = o.y - player.h;
+          player.vy = 0;
+          player.grounded = true;
+        } else {
+          player.y = o.y + o.h;
+          player.vy = Math.max(0, player.vy);
+        }
       }
     });
 
     enemies.forEach(function (e) {
-      if (player.x < e.x + e.w && player.x + player.w > e.x &&
-          player.y < e.y + e.h && player.y + player.h > e.y) {
+      if (rectsOverlap(player, e)) {
         playerDeath();
       }
     });

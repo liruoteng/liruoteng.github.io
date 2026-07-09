@@ -355,10 +355,10 @@ body {
   content: '';
   position: absolute;
   inset: auto 0 0;
-  height: 76px;
+  height: 34px;
   background:
-    repeating-linear-gradient(90deg, rgba(95, 63, 35, 0.28) 0 16px, transparent 16px 40px),
-    linear-gradient(180deg, transparent 0 30px, rgba(83, 151, 52, 0.3) 30px 42px, rgba(196, 132, 45, 0.18) 42px 100%);
+    repeating-linear-gradient(90deg, rgba(95, 63, 35, 0.12) 0 10px, transparent 10px 36px),
+    linear-gradient(180deg, transparent 0 18px, rgba(83, 151, 52, 0.14) 18px 26px, rgba(196, 132, 45, 0.08) 26px 100%);
   pointer-events: none;
 }
 
