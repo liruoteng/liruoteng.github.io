@@ -1,6 +1,52 @@
 (function () {
   'use strict';
 
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var PASSCODE = '0611';
+  var ACCESS_KEY = 'birthday-surprise-access';
+
+  var passcodeGate = document.getElementById('passcode-gate');
+  var passcodeForm = document.getElementById('passcode-form');
+  var passcodeInput = document.getElementById('passcode-input');
+  var passcodeFeedback = document.getElementById('passcode-feedback');
+
+  function closePasscodeGate() {
+    try {
+      sessionStorage.setItem(ACCESS_KEY, 'granted');
+    } catch (error) {
+      // Access still lasts for the current page even if session storage is unavailable.
+    }
+    passcodeGate.classList.add('is-closing');
+    setTimeout(function () {
+      passcodeGate.classList.add('hidden');
+    }, reduceMotion ? 0 : 400);
+  }
+
+  var alreadyGranted = false;
+  try {
+    alreadyGranted = sessionStorage.getItem(ACCESS_KEY) === 'granted';
+  } catch (error) {
+    alreadyGranted = false;
+  }
+
+  if (alreadyGranted) {
+    passcodeGate.classList.add('hidden');
+  } else {
+    passcodeInput.focus();
+  }
+
+  passcodeForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (passcodeInput.value === PASSCODE) {
+      passcodeFeedback.textContent = '';
+      closePasscodeGate();
+      return;
+    }
+    passcodeFeedback.textContent = 'That did not open it. Please try again.';
+    passcodeInput.value = '';
+    passcodeInput.focus();
+  });
+
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
@@ -136,6 +182,8 @@
   const gameSection = document.getElementById('game-section');
   const timeline = document.getElementById('timeline');
   const wishes = document.getElementById('wishes');
+  const memoriesTitle = document.getElementById('memories-title');
+  const memoriesButton = document.getElementById('memories-btn');
   const openBtn = document.getElementById('open-btn');
   const envelope = document.querySelector('.envelope');
 
@@ -1627,9 +1675,18 @@
 
     setTimeout(function () {
       timelineLock.classList.add('unlocked');
+      timelineLock.setAttribute('aria-hidden', 'true');
+      timeline.classList.remove('memories-locked');
+      memoriesButton.classList.remove('hidden');
+      memoriesButton.focus();
       checkTimeline();
-    }, 1200);
+    }, reduceMotion ? 0 : 1200);
   }
+
+  memoriesButton.addEventListener('click', function () {
+    timeline.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    memoriesTitle.focus({ preventScroll: true });
+  });
 
   gameCanvas.width = GAME_W;
   gameCanvas.height = GAME_H;
@@ -1694,6 +1751,7 @@
   const lightboxNext = lightbox.querySelector('.lightbox-next');
   const cardImages = document.querySelectorAll('.card-image');
   let currentLightboxIndex = -1;
+  let lastFocusedElement = null;
 
   function getImageCards() {
     var cards = [];
@@ -1714,12 +1772,14 @@
     var images = getImageCards();
     if (images.length === 0) return;
     currentLightboxIndex = index;
+    lastFocusedElement = document.activeElement;
     lightboxImg.src = images[index].src;
     lightboxImg.alt = images[index].alt;
     lightboxCaption.textContent = images[index].caption;
     lightbox.classList.remove('hidden');
     requestAnimationFrame(function () {
       lightbox.classList.add('active');
+      lightboxClose.focus();
     });
     document.body.style.overflow = 'hidden';
   }
@@ -1729,6 +1789,7 @@
     setTimeout(function () {
       lightbox.classList.add('hidden');
       document.body.style.overflow = 'auto';
+      if (lastFocusedElement) lastFocusedElement.focus();
     }, 300);
   }
 
@@ -1772,9 +1833,30 @@
 
   document.addEventListener('keydown', function (e) {
     if (lightbox.classList.contains('hidden')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') navigateLightbox(-1);
-    if (e.key === 'ArrowRight') navigateLightbox(1);
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeLightbox();
+    }
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      navigateLightbox(-1);
+    }
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      navigateLightbox(1);
+    }
+    if (e.key === 'Tab') {
+      var focusable = [lightboxClose, lightboxPrev, lightboxNext];
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 
   var replayBtn = document.getElementById('replay-btn');

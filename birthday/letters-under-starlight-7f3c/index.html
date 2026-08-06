@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
   <title>A Special Message For You</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,6 +11,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <section id="passcode-gate" class="passcode-gate" aria-labelledby="passcode-title">
+    <div class="passcode-card">
+      <span class="passcode-ornament" aria-hidden="true">✦</span>
+      <h1 id="passcode-title" class="passcode-title">Something lovely is waiting</h1>
+      <p class="passcode-copy">Enter the four-digit code to open your birthday surprise.</p>
+      <form id="passcode-form" class="passcode-form" novalidate>
+        <label class="sr-only" for="passcode-input">Birthday passcode</label>
+        <input id="passcode-input" class="passcode-input" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" aria-describedby="passcode-feedback" required>
+        <button class="passcode-submit" type="submit">Open surprise</button>
+      </form>
+      <p id="passcode-feedback" class="passcode-feedback" role="status" aria-live="polite"></p>
+    </div>
+  </section>
   <canvas id="confetti-canvas"></canvas>
 
   <section id="intro" class="intro">
@@ -85,21 +99,24 @@
         </div>
         <div id="game-win-overlay" class="game-win-overlay hidden">
           <div class="win-content">
-            <span class="win-icon">&#10084;</span>
-            <span class="win-text">Memories Unlocked!</span>
+            <span class="win-icon" aria-hidden="true">&#10084;</span>
+            <span class="win-text" role="status" aria-live="polite">Memories Unlocked!</span>
+            <button id="memories-btn" class="memories-btn hidden" type="button">View Our Memories</button>
           </div>
         </div>
       </div>
       <div class="touch-controls">
-        <button id="touch-left" class="touch-btn" aria-label="Move left">&#9664;</button>
-        <button id="touch-jump" class="touch-btn touch-jump" aria-label="Jump">&#9650;</button>
-        <button id="touch-right" class="touch-btn" aria-label="Move right">&#9654;</button>
         <button id="touch-shoot" class="touch-btn touch-shoot" aria-label="Shoot">&#9733;</button>
+        <div class="touch-direction-controls" role="group" aria-label="Movement controls">
+          <button id="touch-left" class="touch-btn" aria-label="Move left">&#9664;</button>
+          <button id="touch-jump" class="touch-btn touch-jump" aria-label="Jump">&#9650;</button>
+          <button id="touch-right" class="touch-btn" aria-label="Move right">&#9654;</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="timeline" class="timeline-section">
+  <section id="timeline" class="timeline-section memories-locked" aria-labelledby="memories-title">
     <div id="timeline-lock" class="timeline-lock">
       <div class="lock-content">
         <span class="lock-icon">&#128274;</span>
@@ -107,7 +124,7 @@
       </div>
     </div>
     <p class="section-kicker">Adventure complete · memories unlocked</p>
-    <h2 class="section-title">Our Memories</h2>
+    <h2 id="memories-title" class="section-title" tabindex="-1">Our Memories</h2>
     <p class="timeline-intro">Seven little snapshots from the moments that make every chapter feel special.</p>
     <div class="timeline">
       <div class="timeline-line"></div>
@@ -115,9 +132,9 @@
       <div class="timeline-item" data-index="0">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <div class="card-image">
-            <img src="images/memory-01.jpg" alt="Celine smiling by the water" data-caption="A little sunshine, a wide-open horizon, and you">
-          </div>
+          <button class="card-image" type="button" aria-label="Open memory: Celine smiling by the water">
+            <img src="images/memory-01.jpg" alt="Celine smiling by the water" width="1920" height="1080" loading="lazy" decoding="async" data-caption="A little sunshine, a wide-open horizon, and you">
+          </button>
           <div class="card-content">
             <span class="card-date">A bright beginning</span>
             <p class="card-text">The kind of moment that makes the whole day feel lighter.</p>
@@ -128,9 +145,9 @@
       <div class="timeline-item" data-index="1">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <div class="card-image">
-            <img src="images/memory-02.jpg" alt="Celine holding a coffee outdoors" data-caption="Coffee in hand, and another day worth remembering">
-          </div>
+          <button class="card-image" type="button" aria-label="Open memory: Celine holding a coffee outdoors">
+            <img src="images/memory-02.jpg" alt="Celine holding a coffee outdoors" width="984" height="1750" loading="lazy" decoding="async" data-caption="Coffee in hand, and another day worth remembering">
+          </button>
           <div class="card-content">
             <span class="card-date">Small joys</span>
             <p class="card-text">The everyday details that quietly become our favorite stories.</p>
@@ -141,9 +158,9 @@
       <div class="timeline-item" data-index="2">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <div class="card-image">
-            <img src="images/memory-03.jpg" alt="Friends gathered outdoors by a waterfall" data-caption="Adventures are better when shared with good company">
-          </div>
+          <button class="card-image" type="button" aria-label="Open memory: Friends gathered outdoors by a waterfall">
+            <img src="images/memory-03.jpg" alt="Friends gathered outdoors by a waterfall" width="2400" height="1500" loading="lazy" decoding="async" data-caption="Adventures are better when shared with good company">
+          </button>
           <div class="card-content">
             <span class="card-date">The big adventure</span>
             <p class="card-text">A view worth traveling for, with even better people beside us.</p>
@@ -154,9 +171,9 @@
       <div class="timeline-item" data-index="3">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <div class="card-image">
-            <img src="images/memory-04.jpg" alt="A couple smiling in a printed photo" data-caption="A tiny frame holding a very big memory">
-          </div>
+          <button class="card-image" type="button" aria-label="Open memory: A couple smiling in a printed photo">
+            <img src="images/memory-04.jpg" alt="A couple smiling in a printed photo" width="1800" height="2400" loading="lazy" decoding="async" data-caption="A tiny frame holding a very big memory">
+          </button>
           <div class="card-content">
             <span class="card-date">Captured forever</span>
             <p class="card-text">Some memories deserve a place on the wall and in the heart.</p>
@@ -167,9 +184,9 @@
       <div class="timeline-item" data-index="4">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <div class="card-image">
-            <img src="images/memory-05.jpg" alt="A person standing by a lake in a printed photo" data-caption="Finding beauty in the places we wander to">
-          </div>
+          <button class="card-image" type="button" aria-label="Open memory: A person standing by a lake in a printed photo">
+            <img src="images/memory-05.jpg" alt="A person standing by a lake in a printed photo" width="1800" height="2400" loading="lazy" decoding="async" data-caption="Finding beauty in the places we wander to">
+          </button>
           <div class="card-content">
             <span class="card-date">Wanderlust</span>
             <p class="card-text">A quiet view, a little mischief, and the freedom to explore.</p>
@@ -180,9 +197,9 @@
       <div class="timeline-item" data-index="5">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <div class="card-image">
-            <img src="images/memory-06.jpg" alt="A couple smiling together in a printed photo" data-caption="The best adventures always include a favorite person">
-          </div>
+          <button class="card-image" type="button" aria-label="Open memory: A couple smiling together in a printed photo">
+            <img src="images/memory-06.jpg" alt="A couple smiling together in a printed photo" width="1800" height="2400" loading="lazy" decoding="async" data-caption="The best adventures always include a favorite person">
+          </button>
           <div class="card-content">
             <span class="card-date">Together</span>
             <p class="card-text">The kind of happiness that shows up in every glance and grin.</p>
@@ -193,9 +210,9 @@
       <div class="timeline-item" data-index="6">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <div class="card-image">
-            <img src="images/memory-07.jpg" alt="A couple smiling by the water in a printed photo" data-caption="Here is to all the memories still waiting for us">
-          </div>
+          <button class="card-image" type="button" aria-label="Open memory: A couple smiling by the water in a printed photo">
+            <img src="images/memory-07.jpg" alt="A couple smiling by the water in a printed photo" width="1800" height="2400" loading="lazy" decoding="async" data-caption="Here is to all the memories still waiting for us">
+          </button>
           <div class="card-content">
             <span class="card-date">To be continued</span>
             <p class="card-text">Every birthday is another page, and there are so many more to fill.</p>
@@ -222,13 +239,14 @@
     </div>
   </section>
 
-  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" aria-describedby="lightbox-caption">
     <button class="lightbox-close" aria-label="Close image viewer">&times;</button>
     <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#10094;</button>
     <button class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
     <div class="lightbox-content">
+      <h2 id="lightbox-title" class="sr-only">Memory viewer</h2>
       <img src="" alt="" class="lightbox-img">
-      <p class="lightbox-caption"></p>
+      <p id="lightbox-caption" class="lightbox-caption"></p>
     </div>
   </div>
 
