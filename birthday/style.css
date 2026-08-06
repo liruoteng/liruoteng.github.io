@@ -714,6 +714,27 @@ body {
   margin-bottom: 4rem;
 }
 
+.section-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+.timeline-intro {
+  max-width: 34rem;
+  margin: -2.5rem auto 4rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.7;
+  text-align: center;
+  color: var(--text-light);
+}
+
 .timeline {
   max-width: 900px;
   margin: 0 auto;
@@ -789,6 +810,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   position: relative;
+  background: #f0e6dc;
 }
 
 .card-image img {
@@ -800,6 +822,29 @@ body {
 
 .card-image:hover img {
   transform: scale(1.05);
+}
+
+.card-image::after {
+  content: 'View memory';
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  background: rgba(44, 24, 16, 0.55);
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card-image:hover::after,
+.card-image:focus-within::after {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .image-placeholder {
@@ -1052,6 +1097,10 @@ body {
 
   .timeline-section {
     padding: 4rem 1rem;
+  }
+
+  .timeline-intro {
+    margin-bottom: 3rem;
   }
 
   .timeline-item {
