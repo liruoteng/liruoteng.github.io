@@ -4,11 +4,51 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var PASSCODE = '0611';
   var ACCESS_KEY = 'birthday-surprise-access';
+  var PHOTO_KEY = 'tR26+4IE5/7qfXiY+tNiWbxd4v0rODRcdj6/1dKPIxg=';
+  var photoLoadPromise = null;
 
   var passcodeGate = document.getElementById('passcode-gate');
   var passcodeForm = document.getElementById('passcode-form');
   var passcodeInput = document.getElementById('passcode-input');
   var passcodeFeedback = document.getElementById('passcode-feedback');
+
+  function base64ToBytes(value) {
+    var binary = atob(value);
+    var bytes = new Uint8Array(binary.length);
+    for (var i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return bytes;
+  }
+
+  function loadEncryptedPhotos() {
+    if (photoLoadPromise) return photoLoadPromise;
+    var photos = document.querySelectorAll('.memory-photo');
+    photoLoadPromise = crypto.subtle.importKey(
+      'raw',
+      base64ToBytes(PHOTO_KEY),
+      { name: 'AES-GCM' },
+      false,
+      ['decrypt']
+    ).then(function (key) {
+      return Promise.all(Array.prototype.map.call(photos, function (photo) {
+        return fetch(photo.getAttribute('data-encrypted-src'))
+          .then(function (response) {
+            if (!response.ok) throw new Error('Photo unavailable');
+            return response.arrayBuffer();
+          })
+          .then(function (payload) {
+            var bytes = new Uint8Array(payload);
+            var iv = bytes.slice(0, 12);
+            var ciphertext = bytes.slice(12);
+            return crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, ciphertext);
+          })
+          .then(function (plainImage) {
+            photo.src = URL.createObjectURL(new Blob([plainImage], { type: 'image/jpeg' }));
+            photo.dataset.loaded = 'true';
+          });
+      }));
+    });
+    return photoLoadPromise;
+  }
 
   function closePasscodeGate() {
     try {
@@ -31,6 +71,7 @@
 
   if (alreadyGranted) {
     passcodeGate.classList.add('hidden');
+    loadEncryptedPhotos();
   } else {
     passcodeInput.focus();
   }
@@ -39,6 +80,7 @@
     event.preventDefault();
     if (passcodeInput.value === PASSCODE) {
       passcodeFeedback.textContent = '';
+      loadEncryptedPhotos();
       closePasscodeGate();
       return;
     }
@@ -1757,7 +1799,7 @@
     var cards = [];
     cardImages.forEach(function (card) {
       var img = card.querySelector('img');
-      if (img) {
+      if (img && img.dataset.loaded === 'true') {
         cards.push({
           src: img.src,
           alt: img.alt,
@@ -1809,7 +1851,7 @@
   cardImages.forEach(function (card, i) {
     card.addEventListener('click', function () {
       var img = card.querySelector('img');
-      if (img) {
+      if (img && img.dataset.loaded === 'true') {
         var realIndex = -1;
         var count = -1;
         cardImages.forEach(function (c, j) {
