@@ -1072,6 +1072,11 @@ body {
   overflow: hidden;
 }
 
+.wishes-section.wishes-locked {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .wishes-section::before {
   content: '';
   position: absolute;
@@ -1082,7 +1087,7 @@ body {
 }
 
 .wishes-content {
-  max-width: 600px;
+  max-width: 980px;
   text-align: center;
   z-index: 1;
 }
@@ -1102,6 +1107,18 @@ body {
   color: var(--text-medium);
   font-weight: 400;
   margin-bottom: 1.5rem;
+  text-wrap: pretty;
+}
+
+.wishes-text.wish-single-line {
+  white-space: nowrap;
+  font-size: clamp(0.82rem, 1.8vw, 1.15rem);
+}
+
+@media (max-width: 700px) {
+  .wishes-text.wish-single-line {
+    white-space: normal;
+  }
 }
 
 .wishes-signature {

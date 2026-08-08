@@ -1726,6 +1726,8 @@
     timelineLock.classList.add('unlocked');
     timelineLock.setAttribute('aria-hidden', 'true');
     timeline.classList.remove('memories-locked');
+    wishes.classList.remove('wishes-locked');
+    wishes.setAttribute('aria-hidden', 'false');
     memoriesButton.classList.remove('hidden');
     memoriesButton.focus();
     checkTimeline();
