@@ -1716,13 +1716,19 @@
     launchConfetti(canvas.width / 2, canvas.height * 0.5, 250);
 
     setTimeout(function () {
-      timelineLock.classList.add('unlocked');
-      timelineLock.setAttribute('aria-hidden', 'true');
-      timeline.classList.remove('memories-locked');
-      memoriesButton.classList.remove('hidden');
-      memoriesButton.focus();
-      checkTimeline();
+      // Keep the reveal covered until every encrypted image has a usable blob URL.
+      // This prevents the timeline from showing empty/broken image states on slower connections.
+      Promise.resolve(loadEncryptedPhotos()).then(revealMemories, revealMemories);
     }, reduceMotion ? 0 : 1200);
+  }
+
+  function revealMemories() {
+    timelineLock.classList.add('unlocked');
+    timelineLock.setAttribute('aria-hidden', 'true');
+    timeline.classList.remove('memories-locked');
+    memoriesButton.classList.remove('hidden');
+    memoriesButton.focus();
+    checkTimeline();
   }
 
   memoriesButton.addEventListener('click', function () {
